@@ -15,3 +15,22 @@ La conexión local está en `includes/config.php` (usuario `root`, sin contrase�
 ## Flujo de trabajo
 - `main` está protegida: todo cambio entra por pull request con aprobación.
 - Una rama por tarea (`feature/...`, `fix/...`, `docs/...`), luego pull request hacia `main`.
+## Diagrama de la Base de Datos
+
+```mermaid
+erDiagram
+    CATEGORIA ||--o{ PRODUCTO : contiene
+    DEPARTAMENTO ||--o{ CIUDAD : tiene
+    CIUDAD ||--o{ ORIGENUSUARIO : pertenece
+    DEPARTAMENTO ||--o{ ORIGENUSUARIO : pertenece
+    USUARIO ||--o{ FAVORITO : guarda
+    LOCAL ||--o{ FAVORITO : guardado_en
+    PRODUCTO ||--o{ FAVORITO : guardado_en
+    HORARIO ||--o{ LOCAL : asignado_a
+    VENDEDOR ||--o{ LOCAL : administra
+    USUARIO ||--o{ NOTIFICACION : recibe
+    LOCAL ||--o{ PRODUCTO : vende
+    ROL ||--o{ USUARIO : define
+    TIPODOCUMENTO ||--o{ USUARIO : identifica
+    ORIGENUSUARIO ||--o| USUARIO : origen_de
+    USUARIO ||--o| VENDEDOR : es
