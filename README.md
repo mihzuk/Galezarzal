@@ -29,6 +29,9 @@ erDiagram
     HORARIO ||--o{ LOCAL : asignado_a
     VENDEDOR ||--o{ LOCAL : administra
     USUARIO ||--o{ NOTIFICACION : recibe
+## Diagrama de la Base de Datos
+
+![Diagrama ER](docs/diagrama_bd.png)
     LOCAL ||--o{ PRODUCTO : vende
     ROL ||--o{ USUARIO : define
     TIPODOCUMENTO ||--o{ USUARIO : identifica
