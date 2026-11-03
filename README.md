@@ -31,7 +31,7 @@ erDiagram
     USUARIO ||--o{ NOTIFICACION : recibe
 ## Diagrama de la Base de Datos
 
-![Diagrama ER](docs/diagrama_bd.png)
+![Diagrama ER de la Base de Datos](docs/diagrama_bd.png)
     LOCAL ||--o{ PRODUCTO : vende
     ROL ||--o{ USUARIO : define
     TIPODOCUMENTO ||--o{ USUARIO : identifica
