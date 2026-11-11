@@ -30,9 +30,9 @@ Proyecto "Galezarzal - Tablero Scrum", público.
 
 - [x] Columnas del campo Status: Backlog, Sprint Backlog, In Progress, In Review y Done.
 - [x] Campos: Sprint (Iteration, por ahora de 2 semanas; se ajusta cuando se confirme la duración), Story Points (número), Prioridad y Tipo (selección única).
-- [ ] Workflows: item agregado va a Backlog; item cerrado va a Done; pull request fusionado va a Done.
-- [ ] Agregar automáticamente al Project los Issues nuevos del repo.
-- [ ] Vistas: Board para el Kanban, Table para el Product Backlog y Roadmap para los sprints.
+- [x] Workflows: item agregado va a Backlog; item cerrado va a Done; pull request fusionado va a Done.
+- [x] Agregar automáticamente al Project los Issues nuevos del repo.
+- [x] Vistas: Board para el Kanban, Table para el Product Backlog y Roadmap para los sprints.
 
 ## Colaboradores
 
@@ -40,7 +40,7 @@ El repositorio es de una cuenta personal, así que todos los colaboradores entra
 
 - [x] Invitaciones enviadas a Galezarzal (Johan-v-p, Josdaver3000, lizarazo2005) y a Agora (divis-smith, Juacoelseco, montanovalentina-cyber, cristianfelipearango-cmyk).
 - [x] Los mismos siete con rol Write en el Project.
-- [ ] Que cada persona acepte su invitación al repositorio.
+- [ ] Que cada persona acepte su invitación al repositorio. Faltan `Juacoelseco`, `lizarazo2005` y `montanovalentina-cyber`.
 - [x] El profe ve el repositorio y el Project porque son públicos.
 
 ## Primer sprint
