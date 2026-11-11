@@ -12,29 +12,36 @@ bash scripts/crear-labels.sh mihzuk/Galezarzal
 
 ## Tag de la línea base
 
-- [ ] Crear el tag `v1.0-baseline` sobre `main` (en GitHub: Releases, Draft a new release, escribir el tag).
+- [x] Tag `v1.0-baseline` creado desde Releases sobre `main`.
 
 ## Protección de `main`
 
 En Settings, Rules, Rulesets, nueva regla para la rama `main`:
 
-- [ ] Exigir Pull Request antes de fusionar, con al menos una aprobación.
-- [ ] Exigir revisión de los Code Owners, para que solo aprueben los que están en `.github/CODEOWNERS`.
-- [ ] Bloquear los force push.
+Ruleset `proteger-main`, activo:
+
+- [x] Exigir Pull Request antes de fusionar, con al menos una aprobación.
+- [x] Exigir revisión de los Code Owners, para que solo aprueben los que están en `.github/CODEOWNERS`.
+- [x] Bloquear los force push y el borrado de la rama.
 
 ## Project (tablero Kanban)
 
-- [ ] Columnas del campo Status: Backlog, Sprint Backlog, In Progress, In Review y Done.
-- [ ] Campos: Sprint (Iteration, de 1 o 2 semanas), Story Points (número), Prioridad y Tipo (selección única).
+Proyecto "Galezarzal - Tablero Scrum", público.
+
+- [x] Columnas del campo Status: Backlog, Sprint Backlog, In Progress, In Review y Done.
+- [x] Campos: Sprint (Iteration, por ahora de 2 semanas; se ajusta cuando se confirme la duración), Story Points (número), Prioridad y Tipo (selección única).
 - [ ] Workflows: item agregado va a Backlog; item cerrado va a Done; pull request fusionado va a Done.
 - [ ] Agregar automáticamente al Project los Issues nuevos del repo.
 - [ ] Vistas: Board para el Kanban, Table para el Product Backlog y Roadmap para los sprints.
 
 ## Colaboradores
 
-- [ ] Grupo Galezarzal con rol Admin o Maintain.
-- [ ] Grupo Agora con rol Write (pueden crear ramas y PRs, pero solo aprueban los Code Owners), o trabajando con fork y Pull Request.
-- [ ] El profe con acceso de lectura.
+El repositorio es de una cuenta personal, así que todos los colaboradores entran con permiso de escritura. Solo aprueban los Code Owners.
+
+- [x] Invitaciones enviadas a Galezarzal (Johan-v-p, Josdaver3000, lizarazo2005) y a Agora (divis-smith, Juacoelseco, montanovalentina-cyber, cristianfelipearango-cmyk).
+- [x] Los mismos siete con rol Write en el Project.
+- [ ] Que cada persona acepte su invitación al repositorio.
+- [x] El profe ve el repositorio y el Project porque son públicos.
 
 ## Primer sprint
 
