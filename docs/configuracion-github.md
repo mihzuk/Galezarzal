@@ -40,7 +40,6 @@ El repositorio es de una cuenta personal, así que todos los colaboradores entra
 
 - [x] Invitaciones enviadas a Galezarzal (Johan-v-p, Josdaver3000, lizarazo2005) y a Agora (divis-smith, Juacoelseco, montanovalentina-cyber, cristianfelipearango-cmyk).
 - [x] Los mismos siete con rol Write en el Project.
-- [ ] Que cada persona acepte su invitación al repositorio. Faltan `Juacoelseco`, `lizarazo2005` y `montanovalentina-cyber`.
 - [x] El profe ve el repositorio y el Project porque son públicos.
 
 ## Primer sprint
