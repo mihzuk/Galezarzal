@@ -25,3 +25,4 @@ Ya cumplen la función de backlog; conviene etiquetarlos (`user-story`, `tech-st
 | 7 | HT | **Escribir el Gherkin de la línea base** y confirmar cada RF ejecutando la aplicación. | RF-01…RF-24 |
 | 8 | HT | **Pruebas:** definir cómo se prueba cada escenario Gherkin (manual documentada al inicio, automatizada después). | DoD |
 | 9 | HT | **Despliegue y DevOps:** documentar el despliegue y, cuando se vea en clase, CI/CD. | RNF-02 |
+| 10 | HT | **Rutas independientes de la carpeta de instalación.** El código escribe a mano el prefijo `/galezarzal/` (104 apariciones en 33 archivos) y `APP_URL` está fijo a `localhost`. Hoy la aplicación solo funciona si está en una carpeta llamada `galezarzal`; para desplegarla en un dominio propio hay que centralizar la ruta base. | RNF-02, RNF-05 |

@@ -9,6 +9,9 @@ Cada grupo cumple **dos papeles a la vez**: dueño de su propio repositorio y de
 - **Grupo desarrollador** (el que recibe el proyecto): actúa como equipo de desarrollo. Toma Issues del Sprint, trabaja en ramas o en un *fork*, y abre Pull Requests.
 - El docente revisa épicas, historias, requerimientos, Gherkin, DoD, diagramas y actas.
 
+## Roles
+El reparto de Product Owner, Scrum Master y desarrolladores por proyecto está en [`docs/scrum.md`](scrum.md#roles).
+
 ## Cómo se entrega un requerimiento
 1. El grupo dueño abre el Issue con la plantilla correspondiente (épica, historia o **Solicitud de requerimiento**). El grupo desarrollador puede abrir una Solicitud para proponer o aclarar algo, pero decide el dueño.
 2. El Product Owner lo refina hasta cumplir el DoR (`docs/DoR.md`).

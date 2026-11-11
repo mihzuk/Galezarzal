@@ -10,9 +10,9 @@ Hay tres tipos de usuario y cada uno tiene su propio recorrido.
 
 **Vendedores.** Registran su local con un asistente de cuatro pasos (datos del local, productos, horarios y confirmación) y después lo manejan desde su panel: información, catálogo con precio y talla, horarios de atención y visibilidad. Un local nuevo queda pendiente y solo se hace público cuando un administrador lo aprueba.
 
-**Administradores.** Gestionan usuarios, moderan locales y productos, y ajustan la configuración general: nombre del sitio, dirección, modo mantenimiento y si el registro está abierto o cerrado.
+**Administradores.** Gestionan usuarios y moderan locales y productos. La pantalla de configuración general (nombre del sitio, modo mantenimiento, registro abierto o cerrado) ya existe, pero todavía no guarda los cambios.
 
-Todos pueden crear y editar su cuenta, cambiar la contraseña, configurar notificaciones y privacidad, o borrar la cuenta. Los locales se clasifican en seis categorías: Ropa Mujer, Ropa Hombre, Ropa Niños, Accesorios, Calzado y Ropa Deportiva.
+Todos pueden crear y editar su cuenta, cambiar la contraseña o borrar la cuenta. Las pantallas de preferencias de notificaciones y de privacidad existen, pero por ahora no guardan lo que se elige. Los locales se clasifican en seis categorías: Ropa Mujer, Ropa Hombre, Ropa Niños, Accesorios, Calzado y Ropa Deportiva.
 
 ## Con qué está hecho
 
