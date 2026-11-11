@@ -1,6 +1,6 @@
 # Arquitectura y paquetes
 
-Aplicación web en **PHP** (sin framework) sobre **MySQL/MariaDB**, servida con Apache (XAMPP en desarrollo). Cada carpeta de la raíz del repositorio es un módulo.
+Es una aplicación web en PHP, sin framework, sobre MySQL o MariaDB y servida con Apache (XAMPP mientras desarrollamos). Cada carpeta de la raíz del repositorio es un módulo.
 
 ```mermaid
 flowchart TB
@@ -41,7 +41,7 @@ flowchart TB
     MOD --> ASSETS
 ```
 
-## Decisiones vigentes
-- Las rutas internas usan el prefijo `/galezarzal/`: la carpeta publicada en Apache debe llamarse `galezarzal` (ver README).
-- Roles: Comprador, Vendedor y Administrador (tabla `rol`); el visitante es un usuario sin sesión.
-- Sin pasarela de pago: la compra se concreta entre comprador y vendedor (WhatsApp o presencial).
+## Cosas que tener en cuenta
+- Las rutas internas usan el prefijo `/galezarzal/`, así que la carpeta en Apache tiene que llamarse `galezarzal` (está en el README).
+- Los roles son comprador, vendedor y administrador (tabla `rol`). El visitante es simplemente alguien sin sesión.
+- No hay pasarela de pago: la compra se acuerda entre comprador y vendedor por WhatsApp o en persona.

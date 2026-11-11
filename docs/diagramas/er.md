@@ -1,6 +1,6 @@
 # Modelo entidad-relación
 
-Fuente: `database/galezarzalBD.sql`. Si la base de datos cambia, actualiza este diagrama **y** el SQL en el mismo PR.
+Sale de `database/galezarzalBD.sql`. Si la base de datos cambia, este diagrama y el SQL se actualizan juntos en el mismo PR.
 
 ```mermaid
 erDiagram

@@ -1,33 +1,33 @@
 ---
 name: Historia técnica
-about: Trabajo técnico sin valor directo para el usuario final (infraestructura, refactor, seguridad, BD)
+about: Trabajo técnico que el usuario final no ve (infraestructura, seguridad, refactor, base de datos)
 title: "[HT] "
 labels: tech-story
 ---
 
 ## Historia técnica
-**Como** <!-- rol técnico: desarrollador / equipo / mantenedor -->
-**necesito** <!-- tarea técnica -->
-**para** <!-- razón: seguridad, mantenibilidad, rendimiento, despliegue... -->
+**Como** <!-- desarrollador, equipo, mantenedor -->
+**necesito** <!-- la tarea técnica -->
+**para** <!-- seguridad, mantenimiento, rendimiento, despliegue... -->
 
 ## Épica
-Parte de #
+Es parte de #
 
-## Requerimientos no funcionales asociados
+## Requerimientos no funcionales
 - RNF-XX
 
 ## Criterios de aceptación (Gherkin)
 ```gherkin
 Característica: <nombre técnico>
 
-  Escenario: <condición verificable>
-    Dado que <estado inicial del sistema>
-    Cuando <se ejecuta el cambio>
-    Entonces <resultado verificable>
+  Escenario: <algo que se pueda comprobar>
+    Dado que <estado del sistema antes>
+    Cuando <se hace el cambio>
+    Entonces <resultado que se pueda verificar>
 ```
 
 ## Notas técnicas
-- [ ] Altera el diseño original (actualizar diagramas y documentación)
+- [ ] Cambia el diseño original (actualizar diagramas y documentación)
 
 ## Estimación
 Story points:

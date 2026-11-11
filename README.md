@@ -120,18 +120,17 @@ Mantenemos el repositorio [@josdaver3000](https://github.com/josdaver3000), [@Jo
 
 ## Proceso Scrum y documentación
 
-El proyecto se desarrolla con Scrum y tableros Kanban en GitHub Projects. Cómo trabajamos, las ceremonias y las plantillas están en la carpeta `docs/`:
+Trabajamos con Scrum y un tablero Kanban en GitHub Projects. Cómo lo hacemos, con las ceremonias y las plantillas, está en la carpeta `docs/`:
 
-- [Guía de Scrum](docs/scrum.md): roles, ceremonias, tablero, flujo con Git y control de cambios de diseño.
+- [Cómo trabajamos con Scrum](docs/scrum.md): roles, ceremonias, tablero, Git y cambios de diseño.
 - [Definition of Done](docs/DoD.md) y [Definition of Ready](docs/DoR.md).
 - [Requerimientos funcionales](docs/requerimientos/funcionales.md) y [no funcionales](docs/requerimientos/no-funcionales.md).
-- Diagramas como código (Mermaid): [entidad-relación](docs/diagramas/er.md), [clases](docs/diagramas/clases.md), [casos de uso](docs/diagramas/casos-de-uso.md), [secuencia](docs/diagramas/secuencia.md) y [arquitectura](docs/diagramas/arquitectura.md).
+- Diagramas en código (Mermaid): [entidad-relación](docs/diagramas/er.md), [clases](docs/diagramas/clases.md), [casos de uso](docs/diagramas/casos-de-uso.md), [secuencia](docs/diagramas/secuencia.md) y [arquitectura](docs/diagramas/arquitectura.md).
 - [Colaboración entre grupos](docs/colaboracion-entre-grupos.md) y [backlog inicial](docs/backlog-inicial.md).
-- Documentos originales de Desarrollo de Software I (ICONIX): [documento funcional](docs/legacy/Documento_Funcional_ICONIX.pdf) y [diagramas draw.io](docs/legacy/Diagramas_ICONIX.drawio).
-- Criterios de aceptación en Gherkin: carpeta [`features/`](features/).
-- Actas de ceremonias: carpeta [`docs/actas/`](docs/actas/).
+- Los documentos originales de Desarrollo de Software I (ICONIX): el [documento funcional](docs/legacy/Documento_Funcional_ICONIX.pdf) y los [diagramas en draw.io](docs/legacy/Diagramas_ICONIX.drawio).
+- Los criterios de aceptación en Gherkin están en [`features/`](features/) y las actas en [`docs/actas/`](docs/actas/).
 
-Todo cambio que altere el diseño original obliga a actualizar los diagramas y la documentación en el mismo pull request.
+Si un cambio modifica el diseño original, hay que actualizar los diagramas y la documentación en el mismo pull request.
 
 ## Cómo contribuir
 

@@ -1,94 +1,93 @@
-# Cómo trabajamos: Scrum + Kanban en GitHub
+# Cómo trabajamos
 
-El proyecto se desarrolla con **Scrum**, con tableros **Kanban en GitHub Projects**.
-Las prácticas de **DevOps** se irán incorporando a medida que se vean en clase.
+Desarrollamos el proyecto con Scrum y llevamos el tablero Kanban en GitHub Projects. Lo de DevOps lo vamos agregando a medida que lo veamos en clase.
 
-## Dónde vive cada cosa
+## Dónde queda cada cosa
 
-| Elemento de Scrum | Dónde está en GitHub |
+| Qué | Dónde |
 |---|---|
-| Product Backlog | GitHub Project (vista *Table* y columna *Backlog*) |
-| Sprint Backlog | Columna *Sprint Backlog* + campo *Sprint* |
-| Épicas, historias de usuario, historias técnicas | **Issues** (plantillas en `.github/ISSUE_TEMPLATE/`) |
-| Requerimientos funcionales / no funcionales | `docs/requerimientos/` + Issues con etiqueta `RF` / `RNF` |
-| Criterios de aceptación | Gherkin dentro del Issue y en `features/*.feature` |
-| DoD / DoR | `docs/DoD.md`, `docs/DoR.md` |
-| Actas de ceremonias | `docs/actas/` (plantilla en `_plantilla.md`) |
+| Product Backlog | GitHub Project, vista Table y columna Backlog |
+| Sprint Backlog | Columna Sprint Backlog y el campo Sprint |
+| Épicas, historias de usuario e historias técnicas | Issues (plantillas en `.github/ISSUE_TEMPLATE/`) |
+| Requerimientos funcionales y no funcionales | `docs/requerimientos/` y Issues con la etiqueta `RF` o `RNF` |
+| Criterios de aceptación | Gherkin dentro del Issue y en `features/` |
+| DoD y DoR | `docs/DoD.md` y `docs/DoR.md` |
+| Actas | `docs/actas/` |
 | Diagramas | Código Mermaid en `docs/diagramas/` |
-| Cambios de diseño | Pull Requests con el checklist de la plantilla |
+| Cambios de diseño | Pull Request con el checklist de la plantilla |
 
 ## Roles
-- **Product Owner (PO):** dueño del backlog; define y prioriza requerimientos, acepta el trabajo.
-- **Scrum Master (SM):** facilita el proceso, convoca ceremonias, elimina impedimentos.
+
+- **Product Owner:** es el dueño del backlog. Define y prioriza los requerimientos y acepta o rechaza el trabajo.
+- **Scrum Master:** se encarga de que el proceso se cumpla, convoca las ceremonias y ayuda a quitar los impedimentos.
 - **Equipo de desarrollo:** estima, construye y entrega el incremento.
 
-### Cómo se reparten los roles entre los dos grupos
-Cada grupo es dueño de su propio proyecto y desarrolla el del otro grupo. Por eso cada integrante tiene **dos roles**, uno por proyecto:
+### Cómo repartimos los roles entre los dos grupos
 
-- **En su proyecto:** un Product Owner. Los demás son *Code Owners*: revisan y aprueban los Pull Requests y ayudan a refinar el backlog.
-- **En el proyecto del otro grupo:** un Scrum Master y el resto como desarrolladores.
+Cada grupo es dueño de su proyecto y desarrolla el del otro, así que cada uno tiene dos roles:
 
-Reglas: un solo PO por proyecto; el PO y el Scrum Master nunca son la misma persona; el Scrum Master también programa; el **Scrum Master rota cada sprint**.
+- En el proyecto propio hay un Product Owner. Los demás son Code Owners: revisan y aprueban los Pull Requests y ayudan al PO a aclarar el backlog.
+- En el proyecto del otro grupo hay un Scrum Master y los demás son desarrolladores.
 
-### Roles del grupo Galezarzal (propuestos para el Sprint 1)
+Un solo PO por proyecto, el PO y el Scrum Master no pueden ser la misma persona, el Scrum Master también programa y el Scrum Master rota cada sprint.
 
-| Integrante | En Galezarzal (repo propio) | En Agora (repo del otro grupo) |
+### Grupo Galezarzal (Sprint 1)
+
+| Integrante | En Galezarzal | En Agora |
 |---|---|---|
-| Michael Calderon | **Product Owner** | Desarrollador |
-| Johan Vallecilla | Code Owner | **Scrum Master** (Sprint 1) |
+| Michael Calderon | Product Owner | Desarrollador |
+| Johan Vallecilla | Code Owner | Scrum Master |
 | José David Vergara | Code Owner | Desarrollador |
 | Carlos Lizarazo | Code Owner | Desarrollador |
 
-Rotación prevista del Scrum Master en Agora: Sprint 1, Johan · Sprint 2, José David · Sprint 3, Carlos.
+El Scrum Master en Agora rota así: Sprint 1 Johan, Sprint 2 José David, Sprint 3 Carlos.
 
-### Roles del grupo Agora
-Los define el grupo Agora con la misma lógica, entre Valentina, Divis, Cristian y Juan Cardona: un PO para su proyecto, un Scrum Master para Galezarzal y el resto como desarrolladores. Se registrarán aquí cuando los confirmen.
+### Grupo Agora
 
-> **Pendiente de validar con el docente:** si el PO y el Scrum Master de cada proyecto salen del grupo dueño o del que desarrolla, y quién asiste a cada ceremonia. Este reparto se ajusta según su respuesta.
+Lo define el grupo Agora entre Valentina, Divis, Cristian y Juan Cardona con la misma lógica: un PO para su proyecto, un Scrum Master para Galezarzal y los demás como desarrolladores. Cuando lo confirmen lo anotamos acá.
 
-## Ceremonias y evidencia formal
+Falta confirmar con el profe si el PO y el Scrum Master de cada proyecto salen del grupo dueño o del que desarrolla, y quién asiste a cada ceremonia. Si responde otra cosa, ajustamos este reparto.
 
-| Ceremonia | Cuándo | Qué se decide | Evidencia |
+## Ceremonias
+
+| Ceremonia | Cuándo | Qué se define | Evidencia |
 |---|---|---|---|
-| Sprint Planning | Inicio del sprint | **Sprint Goal** y **todo el Sprint Backlog** | Acta (`_plantilla-sprint-planning.md`) + Issues movidos a *Sprint Backlog* |
-| Daily Scrum (≤15 min) | Cada día de trabajo | Qué hice, qué haré, qué me bloquea | Acta breve semanal o comentarios en Issues |
-| Refinamiento | Durante el sprint | Detallar y estimar historias futuras | Issues actualizados (cumplen DoR) |
-| Sprint Review | Fin del sprint | Comparar lo comprometido con lo entregado, demostrar el incremento y recibir feedback | Acta (`_plantilla-sprint-review.md`) + tag/release |
-| Retrospectiva | Tras la Review | Qué mejorar del proceso | Acta con acuerdos de mejora |
+| Sprint Planning | Al empezar el sprint | El Sprint Goal y todo el Sprint Backlog | Acta (`_plantilla-sprint-planning.md`) y los Issues movidos a Sprint Backlog |
+| Daily | Cada día de trabajo, 15 minutos | Qué hice, qué voy a hacer y qué me bloquea | Acta corta por semana o comentarios en los Issues |
+| Refinamiento | Durante el sprint | Detallar y estimar las historias que vienen | Issues actualizados que cumplan el DoR |
+| Sprint Review | Al terminar el sprint | Comparar lo comprometido con lo entregado y mostrar el incremento | Acta (`_plantilla-sprint-review.md`) y un tag o release |
+| Retrospectiva | Después de la Review | Qué mejorar en la forma de trabajar | Acta con los compromisos |
 
-**Regla del docente:** cada Sprint Planning debe tener un acta clara que indique el **Sprint Goal** y **todo el Sprint Backlog**. El docente revisa esa acta en cada Sprint Review, así que el acta de Review siempre la referencia y compara contra ella. Si un cambio ocurre en mitad del sprint, se registra en la tabla de cambios del acta de Planning, sin borrar lo original.
+El profe pidió que cada Sprint Planning tenga un acta clara con el Sprint Goal y todo el Sprint Backlog, porque la revisa en cada Sprint Review. Por eso el acta de la Review siempre se compara con la de Planning. Si algo cambia a mitad del sprint, se anota en la tabla de cambios del acta de Planning sin borrar lo que había.
 
-Toda entrega de información o de requerimientos se hace **formalmente**: con un acta o con el elemento correspondiente en el repositorio (Issue). Lo que se acuerda solo por chat no existe hasta que queda en GitHub.
+También quedó claro que cualquier entrega de información o de requerimientos se hace de forma formal, con un acta o con el Issue que corresponda. Lo que se hable solo por chat no cuenta hasta que quede en GitHub.
 
-## Tablero Kanban
+## Tablero
 
-Columnas: `Backlog` → `Sprint Backlog` → `In Progress` → `In Review` → `Done`.
+Las columnas son Backlog, Sprint Backlog, In Progress, In Review y Done. Los campos que usamos son Sprint, Story Points, Prioridad y Tipo (épica, historia de usuario, historia técnica, RF, RNF o bug).
 
-Campos personalizados: **Sprint** (Iteration), **Story Points**, **Prioridad**, **Tipo** (Épica / HU / HT / RF / RNF / Bug).
+- Una tarjeta pasa a In Progress cuando alguien crea su rama.
+- Pasa a In Review cuando se abre el Pull Request.
+- Pasa a Done cuando el PR se fusiona (con `Closes #N` se mueve sola).
+- Cada persona trabaja máximo en dos tarjetas a la vez.
 
-Reglas:
-- Una tarjeta pasa a *In Progress* cuando alguien crea su rama.
-- Pasa a *In Review* cuando se abre el PR.
-- Pasa a *Done* cuando el PR se fusiona (automático con `Closes #N`).
-- Límite sugerido de trabajo en curso: máximo 2 tarjetas *In Progress* por persona.
+## Cómo trabajamos con Git
 
-## Flujo de trabajo con Git
+1. Cada Issue se trabaja en su rama: `feature/12-reserva`, `fix/15-precio`, `docs/20-actas`.
+2. Commits pequeños y con mensajes que se entiendan, por ejemplo `feat(catalogo): cambiar estado del producto (#14)`.
+3. Pull Request con la plantilla y enlazado al Issue.
+4. Lo revisa y lo aprueba un Code Owner. En `main` no se hacen commits directos.
 
-1. Cada Issue se trabaja en su rama: `feature/<n>-descripcion-corta`, `fix/<n>-...`, `docs/<n>-...`.
-2. Commits pequeños y descriptivos (ej.: `feat(catalogo): cambiar estado de producto (#14)`).
-3. Pull Request con la plantilla, enlazado al Issue.
-4. Revisión y aprobación por un Code Owner. `main` está protegida: no se hacen commits directos.
+## Cambios de diseño
 
-## Control de cambios de diseño
+Todo cambio que altere el diseño original obliga a actualizar los diagramas y la documentación. Lo hacemos así:
 
-> **Todo cambio que altere el diseño original obliga a actualizar los diagramas y la documentación.**
-
-Se garantiza así:
-1. Si un Issue o PR altera el diseño, se marca la casilla "Altera el diseño original" y se abre (o se enlaza) un Issue de tipo **Cambio de diseño**.
-2. El PR **no se aprueba** hasta que diagramas, requerimientos, Gherkin y `database/galezarzalBD.sql` afectados estén actualizados en el mismo PR.
-3. El historial de Git deja constancia de cada cambio y su justificación.
+1. Si un Issue o un PR cambia el diseño, se marca la casilla "Altera el diseño original" en el PR y se enlaza un Issue de tipo Cambio de diseño.
+2. El PR no se aprueba hasta que los diagramas, los requerimientos, el Gherkin y `database/galezarzalBD.sql` afectados estén actualizados en ese mismo PR.
+3. El historial de Git queda como prueba de cada cambio y de por qué se hizo.
 
 ## Convenciones
-- Idioma de Issues y documentación: español.
-- Identificadores: `RF-XX`, `RNF-XX`. Los números ya usados (RF-01 a RF-24, RNF-01 a RNF-07) pertenecen a la línea base; los nuevos continúan la numeración.
-- Línea base: el estado documentado en `docs/` al iniciar el proceso Scrum (tag `v1.0-baseline`).
+
+- Los Issues y la documentación van en español.
+- Los identificadores son `RF-XX` y `RNF-XX`. Del RF-01 al RF-24 y del RNF-01 al RNF-07 ya existen (vienen del documento funcional); los nuevos siguen la numeración.
+- La línea base es el estado del proyecto cuando empezamos con Scrum, marcada con el tag `v1.0-baseline`.

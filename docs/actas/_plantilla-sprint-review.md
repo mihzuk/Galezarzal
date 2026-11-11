@@ -1,40 +1,45 @@
-# Acta de Sprint Review – Sprint N
+# Acta de Sprint Review, Sprint N
 
-> Se compara lo **comprometido** en el acta de Sprint Planning (`AAAA-MM-DD-sprint-N-planning.md`) con lo **entregado**.
+Acá comparamos lo que nos comprometimos a hacer en el acta de Sprint Planning con lo que realmente se entregó.
 
 | | |
 |---|---|
-| **Sprint** | N |
-| **Fecha y hora** | AAAA-MM-DD, HH:MM – HH:MM |
-| **Acta de Planning de referencia** | `docs/actas/AAAA-MM-DD-sprint-N-planning.md` |
-| **Scrum Master / Product Owner** | |
-| **Asistentes (incluye docente si asiste)** | |
+| Sprint | N |
+| Fecha y hora | AAAA-MM-DD, de HH:MM a HH:MM |
+| Acta de Planning de este sprint | `docs/actas/AAAA-MM-DD-sprint-N-planning.md` |
+| Scrum Master y Product Owner | |
+| Asistentes (y el profe, si asiste) | |
 
 ## Sprint Goal
-Texto copiado del acta de Planning:
 
-**¿Se cumplió?** Sí / Parcialmente / No — por qué:
+Lo copiamos del acta de Planning:
 
-## Sprint Backlog: comprometido vs entregado
+¿Se cumplió? Sí / Parcialmente / No. Por qué:
 
-| # Issue | Título | Estado final | Cumple DoD | Observaciones |
+## Sprint Backlog: comprometido contra entregado
+
+| Issue | Título | Estado final | Cumple el DoD | Observaciones |
 |---|---|---|---|---|
-| # |  | Done / No terminado / Retirado |  |  |
+| # | | Done / No terminado / Retirado | | |
 
-**Story points comprometidos:**  **Terminados:** 
+Story points comprometidos:
+Story points terminados:
 
 ## Demostración
-Qué se mostró y cómo (pasos, usuario de prueba, enlace al PR o release):
 
-## Retroalimentación recibida
-- 
+Qué mostramos y cómo (pasos, usuario de prueba, enlace al PR o al release):
 
-## Cambios al Product Backlog a raíz de la review
-- Issues nuevos o repriorizados: #
+## Retroalimentación
 
-## Cambios de diseño del sprint
-- [ ] Hubo cambios de diseño y los diagramas y la documentación quedaron actualizados (enlazar PR / Issue).
+-
+
+## Cambios al Product Backlog después de la review
+
+Issues nuevos o con otra prioridad: #
+
+## Cambios de diseño en el sprint
+
+- [ ] Hubo cambios de diseño y los diagramas y la documentación quedaron actualizados (enlazar el PR o el Issue).
 - [ ] No hubo cambios de diseño.
 
----
-*Nombre del archivo: `AAAA-MM-DD-sprint-N-review.md`*
+El archivo se nombra `AAAA-MM-DD-sprint-N-review.md`.

@@ -4,7 +4,7 @@ Característica: <nombre de la funcionalidad>
   Quiero <acción>
   Para <beneficio>
 
-  # Referencia: Issue #N · RF-XX
+  # Referencia: Issue #N y RF-XX
 
   Antecedentes:
     Dado que <contexto común a todos los escenarios>

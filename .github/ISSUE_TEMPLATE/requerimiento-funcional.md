@@ -1,6 +1,6 @@
 ---
 name: Requerimiento funcional
-about: Qué debe hacer el sistema
+about: Lo que debe hacer el sistema
 title: "[RF-XX] "
 labels: RF
 ---
@@ -11,14 +11,13 @@ RF-XX
 ## Descripción
 El sistema debe ...
 
-## Actor(es)
-<!-- visitante / comprador / vendedor / administrador -->
+## Quién lo usa
+<!-- visitante, comprador, vendedor o administrador -->
 
 ## Prioridad
 - [ ] Alta   - [ ] Media   - [ ] Baja
 
-## Historias de usuario derivadas
+## Historias que salen de este requerimiento
 - [ ] #
 
-## Criterio de verificación
-<!-- Cómo se comprueba que se cumple -->
+## Cómo se comprueba

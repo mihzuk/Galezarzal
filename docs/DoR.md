@@ -1,11 +1,11 @@
-# Definition of Ready (DoR)
+# Definition of Ready
 
-Una historia puede entrar a un Sprint cuando:
+Una historia puede entrar a un sprint cuando:
 
-- [ ] Está escrita con la plantilla (Como / quiero / para).
-- [ ] Pertenece a una épica y referencia sus RF / RNF.
-- [ ] Tiene criterios de aceptación en Gherkin, con camino feliz y al menos un caso alterno.
+- [ ] Está escrita con la plantilla (Como, quiero, para).
+- [ ] Pertenece a una épica y dice a qué RF o RNF corresponde.
+- [ ] Tiene criterios de aceptación en Gherkin, con el caso normal y al menos un caso alterno o de error.
 - [ ] Está estimada en story points.
-- [ ] No tiene dependencias sin resolver (o están enlazadas y planificadas).
-- [ ] El Product Owner la priorizó.
-- [ ] El equipo de desarrollo entiende qué se pide (se resolvieron dudas en el refinamiento).
+- [ ] No depende de algo que todavía no esté hecho, o esa dependencia está enlazada y planeada.
+- [ ] El Product Owner ya la priorizó.
+- [ ] El equipo de desarrollo entendió qué se pide y se resolvieron las dudas en el refinamiento.

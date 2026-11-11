@@ -1,6 +1,6 @@
 # Diagrama de clases del dominio
 
-Basado en las *clases candidatas* del documento funcional (sección 2.3) y en el modelo de datos. Los atributos reflejan `database/galezarzalBD.sql`.
+Parte de las clases candidatas del documento funcional (sección 2.3) y del modelo de datos. Los atributos son los de `database/galezarzalBD.sql`.
 
 ```mermaid
 classDiagram

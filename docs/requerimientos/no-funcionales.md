@@ -1,8 +1,8 @@
-# Requerimientos no funcionales (línea base v1.0)
+# Requerimientos no funcionales (línea base)
 
-Fuente: *Documento Funcional ICONIX*, sección 2.2. Los nuevos continúan desde **RNF-08**.
+Vienen del documento funcional de Desarrollo de Software I, sección 2.2. Los nuevos siguen desde el RNF-08.
 
-| ID | Categoría | Descripción | Observación sobre el código actual |
+| ID | Categoría | Descripción | Cómo está hoy en el código |
 |---|---|---|---|
 | RNF-01 | Usabilidad | La interfaz debe ser intuitiva y estar optimizada para navegación desde dispositivos móviles, dado que la mayoría de los usuarios acceden desde celular. | Por verificar |
 | RNF-02 | Disponibilidad | El sistema debe estar disponible al menos el 95 % del tiempo, permitiendo a los compradores consultar el catálogo en cualquier momento del día. | Depende del despliegue |

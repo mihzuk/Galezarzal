@@ -4,7 +4,7 @@ Característica: Autenticación de usuarios
   Quiero registrarme e iniciar sesión
   Para acceder a las funciones de mi rol
 
-  # Referencia: RF-02, RF-03 · Ejemplo de línea base, validar al planificar el Sprint 1
+  # Referencia: RF-02 y RF-03. Es un ejemplo de la línea base; lo validamos al planear el Sprint 1.
 
   Escenario: Registro exitoso
     Dado que soy un visitante sin cuenta

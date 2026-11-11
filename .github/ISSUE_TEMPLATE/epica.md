@@ -1,26 +1,25 @@
 ---
 name: Épica
-about: Gran objetivo funcional que agrupa varias historias de usuario
+about: Un objetivo grande que agrupa varias historias de usuario
 title: "[ÉPICA] "
 labels: epic
 ---
 
 ## Objetivo
-<!-- Qué valor de negocio entrega esta épica -->
+<!-- Qué le aporta al negocio -->
 
 ## Descripción
-<!-- Alcance de la épica en 3-5 líneas -->
+<!-- Alcance de la épica en pocas líneas -->
 
 ## Requerimientos relacionados
 - RF-XX
 - RNF-XX
 
-## Historias que la componen
-<!-- Enlázalas como sub-issues o con la lista de tareas -->
+## Historias de la épica
+<!-- Se enlazan como sub-issues o con la lista de tareas -->
 - [ ] #
 - [ ] #
 
-## Criterio de éxito
-<!-- Cómo sabremos que la épica está completa -->
+## Cuándo la damos por cumplida
 
-## Dependencias / riesgos
+## Dependencias y riesgos

@@ -1,42 +1,41 @@
 ---
 name: Historia de usuario
-about: Funcionalidad descrita desde la perspectiva de un usuario
+about: Una funcionalidad vista desde el usuario
 title: "[HU] "
 labels: user-story
 ---
 
 ## Historia
-**Como** <!-- rol: visitante / comprador / vendedor / administrador -->
-**quiero** <!-- acción o funcionalidad -->
-**para** <!-- beneficio -->
+**Como** <!-- visitante, comprador, vendedor o administrador -->
+**quiero** <!-- lo que necesita hacer -->
+**para** <!-- para qué le sirve -->
 
 ## Épica
-Parte de #
+Es parte de #
 
-## Requerimientos asociados
+## Requerimientos
 - RF-XX
 
 ## Criterios de aceptación (Gherkin)
 ```gherkin
 Característica: <nombre>
 
-  Escenario: <camino feliz>
-    Dado que <contexto inicial>
-    Cuando <acción del usuario>
-    Entonces <resultado esperado>
+  Escenario: <caso normal>
+    Dado que <situación inicial>
+    Cuando <lo que hace el usuario>
+    Entonces <lo que debe pasar>
 
   Escenario: <caso alterno o de error>
-    Dado que <contexto>
-    Cuando <acción>
-    Entonces <resultado>
+    Dado que <situación inicial>
+    Cuando <lo que hace el usuario>
+    Entonces <lo que debe pasar>
 ```
 
-## Notas de diseño
-<!-- ¿Toca la BD, un diagrama o un documento? Indícalo aquí -->
-- [ ] Altera el diseño original (si marcas esto, actualiza diagramas y documentación en el PR)
+## Diseño
+- [ ] Cambia el diseño original (si lo marcan, hay que actualizar los diagramas y la documentación en el PR)
 
 ## Estimación
 Story points:
 
-## Definition of Done
-Aplica `docs/DoD.md`.
+## DoD
+Se aplica `docs/DoD.md`.

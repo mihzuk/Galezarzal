@@ -1,6 +1,6 @@
 # Diagramas de secuencia
 
-## Iniciar sesión (RF-03) — `usuario/ingresarCuenta.php`
+## Iniciar sesión (RF-03): `usuario/ingresarCuenta.php`
 
 ```mermaid
 sequenceDiagram
@@ -19,7 +19,7 @@ sequenceDiagram
     end
 ```
 
-## Agregar producto (RF-10) — `catalogo/agregarProducto.php`
+## Agregar producto (RF-10): `catalogo/agregarProducto.php`
 
 ```mermaid
 sequenceDiagram

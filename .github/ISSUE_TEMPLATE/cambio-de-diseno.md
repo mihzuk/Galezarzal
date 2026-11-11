@@ -1,20 +1,20 @@
 ---
 name: Cambio de diseño
-about: Registrar un cambio que altera el diseño original (obliga a actualizar diagramas y documentación)
+about: Para registrar un cambio que modifica el diseño original (hay que actualizar diagramas y documentación)
 title: "[CAMBIO] "
 labels: cambio-de-diseño
 ---
 
 ## Qué parte del diseño cambia
-<!-- Modelo de datos / casos de uso / clases / arquitectura / interfaz -->
+<!-- Modelo de datos, casos de uso, clases, arquitectura o interfaz -->
 
-## Motivo del cambio
+## Por qué cambia
 
-## Impacto
-- [ ] `docs/diagramas/` (indica cuáles):
+## Qué hay que actualizar
+- [ ] `docs/diagramas/` (cuáles):
 - [ ] `docs/requerimientos/`
 - [ ] `features/` (Gherkin)
 - [ ] `database/galezarzalBD.sql`
 - [ ] Otro:
 
-## Aprobado por
+## Quién lo aprobó

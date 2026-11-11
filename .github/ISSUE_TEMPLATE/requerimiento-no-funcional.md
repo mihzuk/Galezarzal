@@ -9,12 +9,12 @@ labels: RNF
 RNF-XX
 
 ## Categoría
-<!-- Usabilidad / Disponibilidad / Seguridad / Rendimiento / Escalabilidad / Compatibilidad / Mantenibilidad -->
+<!-- Usabilidad, disponibilidad, seguridad, rendimiento, escalabilidad, compatibilidad o mantenibilidad -->
 
 ## Descripción
 El sistema debe ...
 
-## Métrica medible
-<!-- Ej.: respuesta en menos de 3 s con 50 usuarios concurrentes -->
+## Cómo se mide
+<!-- Por ejemplo: responde en menos de 3 segundos con 50 usuarios a la vez -->
 
 ## Cómo se verifica

@@ -1,8 +1,8 @@
 # Casos de uso por módulo
 
-Mermaid no tiene diagrama UML de casos de uso, así que se representa como mapa actor → casos de uso. El detalle original (descripciones y flujos) está en `docs/legacy/`.
+Mermaid no tiene diagrama UML de casos de uso, así que lo dibujamos como un mapa de qué casos de uso usa cada actor. El detalle original (descripciones y flujos) está en `docs/legacy/`.
 
-Actores: **Visitante**, **Comprador** (usuario registrado), **Vendedor**, **Administrador**. Vendedor y Administrador también pueden hacer lo que hace el Comprador.
+Los actores son el visitante, el comprador (usuario registrado), el vendedor y el administrador. El vendedor y el administrador también pueden hacer lo que hace el comprador.
 
 ```mermaid
 flowchart LR

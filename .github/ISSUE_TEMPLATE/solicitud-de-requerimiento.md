@@ -1,15 +1,15 @@
 ---
 name: Solicitud de requerimiento (entre grupos)
-about: Entrega formal de un requerimiento nuevo o cambio por parte del grupo cliente/dueño
+about: Entrega formal de un requerimiento nuevo o de un cambio por parte del grupo dueño
 title: "[SOLICITUD] "
 labels: requirement-request
 ---
 
-## Quién lo solicita
-Grupo / integrante:
+## Quién lo pide
+Grupo e integrante:
 
-## Necesidad
-<!-- Qué necesita y por qué, en lenguaje de negocio -->
+## Qué se necesita
+<!-- Lo que hace falta y por qué, explicado como lo vería el negocio -->
 
 ## Resultado esperado
 <!-- Qué debería poder hacer el usuario cuando esté listo -->
@@ -19,5 +19,5 @@ Grupo / integrante:
 
 ## Fecha deseada (si aplica)
 
-## Siguiente paso
-El Product Owner la analiza y la convierte en épica / historia(s) con criterios Gherkin.
+## Qué sigue
+El Product Owner la revisa y la convierte en épica o historias con criterios Gherkin.

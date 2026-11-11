@@ -1,19 +1,23 @@
 ## Qué cambia
+
 Closes #
 
-## ¿Altera el diseño original?
-- [ ] No
-- [ ] Sí → completa lo siguiente:
-  - [ ] Diagramas actualizados (`docs/diagramas/`)
-  - [ ] Requerimientos actualizados (`docs/requerimientos/`)
-  - [ ] Escenarios Gherkin actualizados (`features/`)
-  - [ ] `database/galezarzalBD.sql` actualizado (si cambia la BD)
-  - [ ] Issue o acta que justifica el cambio: #
+## ¿Cambia el diseño original?
 
-## Checklist (Definition of Done)
+- [ ] No
+- [ ] Sí. Entonces también hicimos esto:
+  - [ ] Actualizamos los diagramas (`docs/diagramas/`)
+  - [ ] Actualizamos los requerimientos (`docs/requerimientos/`)
+  - [ ] Actualizamos los escenarios Gherkin (`features/`)
+  - [ ] Actualizamos `database/galezarzalBD.sql` (si cambia la base de datos)
+  - [ ] Issue o acta que explica el cambio: #
+
+## Checklist
+
 - [ ] Cumple los criterios de aceptación del Issue
-- [ ] Probado manualmente (describe cómo abajo)
-- [ ] Sin credenciales ni datos personales en el código
-- [ ] Revisado por al menos una persona del grupo dueño
+- [ ] Lo probamos a mano (abajo explicamos cómo)
+- [ ] No hay claves ni datos personales en el código
+- [ ] Lo revisó alguien del grupo dueño del repo
 
 ## Cómo probarlo
+
