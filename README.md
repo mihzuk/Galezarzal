@@ -57,7 +57,7 @@ Necesitas XAMPP para Windows (con PHP 8.0 o superior, pero ya viste que conviene
 **1. Copia el proyecto.** Tiene que quedar en `C:\xampp\htdocs\galezarzal`, con ese nombre exacto y en minúsculas, porque los enlaces internos apuntan a `/galezarzal/`.
 
 ```
-git clone https://github.com/mihzuk/Galezarzal-Marketplace.git C:\xampp\htdocs\galezarzal
+git clone https://github.com/mihzuk/Galezarzal.git C:\xampp\htdocs\galezarzal
 ```
 
 Si prefieres bajar el ZIP desde GitHub, descomprímelo y cambia el nombre de la carpeta `Galezarzal-main` por `galezarzal`. Revisa que `index.php` quede directamente dentro de esa carpeta y no en una subcarpeta.
