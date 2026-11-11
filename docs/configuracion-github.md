@@ -4,7 +4,7 @@ Marca cada punto cuando esté listo. El repositorio ya tiene `CODEOWNERS` y una 
 
 ## 1. Etiquetas
 ```bash
-./scripts/crear-labels.sh mihzuk/Galezarzal     # requiere GitHub CLI autenticado
+./scripts/crear-labels.sh mihzuk/Galezarzal-Marketplace     # requiere GitHub CLI autenticado
 ```
 - [ ] Etiquetas creadas (`epic`, `user-story`, `tech-story`, `RF`, `RNF`, `bug`, `acta`, `cambio-de-diseño`, `requirement-request`, prioridades).
 
