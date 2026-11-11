@@ -42,9 +42,18 @@ Un solo PO por proyecto, el PO y el Scrum Master no pueden ser la misma persona,
 
 El Scrum Master en Agora rota así: Sprint 1 Johan, Sprint 2 José David, Sprint 3 Carlos.
 
-### Grupo Agora
+### Grupo Agora (Sprint 1)
 
-Lo define el grupo Agora entre Valentina, Divis, Cristian y Juan Cardona con la misma lógica: un PO para su proyecto, un Scrum Master para Galezarzal y los demás como desarrolladores. Cuando lo confirmen lo anotamos acá.
+| Integrante | En Agora | En Galezarzal |
+|---|---|---|
+| Divis | Product Owner | Desarrollador |
+| Valentina | Code Owner | Scrum Master |
+| Cristian | Code Owner | Desarrollador |
+| Juan Cardona | Code Owner | Desarrollador |
+
+El Scrum Master en Galezarzal rota así: Sprint 1 Valentina, Sprint 2 Cristian, Sprint 3 Juan Cardona.
+
+Este reparto lo propusimos y lo aceptaron los dos grupos por el chat. Es provisional hasta que el profe confirme.
 
 Falta confirmar con el profe si el PO y el Scrum Master de cada proyecto salen del grupo dueño o del que desarrolla, y quién asiste a cada ceremonia. Si responde otra cosa, ajustamos este reparto.
 
