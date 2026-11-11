@@ -36,22 +36,22 @@ Un solo PO por proyecto, el PO y el Scrum Master no pueden ser la misma persona,
 | Integrante | En Galezarzal | En Agora |
 |---|---|---|
 | Michael Calderon | Product Owner | Desarrollador |
-| Johan Vallecilla | Code Owner | Scrum Master |
-| José David Vergara | Code Owner | Desarrollador |
-| Carlos Lizarazo | Code Owner | Desarrollador |
+| Johan Vallecilla | Code Owner | Desarrollador (Scrum Master en el Sprint 2) |
+| José David Vergara | Code Owner | Scrum Master (Sprint 1) |
+| Carlos Lizarazo | Code Owner | Desarrollador (Scrum Master en el Sprint 3) |
 
-El Scrum Master en Agora rota así: Sprint 1 Johan, Sprint 2 José David, Sprint 3 Carlos.
+El Scrum Master en Agora rota así: Sprint 1 José David, Sprint 2 Johan, Sprint 3 Carlos.
 
 ### Grupo Agora (Sprint 1)
 
 | Integrante | En Agora | En Galezarzal |
 |---|---|---|
 | Divis | Product Owner | Desarrollador |
-| Valentina | Code Owner | Scrum Master (Sprint 1) |
-| Cristian | Code Owner | Desarrollador (Scrum Master en el Sprint 2) |
+| Valentina | Code Owner | Desarrollador (Scrum Master en el Sprint 2) |
+| Cristian | Code Owner | Scrum Master (Sprint 1) |
 | Juan Cardona | Code Owner | Desarrollador (Scrum Master en el Sprint 3) |
 
-El Scrum Master en Galezarzal rota así: Sprint 1 Valentina, Sprint 2 Cristian, Sprint 3 Juan Cardona. Este reparto lo confirmaron los dos grupos en el chat.
+El Scrum Master en Galezarzal rota así: Sprint 1 Cristian, Sprint 2 Valentina, Sprint 3 Juan Cardona.
 
 Falta confirmar con el profe si el PO y el Scrum Master de cada proyecto salen del grupo dueño o del que desarrolla, y quién asiste a cada ceremonia. Si responde otra cosa, ajustamos este reparto.
 
