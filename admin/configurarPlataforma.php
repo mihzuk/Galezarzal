@@ -1,14 +1,16 @@
 <?php
 // ============================================================
-//  GALEZARZAL — Admin: Configuración de la plataforma
+//  GALEZARZAL — Admin: Configuración de la plataforma (RF-22)
 // ============================================================
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/aut_verifica.php';
+require_once __DIR__ . '/../includes/configuracion.php';
 
 requiereRol(['Administrador']);
 
 $db = getDB();
-$exito = '';
+$exito = isset($_GET['guardado']) ? 'Configuración guardada.' : '';
+$error = '';
 
 // Stats de la plataforma
 $stats = [];
@@ -19,9 +21,29 @@ try {
     $stats['productos'] = $db->query("SELECT COUNT(*) FROM Producto WHERE estado='disponible'")->fetchColumn();
 } catch(Exception $e) {}
 
+$cfg = obtenerTodaConfig();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Aquí se guardarían configuraciones de plataforma (nombre del sitio, etc.)
-    $exito = 'Configuración guardada.';
+    $nuevo = [
+        'nombre_sitio'       => trim($_POST['nombreSitio'] ?? ''),
+        'modo_mantenimiento' => isset($_POST['mantenimiento'])    ? '1' : '0',
+        'registro_abierto'   => isset($_POST['registroAbierto'])  ? '1' : '0',
+        'aprobacion_manual'  => isset($_POST['aprobacionManual']) ? '1' : '0',
+    ];
+
+    if ($nuevo['nombre_sitio'] === '') {
+        $error = 'El nombre de la plataforma no puede estar vacío.';
+    } elseif (mb_strlen($nuevo['nombre_sitio']) > 60) {
+        $error = 'El nombre de la plataforma no puede pasar de 60 caracteres.';
+    } elseif (guardarConfig($nuevo)) {
+        // Post/Redirect/Get: al recargar no se reenvía el formulario
+        header('Location: /galezarzal/admin/configurarPlataforma.php?guardado=1');
+        exit;
+    } else {
+        $error = 'No se pudo guardar la configuración. Inténtalo de nuevo.';
+    }
+    // Si hubo error, se vuelve a mostrar lo que el administrador escribió
+    $cfg = array_merge($cfg, $nuevo);
 }
 
 $paginaActiva  = 'configuracion';
@@ -36,6 +58,7 @@ require_once __DIR__ . '/../includes/header.php';
     <div class="config-panel">
       <h2>Panel de administración</h2>
       <?php if ($exito): ?><div class="alerta alerta-exito"><?= htmlspecialchars($exito) ?></div><?php endif; ?>
+      <?php if ($error): ?><div class="alerta alerta-error"><?= htmlspecialchars($error) ?></div><?php endif; ?>
 
       <!-- Métricas -->
       <div class="stats-grid" style="margin-bottom:2rem;">
@@ -63,25 +86,29 @@ require_once __DIR__ . '/../includes/header.php';
         <form method="POST">
           <div class="form-group">
             <label>Nombre de la plataforma</label>
-            <input type="text" name="appNombre" value="Galezarzal">
-          </div>
-          <div class="form-group">
-            <label>URL del sitio</label>
-            <input type="url" name="appUrl" value="http://localhost/galezarzal">
+            <input type="text" name="nombreSitio" maxlength="60" required
+                   value="<?= htmlspecialchars($cfg['nombre_sitio']) ?>">
           </div>
           <div class="toggle-row" style="margin-bottom:1rem;">
             <div class="toggle-info">
               <h4>Modo mantenimiento</h4>
               <p>Muestra un mensaje a los visitantes</p>
             </div>
-            <label class="toggle"><input type="checkbox" name="mantenimiento"><span class="slider"></span></label>
+            <label class="toggle"><input type="checkbox" name="mantenimiento" <?= $cfg['modo_mantenimiento'] === '1' ? 'checked' : '' ?>><span class="slider"></span></label>
           </div>
-          <div class="toggle-row" style="margin-bottom:1.25rem;">
+          <div class="toggle-row" style="margin-bottom:1rem;">
             <div class="toggle-info">
               <h4>Registro abierto</h4>
               <p>Permite que nuevos usuarios se registren</p>
             </div>
-            <label class="toggle"><input type="checkbox" name="registroAbierto" checked><span class="slider"></span></label>
+            <label class="toggle"><input type="checkbox" name="registroAbierto" <?= $cfg['registro_abierto'] === '1' ? 'checked' : '' ?>><span class="slider"></span></label>
+          </div>
+          <div class="toggle-row" style="margin-bottom:1.25rem;">
+            <div class="toggle-info">
+              <h4>Aprobación manual</h4>
+              <p>Los locales y productos nuevos esperan la aprobación de un administrador</p>
+            </div>
+            <label class="toggle"><input type="checkbox" name="aprobacionManual" <?= $cfg['aprobacion_manual'] === '1' ? 'checked' : '' ?>><span class="slider"></span></label>
           </div>
           <button type="submit" class="btn-primary">Guardar configuración</button>
         </form>

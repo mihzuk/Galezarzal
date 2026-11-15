@@ -634,6 +634,21 @@ ALTER TABLE `vendedor`
   ADD CONSTRAINT `FK_Vendedor_Usuario` FOREIGN KEY (`iduser`) REFERENCES `usuario` (`iduser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
+-- ============================================================
+--  RF-22: Configuración de la plataforma
+-- ============================================================
+CREATE TABLE IF NOT EXISTS configuracion (
+  clave VARCHAR(50) PRIMARY KEY,
+  valor VARCHAR(255) NOT NULL
+);
+
+INSERT INTO configuracion (clave, valor) VALUES
+  ('nombre_sitio', 'GaleZarzal'),
+  ('modo_mantenimiento', '0'),
+  ('registro_abierto', '1'),
+  ('aprobacion_manual', '0')
+ON DUPLICATE KEY UPDATE clave = clave;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
