@@ -179,8 +179,22 @@ CREATE TABLE `mensajecontacto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
-
 --
+-- Estructura de tabla para la tabla `preferencias_usuario`
+--
+
+CREATE TABLE `preferencias_usuario` (
+  `iduser` int(11) NOT NULL,
+  `notif_productos` tinyint(1) NOT NULL DEFAULT 1,
+  `notif_respuestas` tinyint(1) NOT NULL DEFAULT 1,
+  `notif_novedades` tinyint(1) NOT NULL DEFAULT 1,
+  `notif_correo` tinyint(1) NOT NULL DEFAULT 1,
+  `priv_nombre_completo` tinyint(1) NOT NULL DEFAULT 1,
+  `priv_resenas_visibles` tinyint(1) NOT NULL DEFAULT 1,
+  `priv_visible_vendedores` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
 -- Estructura de tabla para la tabla `notificacion`
 --
 
@@ -448,9 +462,19 @@ ALTER TABLE `tokenrecuperacion`
   ADD UNIQUE KEY `UQ_Token_hash` (`tokenHash`),
   ADD KEY `IDX_Token_iduser` (`iduser`);
 
+-- --------------------------------------------------------
+--
+-- Indices de la tabla `preferencias_usuario`
+--
+
+ALTER TABLE `preferencias_usuario`
+  ADD PRIMARY KEY (`iduser`);
+
+-- --------------------------------------------------------
 --
 -- Indices de la tabla `usuario`
 --
+
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`iduser`),
   ADD UNIQUE KEY `username` (`username`),
@@ -618,6 +642,13 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `tokenrecuperacion`
   ADD CONSTRAINT `FK_Token_Usuario` FOREIGN KEY (`iduser`) REFERENCES `usuario` (`iduser`) ON DELETE CASCADE ON UPDATE CASCADE;
+--
+-- Filtros para la tabla `preferencias_usuario`
+--
+ALTER TABLE `preferencias_usuario`
+  ADD CONSTRAINT `FK_Preferencias_Usuario`
+  FOREIGN KEY (`iduser`) REFERENCES `usuario` (`iduser`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
