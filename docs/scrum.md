@@ -8,7 +8,7 @@ Desarrollamos el proyecto con Scrum y llevamos el tablero Kanban en GitHub Proje
 |---|---|
 | Product Backlog | GitHub Project, vista Table y columna Backlog |
 | Sprint Backlog | Columna Sprint Backlog y el campo Sprint |
-| Épicas, historias de usuario e historias técnicas | Issues (plantillas en `.github/ISSUE_TEMPLATE/`) |
+| Épicas, historias de usuario, historias técnicas y bugs | Issues (plantillas en `.github/ISSUE_TEMPLATE/`) |
 | Requerimientos funcionales y no funcionales | `docs/requerimientos/` y Issues con la etiqueta `RF` o `RNF` |
 | Criterios de aceptación | Gherkin dentro del Issue y en `features/` |
 | DoD y DoR | `docs/DoD.md` y `docs/DoR.md` |
