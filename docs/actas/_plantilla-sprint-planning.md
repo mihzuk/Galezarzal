@@ -13,6 +13,10 @@ El profe revisa esta acta en cada Sprint Review. Tiene que dejar claro el Sprint
 | Equipo de desarrollo | |
 | Ausentes y motivo | |
 
+## Product Goal
+
+Lo copiamos de `docs/scrum.md`, para que el Sprint Goal se escriba pensando en él:
+
 ## Sprint Goal
 
 Una o dos frases con lo que queremos lograr en este sprint y por qué importa.
@@ -28,6 +32,11 @@ Una o dos frases con lo que queremos lograr en este sprint y por qué importa.
 
 Total de story points comprometidos:
 Capacidad estimada del equipo:
+Cómo se calculó la capacidad (quiénes están disponibles y qué se terminó en el sprint anterior):
+
+## Daily de este sprint
+
+Horarios y asistentes de la Daily:
 
 Todas las historias cumplen el DoR (`docs/DoR.md`): sí / no. Si alguna no lo cumple, decir cuál y por qué entra igual.
 

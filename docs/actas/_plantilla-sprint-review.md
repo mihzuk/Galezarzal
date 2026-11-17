@@ -23,7 +23,11 @@ Lo copiamos del acta de Planning:
 | # | | Done / No terminado / Retirado | | |
 
 Story points comprometidos:
-Story points terminados:
+Story points terminados (esta es la velocidad que se usa para la capacidad del próximo Planning):
+
+## Avance hacia el Product Goal
+
+Qué tan cerca estamos y si hay que ajustar algo:
 
 ## Demostración
 

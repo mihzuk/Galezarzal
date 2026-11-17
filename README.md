@@ -116,13 +116,13 @@ La guía de instalación está pensada para XAMPP en Windows. En Linux y macOS, 
 
 ## Equipo
 
-Mantenemos el repositorio [@josdaver3000](https://github.com/josdaver3000), [@Johan-v-p](https://github.com/Johan-v-p), [@mihzuk](https://github.com/mihzuk) y [@lizarazo2005](https://github.com/lizarazo2005).
+Mantenemos el repositorio [@josdaver3000](https://github.com/josdaver3000), [@Johan-v-p](https://github.com/Johan-v-p), [@mihzuk](https://github.com/mihzuk) y [@lizarazo2005](https://github.com/lizarazo2005). Lo desarrolla el grupo de Agora: Cristian, que es el Scrum Master fijo, Divis y Juan Cardona. Los roles y los cambios en el equipo están en [`docs/scrum.md`](docs/scrum.md#roles).
 
 ## Proceso Scrum y documentación
 
 Trabajamos con Scrum y un tablero Kanban en GitHub Projects. Cómo lo hacemos, con las ceremonias y las plantillas, está en la carpeta `docs/`:
 
-- [Cómo trabajamos con Scrum](docs/scrum.md): roles, ceremonias, tablero, Git y cambios de diseño.
+- [Cómo trabajamos con Scrum](docs/scrum.md): roles y cambios en el equipo, Product Goal, duración del sprint, ceremonias, tablero, Git y cambios de diseño.
 - [Definition of Done](docs/DoD.md) y [Definition of Ready](docs/DoR.md).
 - [Requerimientos funcionales](docs/requerimientos/funcionales.md) y [no funcionales](docs/requerimientos/no-funcionales.md).
 - Diagramas en código (Mermaid): [entidad-relación](docs/diagramas/er.md), [clases](docs/diagramas/clases.md), [casos de uso](docs/diagramas/casos-de-uso.md), [secuencia](docs/diagramas/secuencia.md) y [arquitectura](docs/diagramas/arquitectura.md).

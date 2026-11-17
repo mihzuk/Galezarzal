@@ -29,7 +29,7 @@ Ruleset `proteger-main`, activo:
 Proyecto "Galezarzal - Tablero Scrum", público.
 
 - [x] Columnas del campo Status: Backlog, Sprint Backlog, In Progress, In Review y Done.
-- [x] Campos: Sprint (Iteration, por ahora de 2 semanas; se ajusta cuando se confirme la duración), Story Points (número), Prioridad y Tipo (selección única).
+- [x] Campos: Sprint (Iteration de 2 semanas que empieza los martes, la duración definida en `docs/scrum.md`), Story Points (número), Prioridad y Tipo (selección única).
 - [x] Workflows: item agregado va a Backlog; item cerrado va a Done; pull request fusionado va a Done.
 - [x] Agregar automáticamente al Project los Issues nuevos del repo.
 - [x] Vistas: Board para el Kanban, Table para el Product Backlog y Roadmap para los sprints.
@@ -40,6 +40,7 @@ El repositorio es de una cuenta personal, así que todos los colaboradores entra
 
 - [x] Invitaciones enviadas a Galezarzal (Johan-v-p, Josdaver3000, lizarazo2005) y a Agora (divis-smith, Juacoelseco, montanovalentina-cyber, cristianfelipearango-cmyk).
 - [x] Los mismos siete con rol Write en el Project.
+- [x] 2026-11-17: se quitó a montanovalentina-cyber del repositorio y del Project porque dejó el equipo. Quedan seis colaboradores (ver "Cambios en el equipo" en `docs/scrum.md`).
 - [x] El profe ve el repositorio y el Project porque son públicos.
 
 ## Primer sprint

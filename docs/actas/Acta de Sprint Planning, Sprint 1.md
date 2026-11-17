@@ -6,7 +6,7 @@ El profe revisa esta acta en cada Sprint Review. Tiene que dejar claro el Sprint
 |---|---|
 | Sprint | 1 |
 | Fecha y hora de la reunión | 2026-11-14, de 16:00 a 16:25 |
-| Duración del sprint | del AAAA-MM-DD al AAAA-MM-DD |
+| Duración del sprint | del 2026-11-10 al 2026-11-23 (2 semanas) |
 | Lugar o medio |Meet|
 | Scrum Master |cristian felipe arango gomez|
 | Product Owner |michael calderon|
@@ -46,6 +46,7 @@ Aplica `docs/DoD.md`. Excepciones acordadas, si las hay:ninguna
 2. La #10 no entra al Sprint 1 y vuelve al Product Backlog.
 3. dayli felxible debido a motivos externos laborales 
 4. fecha daily:doming 10 de la mañana con valentina y divis, domingo 8:30 de la noche con cardona
+5. (Agregado el 2026-11-17) Valentina deja el equipo porque pasó a otro proyecto. Desde esa fecha, la Daily es el domingo a las 10:00 con Divis y el domingo a las 20:30 con Juan Cardona. Cristian queda fijo como Scrum Master, sin rotación (ver `docs/scrum.md`, "Cambios en el equipo").
 
 
 ## Cambios al Sprint Backlog durante el sprint
@@ -55,4 +56,5 @@ Esto se llena después de la reunión y sin borrar lo anterior: fecha, qué camb
 | Fecha | Cambio (agregar, quitar o modificar) | Issue | Aprobado por | Motivo |
 |---|---|---|---|---|
 | 2026-11-14 | divis smith ramirez | #7 | aprobado por cristian felipe arango | divis acepto trabajar en el github #7 |
+| 2026-11-17 | Modificar: la #8 pasa de Valentina a Divis y sigue en el Sprint 1. Los story points comprometidos se mantienen en 16. | #8 | Michael Calderon (Product Owner) | Valentina dejó el equipo para trabajar en otro proyecto. |
 
