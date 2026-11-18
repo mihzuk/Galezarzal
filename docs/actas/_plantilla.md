@@ -1,10 +1,10 @@
-# Acta de <ceremonia>, Sprint N
+# Acta de Refinamiento, Sprint N
 
-Esta plantilla sirve para las Daily, el refinamiento y la retrospectiva. Para Sprint Planning usamos `_plantilla-sprint-planning.md` y para la Review `_plantilla-sprint-review.md`.
+Esta plantilla es para el refinamiento del Product Backlog. Las demás ceremonias tienen su propia plantilla: `_plantilla-sprint-planning.md`, `_plantilla-daily.md`, `_plantilla-sprint-review.md` y `_plantilla-retrospectiva.md`.
 
 | | |
 |---|---|
-| Ceremonia | Daily / Refinamiento / Retrospectiva |
+| Ceremonia | Refinamiento |
 | Fecha y hora | AAAA-MM-DD, de HH:MM a HH:MM |
 | Lugar o medio | Presencial / Meet / otro |
 | Scrum Master | |
@@ -33,10 +33,4 @@ Esta plantilla sirve para las Daily, el refinamiento y la retrospectiva. Para Sp
 |---|---|---|
 | | | |
 
-## Retrospectiva (solo si es la retro)
-
-- Qué salió bien:
-- Qué hay que mejorar:
-- Compromisos para el próximo sprint:
-
-El archivo se nombra `AAAA-MM-DD-<ceremonia>-sprint-N.md`.
+El archivo se nombra `AAAA-MM-DD-refinamiento-sprint-N.md`.

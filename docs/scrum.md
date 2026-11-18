@@ -12,6 +12,7 @@ Desarrollamos el proyecto con Scrum y llevamos el tablero Kanban en GitHub Proje
 | Requerimientos funcionales y no funcionales | `docs/requerimientos/` y Issues con la etiqueta `RF` o `RNF` |
 | Criterios de aceptación | Gherkin dentro del Issue y en `features/` |
 | DoD y DoR | `docs/DoD.md` y `docs/DoR.md` |
+| Product Goal | Sección "Artefactos y sus compromisos" de este documento |
 | Actas | `docs/actas/` |
 | Diagramas | Código Mermaid en `docs/diagramas/` |
 | Cambios de diseño | Pull Request con el checklist de la plantilla |
@@ -19,8 +20,8 @@ Desarrollamos el proyecto con Scrum y llevamos el tablero Kanban en GitHub Proje
 ## Roles
 
 - **Product Owner:** es el dueño del backlog. Define y prioriza los requerimientos y acepta o rechaza el trabajo.
-- **Scrum Master:** se encarga de que el proceso se cumpla, convoca las ceremonias y ayuda a quitar los impedimentos.
-- **Equipo de desarrollo:** estima, construye y entrega el incremento.
+- **Scrum Master:** se encarga de que el proceso se cumpla, convoca las ceremonias, cuida sus tiempos y ayuda a quitar los impedimentos.
+- **Equipo de desarrollo:** se organiza solo. Decide cuánto trabajo cabe en el sprint y quién toma cada tarjeta, y estima, construye y entrega un incremento que cumpla el DoD.
 
 ### Cómo repartimos los roles entre los dos grupos
 
@@ -29,41 +30,81 @@ Cada grupo es dueño de su proyecto y desarrolla el del otro, así que cada uno 
 - En el proyecto propio hay un Product Owner. Los demás son Code Owners: revisan y aprueban los Pull Requests y ayudan al PO a aclarar el backlog.
 - En el proyecto del otro grupo hay un Scrum Master y los demás son desarrolladores.
 
-Un solo PO por proyecto, el PO y el Scrum Master no pueden ser la misma persona, el Scrum Master también programa y el Scrum Master rota cada sprint.
+Las reglas son:
 
-### Grupo Galezarzal (Sprint 1)
+- Hay un solo PO por proyecto.
+- El PO y el Scrum Master no pueden ser la misma persona.
+- El Scrum Master también programa.
+- El Scrum Master es fijo durante todo el proyecto: no rota entre sprints. Si algún día hay que cambiarlo, se registra en "Cambios en el equipo" con la fecha y el motivo.
+
+### Grupo Galezarzal
 
 | Integrante | En Galezarzal | En Agora |
 |---|---|---|
 | Michael Calderon | Product Owner | Desarrollador |
-| Johan Vallecilla | Code Owner | Desarrollador (Scrum Master en el Sprint 2) |
-| José David Vergara | Code Owner | Scrum Master (Sprint 1) |
-| Carlos Lizarazo | Code Owner | Desarrollador (Scrum Master en el Sprint 3) |
+| Johan Vallecilla | Code Owner | Desarrollador |
+| José David Vergara | Code Owner | Scrum Master (fijo) |
+| Carlos Lizarazo | Code Owner | Desarrollador |
 
-El Scrum Master en Agora rota así: Sprint 1 José David, Sprint 2 Johan, Sprint 3 Carlos.
-
-### Grupo Agora (Sprint 1)
+### Grupo Agora
 
 | Integrante | En Agora | En Galezarzal |
 |---|---|---|
 | Divis | Product Owner | Desarrollador |
-| Valentina | Code Owner | Desarrollador (Scrum Master en el Sprint 2) |
-| Cristian | Code Owner | Scrum Master (Sprint 1) |
-| Juan Cardona | Code Owner | Desarrollador (Scrum Master en el Sprint 3) |
+| Cristian | Code Owner | Scrum Master (fijo) y desarrollador |
+| Juan Cardona | Code Owner | Desarrollador |
 
-El Scrum Master en Galezarzal rota así: Sprint 1 Cristian, Sprint 2 Valentina, Sprint 3 Juan Cardona.
+El equipo que desarrolla Galezarzal queda con tres personas: Cristian (Scrum Master), Divis y Juan Cardona.
 
 Falta confirmar con el profe si el PO y el Scrum Master de cada proyecto salen del grupo dueño o del que desarrolla, y quién asiste a cada ceremonia. Si responde otra cosa, ajustamos este reparto.
 
+### Cambios en el equipo
+
+Cada cambio en el equipo se registra acá, sin borrar los anteriores. Lo aprueba el Product Owner, y el Scrum Master lo deja también en el acta de Planning del sprint en curso.
+
+| Fecha | Cambio | Motivo | Qué se hizo con su trabajo |
+|---|---|---|---|
+| 2026-11-17 | Valentina deja el equipo. En Galezarzal era desarrolladora y en Agora era Code Owner. | Pasó a trabajar en otro proyecto. | La #8 (Marcar productos como favoritos, 6 puntos) sigue en el Sprint 1 y pasa a Divis. Se le quitó el acceso al repositorio y al tablero. |
+| 2026-11-17 | El Scrum Master deja de rotar. Cristian queda fijo en Galezarzal y José David queda fijo en Agora. | Decisión de los dos grupos. Con la salida de Valentina, la rotación ya no se podía cumplir. | Se quitó la rotación (Valentina y Juan Cardona en Galezarzal; Johan y Carlos en Agora). |
+
+## Artefactos y sus compromisos
+
+Cada artefacto de Scrum tiene un compromiso, que es contra lo que se mide el avance:
+
+| Artefacto | Compromiso | Dónde está | Quién responde |
+|---|---|---|---|
+| Product Backlog | Product Goal | GitHub Project, vista Table | Product Owner |
+| Sprint Backlog | Sprint Goal | Columna Sprint Backlog y acta de Planning | Equipo de desarrollo |
+| Incremento | Definition of Done | `main`, con un tag o release por sprint, y `docs/DoD.md` | Equipo de desarrollo |
+
+**Product Goal:** que los comerciantes de la Galería de Zarzal tengan el marketplace publicado en línea, con todo lo que el sitio ya muestra funcionando de verdad: las preferencias, la configuración, los favoritos de productos, las notificaciones y el contacto.
+
+El Product Goal lo define el Product Owner y solo él lo cambia. Cada Sprint Goal tiene que acercar al equipo a este objetivo.
+
+## Sprint
+
+- Cada sprint dura **2 semanas**, como lo confirmó el profe. Empieza un miércoles y termina el martes de la semana siguiente a las 12 de la noche, igual que el campo Sprint del tablero. La duración no cambia a mitad del proyecto.
+- Sprint 1: del 2026-11-04 al 2026-11-17. Sprint 2: del 2026-11-18 al 2026-12-01. Sprint 3: del 2026-12-02 al 2026-12-15.
+- Durante el sprint no se hacen cambios que pongan en riesgo el Sprint Goal. El alcance se puede aclarar con el PO, y todo cambio queda en la tabla de cambios del acta de Planning.
+- Solo el Product Owner puede cancelar un sprint, y solo si el Sprint Goal deja de tener sentido.
+
+### Capacidad del equipo
+
+La capacidad se calcula en cada Planning con las personas que van a estar disponibles en el sprint. Como referencia se toma lo que el equipo terminó en el sprint anterior (la velocidad). Desde el Sprint 2 el equipo de desarrollo es de tres personas, así que la capacidad se estima a partir de eso y no de los 16 puntos del Sprint 1, que se calcularon con cuatro.
+
 ## Ceremonias
 
-| Ceremonia | Cuándo | Qué se define | Evidencia |
-|---|---|---|---|
-| Sprint Planning | Al empezar el sprint | El Sprint Goal y todo el Sprint Backlog | Acta (`_plantilla-sprint-planning.md`) y los Issues movidos a Sprint Backlog |
-| Daily | Cada día de trabajo, 15 minutos | Qué hice, qué voy a hacer y qué me bloquea | Acta corta por semana o comentarios en los Issues |
-| Refinamiento | Durante el sprint | Detallar y estimar las historias que vienen | Issues actualizados que cumplan el DoR |
-| Sprint Review | Al terminar el sprint | Comparar lo comprometido con lo entregado y mostrar el incremento | Acta (`_plantilla-sprint-review.md`) y un tag o release |
-| Retrospectiva | Después de la Review | Qué mejorar en la forma de trabajar | Acta con los compromisos |
+Los tiempos máximos son los de la Guía Scrum para un sprint de 2 semanas.
+
+| Ceremonia | Cuándo | Tiempo máximo | Asisten | Qué se define | Evidencia |
+|---|---|---|---|---|---|
+| Sprint Planning | Al empezar el sprint | 4 horas | PO, Scrum Master y equipo de desarrollo | Por qué (Sprint Goal), qué (Sprint Backlog) y cómo | Acta (`_plantilla-sprint-planning.md`) y los Issues movidos a Sprint Backlog |
+| Daily | En los horarios acordados en el acta de Planning | 15 minutos | Equipo de desarrollo y Scrum Master | Avance hacia el Sprint Goal, el plan hasta la próxima Daily y lo que bloquea | Acta corta (`_plantilla-daily.md`) o comentarios en los Issues |
+| Refinamiento | Durante el sprint | Hasta el 10 % del tiempo del equipo | PO y equipo de desarrollo | Detallar y estimar las historias que vienen | Acta (`_plantilla.md`) e Issues actualizados que cumplan el DoR |
+| Sprint Review | Al terminar el sprint | 2 horas | PO, Scrum Master, equipo de desarrollo y el profe | Mostrar el incremento, compararlo con lo comprometido y ajustar el Product Backlog | Acta (`_plantilla-sprint-review.md`) y un tag o release |
+| Retrospectiva | Después de la Review, antes del siguiente Planning | 1 hora y 30 minutos | Scrum Master, equipo de desarrollo y PO | Qué mejorar en la forma de trabajar | Acta (`_plantilla-retrospectiva.md`) con los compromisos |
+
+El Scrum Master convoca todas las ceremonias y se asegura de que duren lo acordado. Como la Daily es flexible por los horarios de trabajo del equipo, sus horarios se acuerdan en cada Planning y se anotan en el acta.
 
 El profe pidió que cada Sprint Planning tenga un acta clara con el Sprint Goal y todo el Sprint Backlog, porque la revisa en cada Sprint Review. Por eso el acta de la Review siempre se compara con la de Planning. Si algo cambia a mitad del sprint, se anota en la tabla de cambios del acta de Planning sin borrar lo que había.
 

@@ -55,4 +55,6 @@ Esto se llena después de la reunión y sin borrar lo anterior: fecha, qué camb
 | Fecha | Cambio (agregar, quitar o modificar) | Issue | Aprobado por | Motivo |
 |---|---|---|---|---|
 | 2026-11-14 | divis smith ramirez | #7 | aprobado por cristian felipe arango | divis acepto trabajar en el github #7 |
-
+| 2026-11-17 | Modificar: la #8 pasa de Valentina a Divis y sigue en el Sprint 1. Los story points comprometidos se mantienen en 16. | #8 | Michael Calderon (Product Owner) | Valentina dejó el equipo para trabajar en otro proyecto. |
+| 2026-11-17 | Cambio en el equipo: Valentina sale. Desde esta fecha, la Daily es el domingo a las 10:00 con Divis y el domingo a las 20:30 con Juan Cardona. Cristian queda como Scrum Master fijo, sin rotación (ver `docs/scrum.md`, "Cambios en el equipo"). | - | Michael Calderon (Product Owner) | Valentina pasó a otro proyecto. |
+| 2026-11-17 | Fechas del sprint: el Sprint 1 va del 2026-11-04 al 2026-11-17 a las 12 de la noche (2 semanas). En la reunión no quedaron escritas. | - | Michael Calderon (Product Owner) | El profe confirmó sprints de 2 semanas. |

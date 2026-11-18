@@ -7,10 +7,10 @@ Cada grupo le entrega los requerimientos al otro. El grupo que creó un proyecto
 Cada grupo tiene dos papeles al mismo tiempo: es dueño de su repositorio y desarrolla el del otro.
 
 - El grupo dueño actúa como Product Owner. Escribe los requerimientos nuevos para el otro grupo (épicas e historias con su Gherkin), mantiene el backlog, prioriza y aprueba los Pull Requests.
-- El grupo que desarrolla trabaja como equipo de desarrollo. Toma los Issues del sprint, trabaja en ramas o en un fork y abre los Pull Requests.
+- El grupo que desarrolla trabaja como equipo de desarrollo, con uno de sus integrantes como Scrum Master fijo durante todo el proyecto. Toma los Issues del sprint, trabaja en ramas o en un fork y abre los Pull Requests.
 - El profe revisa épicas, historias, requerimientos, Gherkin, DoD, diagramas y actas.
 
-Los roles de cada persona están en [`scrum.md`](scrum.md#roles).
+Los roles de cada persona y los cambios en el equipo están en [`scrum.md`](scrum.md#roles). Si alguien entra o sale de un grupo, se registra allí y en el acta de Planning del sprint en curso, y su trabajo se reparte en el equipo con la aprobación del Product Owner.
 
 ## Cómo se entrega un requerimiento
 
