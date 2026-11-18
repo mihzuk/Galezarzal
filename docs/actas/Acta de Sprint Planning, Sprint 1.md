@@ -1,4 +1,4 @@
-# Acta de Sprint Planning, Sprint N
+# Acta de Sprint Planning, Sprint 1
 
 El profe revisa esta acta en cada Sprint Review. Tiene que dejar claro el Sprint Goal y todo el Sprint Backlog; lo que no esté acá no se considera comprometido.
 
