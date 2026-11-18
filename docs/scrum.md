@@ -83,8 +83,8 @@ El Product Goal lo define el Product Owner y solo él lo cambia. Cada Sprint Goa
 
 ## Sprint
 
-- Cada sprint dura **2 semanas** y empieza un martes, igual que el campo Sprint del tablero. La duración no cambia a mitad del proyecto, salvo que lo acuerden el PO y el Scrum Master y quede registrado acá.
-- Sprint 1: del 2026-11-10 al 2026-11-23. Sprint 2: del 2026-11-24 al 2026-12-07. Sprint 3: del 2026-12-08 al 2026-12-21.
+- Cada sprint dura **2 semanas**, como lo confirmó el profe. Empieza un miércoles y termina el martes de la semana siguiente a las 12 de la noche, igual que el campo Sprint del tablero. La duración no cambia a mitad del proyecto.
+- Sprint 1: del 2026-11-04 al 2026-11-17. Sprint 2: del 2026-11-18 al 2026-12-01. Sprint 3: del 2026-12-02 al 2026-12-15.
 - Durante el sprint no se hacen cambios que pongan en riesgo el Sprint Goal. El alcance se puede aclarar con el PO, y todo cambio queda en la tabla de cambios del acta de Planning.
 - Solo el Product Owner puede cancelar un sprint, y solo si el Sprint Goal deja de tener sentido.
 

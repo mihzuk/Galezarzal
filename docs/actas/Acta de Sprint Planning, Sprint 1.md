@@ -6,7 +6,7 @@ El profe revisa esta acta en cada Sprint Review. Tiene que dejar claro el Sprint
 |---|---|
 | Sprint | 1 |
 | Fecha y hora de la reunión | 2026-11-14, de 16:00 a 16:25 |
-| Duración del sprint | del 2026-11-10 al 2026-11-23 (2 semanas) |
+| Duración del sprint | del 2026-11-04 al 2026-11-17 a las 12 de la noche (2 semanas) |
 | Lugar o medio |Meet|
 | Scrum Master |cristian felipe arango gomez|
 | Product Owner |michael calderon|

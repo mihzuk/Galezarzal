@@ -29,7 +29,7 @@ Ruleset `proteger-main`, activo:
 Proyecto "Galezarzal - Tablero Scrum", público.
 
 - [x] Columnas del campo Status: Backlog, Sprint Backlog, In Progress, In Review y Done.
-- [x] Campos: Sprint (Iteration de 2 semanas que empieza los martes, la duración definida en `docs/scrum.md`), Story Points (número), Prioridad y Tipo (selección única).
+- [x] Campos: Sprint (Iteration de 2 semanas que empieza los miércoles, como lo confirmó el profe; las fechas están en `docs/scrum.md`), Story Points (número), Prioridad y Tipo (selección única).
 - [x] Workflows: item agregado va a Backlog; item cerrado va a Done; pull request fusionado va a Done.
 - [x] Agregar automáticamente al Project los Issues nuevos del repo.
 - [x] Vistas: Board para el Kanban, Table para el Product Backlog y Roadmap para los sprints.
