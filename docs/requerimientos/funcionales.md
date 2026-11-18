@@ -19,7 +19,7 @@ En la columna Estado anotamos si el requerimiento ya está hecho en `main`: "Sí
 | RF-11 | Catálogo | El sistema debe permitir al vendedor modificar los datos de un producto existente. | Sí |
 | RF-12 | Catálogo | El sistema debe permitir al vendedor eliminar (desactivar) un producto de su catálogo. | Sí |
 | RF-13 | Catálogo | El sistema debe permitir al vendedor cambiar el estado de un producto entre "disponible" y "agotado". Cuando un producto está agotado, debe ocultarse automáticamente de los resultados de búsqueda activos. | Parcial: cambia el estado y oculta agotados en el local; no hay búsqueda de productos |
-| RF-14 | Favoritos | El sistema debe permitir al usuario registrado agregar locales o productos a su lista de favoritos. | Parcial: solo se pueden marcar locales; productos no |“El sistema debe permitir al comprador registrado marcar y quitar productos como favoritos y mostrarlos junto a sus locales favoritos. Sin sesión, debe pedir iniciar sesión sin guardar nada.”|
+| RF-14 | Favoritos | El sistema debe permitir al usuario registrado agregar locales o productos a su lista de favoritos. | Sí: se pueden marcar locales y productos; sin sesión pide iniciar sesión |
 | RF-15 | Favoritos | El sistema debe permitir al usuario registrado eliminar elementos de su lista de favoritos. | Sí |
 | RF-16 | Favoritos | El sistema debe permitir al usuario registrado consultar su lista de favoritos. | Sí |
 | RF-17 | Notificaciones | El sistema debe enviar notificaciones a los usuarios sobre nuevos productos en locales favoritos, respuestas a consultas y novedades de la plataforma. | Parcial: se pueden consultar, pero ningún proceso genera notificaciones |
