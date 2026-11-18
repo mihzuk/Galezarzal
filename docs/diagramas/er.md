@@ -21,6 +21,7 @@ erDiagram
     USUARIO ||--o{ NOTIFICACION : "recibe"
     USUARIO |o--o{ MENSAJECONTACTO : "envía"
     USUARIO ||--o{ TOKENRECUPERACION : "solicita"
+    USUARIO ||--o| PREFERENCIASUSUARIO : "configura"
 
     DEPARTAMENTO {
         int idDepart PK
@@ -143,6 +144,16 @@ erDiagram
         string urlDestino
         enum estado "no_leida, leida, eliminada"
         datetime fecha
+    }
+    PREFERENCIASUSUARIO {
+        int iduser PK, FK
+        tinyint notif_productos
+        tinyint notif_respuestas
+        tinyint notif_novedades
+        tinyint notif_correo
+        tinyint priv_nombre_completo
+        tinyint priv_resenas_visibles
+        tinyint priv_visible_vendedores
     }
     CONFIGURACION {
         string clave PK "nombre_sitio, modo_mantenimiento, registro_abierto, aprobacion_manual"
