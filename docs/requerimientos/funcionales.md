@@ -24,7 +24,7 @@ En la columna Estado anotamos si el requerimiento ya está hecho en `main`: "Sí
 | RF-16 | Favoritos | El sistema debe permitir al usuario registrado consultar su lista de favoritos. | Sí |
 | RF-17 | Notificaciones | El sistema debe enviar notificaciones a los usuarios sobre nuevos productos en locales favoritos, respuestas a consultas y novedades de la plataforma. | Parcial: se pueden consultar, pero ningún proceso genera notificaciones |
 | RF-18 | Notificaciones | El sistema debe permitir al usuario registrado consultar, marcar como leída y eliminar notificaciones. | Sí |
-| RF-19 | Configuración | El sistema debe permitir al usuario registrado modificar su perfil, cambiar su contraseña, configurar preferencias de notificaciones y ajustar opciones de privacidad. | Parcial: perfil y contraseña sí; privacidad y preferencias de notificación solo muestran un mensaje, no guardan |
+| RF-19 | Configuración | El sistema debe permitir al usuario registrado modificar su perfil, cambiar su contraseña, configurar preferencias de notificaciones y ajustar opciones de privacidad. | Sí: las preferencias se guardan en la base de datos y se mantienen después de cerrar sesión |
 | RF-20 | Administración | El sistema debe permitir al administrador gestionar usuarios (activar, suspender, eliminar). | Sí |
 | RF-21 | Administración | El sistema debe permitir al administrador moderar locales y productos (aprobar, reportar, desactivar). | Sí |
 | RF-22 | Administración | El sistema debe permitir al administrador configurar parámetros generales de la plataforma como registro abierto, modo mantenimiento y aprobación manual de locales o productos. | Parcial: la pantalla existe pero no guarda la configuración |
