@@ -49,7 +49,7 @@ Qué mostramos y cómo (pasos, usuario de prueba, enlace al PR o al release):
 2. **Configuración de la plataforma (#7, PR #14):** como administrador, cambiar un parámetro en `admin/configurarPlataforma.php`, guardar y recargar. Después apagar "Registro abierto", cerrar sesión y comprobar que `usuario/crearUsuario.php` muestra el aviso de registro cerrado y no deja crear la cuenta.
 3. **Favoritos de productos (#8, PR #40):** sin sesión, pulsar "Agregar a favoritos" en un producto y comprobar que pide iniciar sesión. Con sesión, agregarlo, verlo en la lista de favoritos y quitarlo.
 
-Release del sprint: pendiente. Solo existe `v1.0-baseline`; falta crear el tag del Sprint 1 cuando se fusione el PR #42.
+Release del sprint: [`v1.1-sprint-1`](https://github.com/mihzuk/Galezarzal/releases/tag/v1.1-sprint-1), sobre el commit `841ab6f` de `main` (fusión del PR #40), que incluye #6, #7 y #8.
 
 ## Retroalimentación
 
