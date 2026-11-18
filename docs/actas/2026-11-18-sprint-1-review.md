@@ -22,11 +22,11 @@ Lo copiamos del acta de Planning: que los compradores y administradores puedan c
 |---|---|---|---|---|
 | #6 | Guardar las preferencias de privacidad y de notificaciones | Done | Sí, con el PR #42 | PR #38, aprobado por lizarazo2005 y fusionado el 2026-11-17. La tabla `preferencias_usuario` faltaba en el diagrama ER; se agrega en el PR #42. |
 | #7 | Guardar la configuración de la plataforma | Done | Sí | PR #14, aprobado por josdaver3000 y fusionado el 2026-11-17. El PR usaba `Refs #7` en vez de `Closes #7`, así que la issue se cerró a mano. El modo mantenimiento, la aprobación manual y el nombre del sitio se guardan pero todavía no se aplican: pasan a la HU nueva #41. |
-| #8 | Marcar productos como favoritos | Done *(el PO decide si cuenta en el Sprint 1)* | Sí | PR #40, aprobado por lizarazo2005. Se fusionó el 2026-11-18 a las 00:07, 7 minutos después de terminar el sprint. Pasó de Valentina a Divis el 2026-11-17. El PR dejó los diagramas como pendientes, pero el ER, el de clases y el de casos de uso ya incluían los favoritos de productos y la base no cambió. |
+| #8 | Marcar productos como favoritos | Done | Sí | PR #40, aprobado por lizarazo2005. Se fusionó el 2026-11-18 a las 00:07, 7 minutos después de terminar el sprint; el PO la acepta dentro del Sprint 1 porque el trabajo se hizo durante el sprint. Pasó de Valentina a Divis el 2026-11-17. El PR dejó los diagramas como pendientes, pero el ER, el de clases y el de casos de uso ya incluían los favoritos de productos y la base no cambió. |
 
 Story points comprometidos: 16
 
-Story points terminados (esta es la velocidad que se usa para la capacidad del próximo Planning): 16 si el PO acepta la #8 dentro del Sprint 1; 10 si no. *(decidir en la reunión)*
+Story points terminados (esta es la velocidad que se usa para la capacidad del próximo Planning): 16
 
 ## Avance hacia el Product Goal
 
