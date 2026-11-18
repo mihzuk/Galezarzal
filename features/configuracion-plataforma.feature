@@ -1,4 +1,3 @@
-gherkin
 # language: es
 Característica: Configuración de la plataforma
   Como administrador
