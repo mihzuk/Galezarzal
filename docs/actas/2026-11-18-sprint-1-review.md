@@ -14,7 +14,7 @@ Acá comparamos lo que nos comprometimos a hacer en el acta de Sprint Planning c
 
 Lo copiamos del acta de Planning: que los compradores y administradores puedan configurar y al salir de la página web se guarde.
 
-¿Se cumplió? Sí *(confirmar en la reunión)*. Por qué: las preferencias de privacidad y de notificaciones del comprador (#6) y la configuración de la plataforma del administrador (#7) se guardan en la base de datos y se mantienen después de cerrar sesión y volver a entrar. Con eso se cumple el criterio de la épica #3.
+¿Se cumplió? Sí *(confirmar en la reunión)*. Por qué: las preferencias de privacidad y de notificaciones del comprador (#6) y la configuración de la plataforma del administrador (#7) se guardan en la base de datos y se mantienen después de cerrar sesión y volver a entrar.
 
 ## Sprint Backlog: comprometido contra entregado
 
@@ -59,10 +59,10 @@ Release del sprint: [`v1.1-sprint-1`](https://github.com/mihzuk/Galezarzal/relea
 
 Issues nuevos o con otra prioridad: #41, #43, #24
 
-- **#41 (nueva):** aplicar en el sitio el modo mantenimiento, la aprobación manual y el nombre del sitio. Falta que el PO le ponga prioridad y que el equipo la estime.
+- **#41 (nueva):** aplicar en el sitio el modo mantenimiento, la aprobación manual y el nombre del sitio. Es parte de la épica #3, con prioridad Media. Falta que el equipo la estime. Para probar la aprobación manual primero hay que resolver el bug #31 (los locales pendientes no aparecen y no se pueden aprobar).
 - **#43 (nueva):** entorno de desarrollo con Docker, en la épica #5 con prioridad Alta. Se hace junto con el #18 y desbloquea el #28 y el #29.
 - **#24 (cambia):** ahora es elegir dónde publicar los contenedores, con un hosting compartido de PHP como plan B.
-- **Épica #3:** se cierra cuando se fusione el PR #42.
+- **Épica #3:** sigue abierta (2 de 3). #6 y #7 están terminadas; se agregó la #41 porque el objetivo de la épica pide que la configuración "se respete después", y hoy solo se aplica el registro abierto o cerrado. El criterio de la épica se actualizó para incluirlo.
 
 ## Cambios de diseño en el sprint
 
