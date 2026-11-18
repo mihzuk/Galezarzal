@@ -30,6 +30,31 @@ $stOtros = $db->prepare(
 );
 $stOtros->execute([$producto['idLocal'], $idProducto]);
 $otros = $stOtros->fetchAll();
+// ¿Es favorito del usuario actual?
+$esFavorito = false;
+if (sesionActiva()) {
+    $stFav = $db->prepare("SELECT 1 FROM Favorito WHERE iduser=? AND idProducto=? LIMIT 1");
+    $stFav->execute([$_SESSION['iduser'], $idProducto]);
+    $esFavorito = (bool)$stFav->fetchColumn();
+}
+
+// Marcar o quitar favorito
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorito'])) {
+    if (!sesionActiva()) {
+        flash('info', 'Inicia sesión para guardar productos en tus favoritos.');
+        header('Location: /galezarzal/usuario/ingresarCuenta.php');
+        exit;
+    }
+    if ($esFavorito) {
+        $db->prepare("DELETE FROM Favorito WHERE iduser=? AND idProducto=?")
+           ->execute([$_SESSION['iduser'], $idProducto]);
+    } else {
+        $db->prepare("INSERT INTO Favorito (iduser, idProducto) VALUES (?, ?)")
+           ->execute([$_SESSION['iduser'], $idProducto]);
+    }
+    header('Location: /galezarzal/catalogo/catalogo.php?id=' . $idProducto);
+    exit;
+}
 
 $fotos = json_decode($producto['fotosUrl'] ?? '[]', true) ?: [];
 $msgWA = urlencode("Hola, vi el producto «{$producto['nomProducto']}» en Galezarzal y me interesa. ¿Está disponible?");
@@ -102,6 +127,11 @@ require_once __DIR__ . '/../includes/header.php';
           💬 Comprar por WhatsApp
         </a>
         <?php endif; ?>
+         <form method="POST" style="display:inline;">
+          <button type="submit" name="favorito" value="1" class="<?= $esFavorito ? 'btn-primary' : 'btn-outline' ?>">
+            <?= $esFavorito ? '❤ Quitar de favoritos' : '♡ Agregar a favoritos' ?>
+          </button>
+        </form>
         <a href="/galezarzal/local/verLocal.php?id=<?= $producto['idLocal'] ?>" class="btn-outline">Ver todo el local</a>
       </div>
 
