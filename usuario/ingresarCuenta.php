@@ -6,6 +6,7 @@ require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/aut_verifica.php';
 require_once __DIR__ . '/../includes/aut_visualizar_error.php';
 require_once __DIR__ . '/../includes/validaciones.php';
+require_once __DIR__ . '/../includes/configuracion.php';
 
 if (sesionActiva()) {
     header('Location: /galezarzal/index.php');
@@ -15,6 +16,7 @@ if (sesionActiva()) {
 $error   = '';
 $exito   = '';
 $tab     = $_GET['tab'] ?? 'login'; // 'login' | 'registro'
+$registroCerrado = !configActiva('registro_abierto');
 
 // ── POST: Iniciar sesión ──
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['accion'] === 'login') {
@@ -62,16 +64,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['
     $confirmPassword = $_POST['confirmPassword']      ?? '';
 
     // Validación en el servidor (largos, formatos y contraseña)
-    $error = validarDatosRegistro([
-        'primerNombre'    => $primerNombre,
-        'primerApellido'  => $primerApellido,
-        'username'        => $username,
-        'email'           => $emailReg,
-        'celular'         => $celular,
-        'password'        => $password,
-        'confirmPassword' => $confirmPassword,
-    ]);
-
+      $error = $registroCerrado
+        ? 'El registro de nuevas cuentas está cerrado por ahora.'
+        : validarDatosRegistro([
+            'primerNombre'    => $primerNombre,
+            'primerApellido'  => $primerApellido,
+            'username'        => $username,
+            'email'           => $emailReg,
+            'celular'         => $celular,
+            'password'        => $password,
+            'confirmPassword' => $confirmPassword,
+        ]);
     if ($error === '') {
         $db = getDB();
         $st = $db->prepare("SELECT COUNT(*) FROM Usuario WHERE email=? OR username=?");
@@ -152,8 +155,11 @@ require_once __DIR__ . '/../includes/header.php';
         </p>
       </form>
 
-      <?php else: ?>
+     <?php else: ?>
       <!-- REGISTRO inline -->
+      <?php if ($registroCerrado): ?>
+        <div class="alerta alerta-info">El registro de nuevas cuentas está cerrado por ahora. Inténtalo más adelante.</div>
+      <?php else: ?>
       <p style="font-size:.88rem;color:var(--gris);margin-bottom:1.25rem;">
         Regístrate como comprador para guardar favoritos y contactar vendedores.
       </p>
@@ -201,6 +207,7 @@ require_once __DIR__ . '/../includes/header.php';
         </div>
         <button type="submit" class="btn-primary w-full">Crear mi cuenta</button>
       </form>
+      <?php endif; ?>
       <?php endif; ?>
 
     </div>

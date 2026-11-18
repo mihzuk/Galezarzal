@@ -144,4 +144,8 @@ erDiagram
         enum estado "no_leida, leida, eliminada"
         datetime fecha
     }
+    CONFIGURACION {
+        string clave PK "nombre_sitio, modo_mantenimiento, registro_abierto, aprobacion_manual"
+        string valor
+    }
 ```

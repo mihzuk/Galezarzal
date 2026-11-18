@@ -5,9 +5,10 @@
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/aut_visualizar_error.php';
 require_once __DIR__ . '/../includes/validaciones.php';
-
+require_once __DIR__ . '/../includes/configuracion.php';
 $error   = '';
 $exito   = false;
+$registroCerrado = !configActiva('registro_abierto');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $primerNombre    = trim($_POST['primerNombre']    ?? '');
@@ -19,15 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirmPassword = $_POST['confirmPassword']      ?? '';
 
     // Validación en el servidor (largos, formatos y contraseña)
-    $error = validarDatosRegistro([
-        'primerNombre'    => $primerNombre,
-        'primerApellido'  => $primerApellido,
-        'username'        => $username,
-        'email'           => $email,
-        'celular'         => $celular,
-        'password'        => $password,
-        'confirmPassword' => $confirmPassword,
-    ]);
+        $error = $registroCerrado
+        ? 'El registro de nuevas cuentas está cerrado por ahora.'
+        : validarDatosRegistro([
+            'primerNombre'    => $primerNombre,
+            'primerApellido'  => $primerApellido,
+            'username'        => $username,
+            'email'           => $email,
+            'celular'         => $celular,
+            'password'        => $password,
+            'confirmPassword' => $confirmPassword,
+        ]);
 
     if ($error === '') {
         $db = getDB();
@@ -62,15 +65,18 @@ require_once __DIR__ . '/../includes/header.php';
     <p style="font-size:.88rem;color:var(--gris);margin-bottom:1.25rem;">
       Regístrate como comprador para guardar favoritos y contactar vendedores.
     </p>
+    <?php if ($registroCerrado && !$exito): ?>
+      <div class="alerta alerta-info">El registro de nuevas cuentas está cerrado por ahora.</div>
+    <?php endif; ?>
 
-    <?php if ($exito): ?>
+  <?php if ($exito): ?>
       <div class="alerta alerta-exito">¡Cuenta creada con éxito! <a href="/galezarzal/usuario/ingresarCuenta.php" style="color:var(--rojo);font-weight:600;">Iniciar sesión</a></div>
     <?php endif; ?>
     <?php if ($error): ?>
       <div class="alerta alerta-error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
-    <?php if (!$exito): ?>
+   <?php if (!$exito && !$registroCerrado): ?>
     <form method="POST">
       <div class="form-row">
         <div class="form-group">
