@@ -1,29 +1,41 @@
-# Acta de Daily, Sprint N
+# Acta de Daily N, Sprint N
 
-Dura como máximo 15 minutos. Es para revisar el avance hacia el Sprint Goal, no para resolver problemas: lo que necesite más tiempo se habla después, solo con quienes hagan falta. Puede ser un acta por semana con una fila por Daily.
+Todas las dailies de un sprint van en un solo archivo, una debajo de otra, separadas por una línea. Cada daily dura como máximo 15 minutos y sirve para revisar el avance hacia el Sprint Goal. Lo que necesite más tiempo, como probar un PR o resolver un error, se hace después de la daily con las personas que hagan falta.
 
 | | |
 |---|---|
-| Semana | del AAAA-MM-DD al AAAA-MM-DD |
+| Ceremonia | Daily |
+| Fecha y hora | AAAA-MM-DD, de HH:MM a HH:MM |
+| Lugar o medio | Presencial / Meet / otro |
 | Scrum Master | |
+| Product Owner | |
 | Sprint Goal | |
+| Asistentes | |
+| Ausentes y motivo | |
 
-## Registro
+## Temas que vimos
 
-| Fecha y hora | Asistentes | Ausentes y motivo |
+Cada integrante cuenta qué hizo, qué va a hacer y qué lo bloquea. Si alguien falta pero informó su avance, también se anota.
+
+- Nombre: qué hizo, qué va a hacer y si tiene bloqueos.
+- Nombre:
+
+## Issues revisados
+
+- #N, título, estado
+
+## Acuerdos y decisiones
+
+1.
+
+## Impedimentos o riesgos
+
+-
+
+## Qué sigue
+
+| Acción | Responsable | Fecha límite |
 |---|---|---|
 | | | |
 
-## Avance por persona
-
-| Fecha | Persona | Qué hice para el Sprint Goal | Qué voy a hacer hasta la próxima Daily | Qué me bloquea |
-|---|---|---|---|---|
-| | | | | |
-
-## Impedimentos y quién los resuelve
-
-| Impedimento | Issue | Responsable | Estado |
-|---|---|---|---|
-| | # | | Abierto / Resuelto |
-
-El archivo se nombra `AAAA-MM-DD-daily-sprint-N.md`, con la fecha del lunes de esa semana.
+El archivo se nombra `dailys - sprint N.md`. Cada daily nueva se agrega al final del archivo, sin cambiar las anteriores.
