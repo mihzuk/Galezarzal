@@ -9,6 +9,24 @@ require_once __DIR__ . '/../includes/aut_visualizar_error.php';
 requiereLogin();
 
 $db = getDB();
+
+// Quitar un local de favoritos
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quitar'])) {
+    $idLocal = (int)$_POST['idLocal'];
+    $db->prepare("DELETE FROM Favorito WHERE iduser=? AND idLocal=?")->execute([$_SESSION['iduser'], $idLocal]);
+    header('Location: /galezarzal/favoritos/consultarFavoritos.php');
+    exit;
+}
+
+// Quitar un producto de favoritos
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quitarProducto'])) {
+    $idProd = (int)$_POST['idProducto'];
+    $db->prepare("DELETE FROM Favorito WHERE iduser=? AND idProducto=?")->execute([$_SESSION['iduser'], $idProd]);
+    header('Location: /galezarzal/favoritos/consultarFavoritos.php');
+    exit;
+}
+
+// Locales favoritos
 $st = $db->prepare(
     "SELECT l.idLocal, l.nomLocal, l.describLocal, l.ubiLocal, l.urlWhatsapp,
             (SELECT cat.nomCategoria FROM Producto p
@@ -22,13 +40,17 @@ $st = $db->prepare(
 $st->execute([$_SESSION['iduser']]);
 $favoritos = $st->fetchAll();
 
-// Eliminar favorito
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quitar'])) {
-    $idLocal = (int)$_POST['idLocal'];
-    $db->prepare("DELETE FROM Favorito WHERE iduser=? AND idLocal=?")->execute([$_SESSION['iduser'], $idLocal]);
-    header('Location: /galezarzal/favoritos/consultarFavoritos.php');
-    exit;
-}
+// Productos favoritos
+$stProd = $db->prepare(
+    "SELECT p.idProducto, p.nomProducto, p.precio, p.fotosUrl, p.estado, l.nomLocal
+     FROM Favorito f
+     JOIN Producto p ON p.idProducto = f.idProducto
+     JOIN Local l ON l.idLocal = p.idLocal
+     WHERE f.iduser = ? AND p.estado != 'inactivo' AND l.estado = 'activo'
+     ORDER BY f.idFavorito DESC"
+);
+$stProd->execute([$_SESSION['iduser']]);
+$favProductos = $stProd->fetchAll();
 
 $paginaActiva   = 'configuracion';
 $tituloPagina   = 'Favoritos';
@@ -42,13 +64,16 @@ require_once __DIR__ . '/../includes/header.php';
     <div class="config-panel">
       <h2>Mis favoritos</h2>
 
-      <?php if (empty($favoritos)): ?>
+      <?php if (empty($favoritos) && empty($favProductos)): ?>
         <div class="alerta alerta-info">
-          Aún no tienes locales guardados como favoritos.
+          Aún no tienes favoritos guardados.
           <a href="/galezarzal/local/buscarLocal.php" style="color:var(--rojo);">Explorar locales</a>
         </div>
       <?php else: ?>
-      <div class="cards-grid" style="margin-top:1rem;">
+
+      <?php if (!empty($favoritos)): ?>
+      <h3 style="font-size:1rem;font-weight:700;margin:1rem 0 .75rem;">Locales favoritos</h3>
+      <div class="cards-grid">
         <?php foreach ($favoritos as $loc): ?>
         <div class="card" style="position:relative;">
           <span class="card-badge badge-mixto"><?= htmlspecialchars($loc['catPrincipal'] ?? 'Mixto') ?></span>
@@ -72,6 +97,31 @@ require_once __DIR__ . '/../includes/header.php';
         </div>
         <?php endforeach; ?>
       </div>
+      <?php endif; ?>
+
+      <?php if (!empty($favProductos)): ?>
+      <h3 style="font-size:1rem;font-weight:700;margin:1.5rem 0 .75rem;">Productos favoritos</h3>
+      <div class="cards-grid">
+        <?php foreach ($favProductos as $p): ?>
+        <?php $pf = json_decode($p['fotosUrl'] ?? '[]', true) ?: []; ?>
+        <div class="card">
+          <a href="/galezarzal/catalogo/catalogo.php?id=<?= (int)$p['idProducto'] ?>" style="display:block;color:inherit;">
+            <?php if (!empty($pf[0])): ?>
+              <img src="<?= htmlspecialchars($pf[0]) ?>" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:.5rem;">
+            <?php endif; ?>
+            <h3 style="font-size:.95rem;"><?= htmlspecialchars($p['nomProducto']) ?></h3>
+            <p style="color:var(--rojo);font-weight:700;">$<?= number_format($p['precio'], 0, ',', '.') ?></p>
+            <p style="font-size:.78rem;color:var(--gris);"><?= htmlspecialchars($p['nomLocal']) ?></p>
+          </a>
+          <form method="POST" style="margin-top:.75rem;" onsubmit="return confirm('¿Quitar de favoritos?');">
+            <input type="hidden" name="idProducto" value="<?= (int)$p['idProducto'] ?>">
+            <button type="submit" name="quitarProducto" value="1" class="btn-gris btn-sm">Quitar</button>
+          </form>
+        </div>
+        <?php endforeach; ?>
+      </div>
+      <?php endif; ?>
+
       <?php endif; ?>
     </div>
   </main>
