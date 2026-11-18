@@ -8,7 +8,7 @@ Acá comparamos lo que nos comprometimos a hacer en el acta de Sprint Planning c
 | Fecha y hora | AAAA-MM-DD, de HH:MM a HH:MM *(llenar en la reunión)* |
 | Acta de Planning de este sprint | `docs/actas/2026-11-14-sprint-1-planning.md` |
 | Scrum Master y Product Owner | Cristian Felipe Arango Gómez (Scrum Master), Michael Calderon (Product Owner) |
-| Asistentes (y el profe, si asiste) | *(llenar en la reunión)* |
+| Asistentes | *(llenar en la reunión)* |
 
 ## Sprint Goal
 
@@ -53,7 +53,7 @@ Release del sprint: pendiente. Solo existe `v1.0-baseline`; falta crear el tag d
 
 ## Retroalimentación
 
-- *(llenar en la reunión, incluida la del profe)*
+- *(llenar en la reunión)*
 
 ## Cambios al Product Backlog después de la review
 
