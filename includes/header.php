@@ -15,7 +15,7 @@ $_notifNoLeidas  = 0;
 if ($_logueado) {
     try {
         require_once __DIR__ . '/config.php';
-        $st = getDB()->prepare("SELECT COUNT(*) FROM Notificacion WHERE iduser=? AND estado='no_leida'");
+        $st = getDB()->prepare("SELECT COUNT(*) FROM notificacion WHERE iduser=? AND estado='no_leida'");
         $st->execute([$_SESSION['iduser']]);
         $_notifNoLeidas = (int)$st->fetchColumn();
     } catch(Exception $e) { /* silencioso */ }

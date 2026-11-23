@@ -9,8 +9,8 @@ if (!$idLocal) mostrarError('Error', 'Local no especificado.');
 $db = getDB();
 $st = $db->prepare(
     "SELECT l.*, h.horarioApertura, h.horarioCierre, h.diasDisponibles
-     FROM Local l
-     LEFT JOIN Horario h ON h.idHorario = l.idHorario
+     FROM local l
+     LEFT JOIN horario h ON h.idHorario = l.idHorario
      WHERE l.idLocal = ? AND l.estado = 'activo'"
 );
 $st->execute([$idLocal]);
@@ -19,8 +19,8 @@ if (!$local) mostrarError('Local no encontrado', 'Este local no existe o no estÃ
 
 // Productos
 $stProd = $db->prepare(
-    "SELECT p.*, c.nomCategoria FROM Producto p
-     JOIN Categoria c ON c.idcategoria=p.idcategoria
+    "SELECT p.*, c.nomCategoria FROM producto p
+     JOIN categoria c ON c.idcategoria=p.idcategoria
      WHERE p.idLocal=? AND p.estado='disponible'
      ORDER BY p.nomProducto"
 );
@@ -30,7 +30,7 @@ $productos = $stProd->fetchAll();
 // Â¿Es favorito del usuario actual?
 $esFavorito = false;
 if (sesionActiva()) {
-    $stFav = $db->prepare("SELECT 1 FROM Favorito WHERE iduser=? AND idLocal=? LIMIT 1");
+    $stFav = $db->prepare("SELECT 1 FROM favorito WHERE iduser=? AND idLocal=? LIMIT 1");
     $stFav->execute([$_SESSION['iduser'], $idLocal]);
     $esFavorito = (bool)$stFav->fetchColumn();
 }
@@ -38,9 +38,9 @@ if (sesionActiva()) {
 // Toggle favorito
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && sesionActiva()) {
     if ($esFavorito) {
-        $db->prepare("DELETE FROM Favorito WHERE iduser=? AND idLocal=?")->execute([$_SESSION['iduser'],$idLocal]);
+        $db->prepare("DELETE FROM favorito WHERE iduser=? AND idLocal=?")->execute([$_SESSION['iduser'],$idLocal]);
     } else {
-        $db->prepare("INSERT INTO Favorito (iduser,idLocal) VALUES (?,?)")->execute([$_SESSION['iduser'],$idLocal]);
+        $db->prepare("INSERT INTO favorito (iduser,idLocal) VALUES (?,?)")->execute([$_SESSION['iduser'],$idLocal]);
     }
     header("Location: /galezarzal/local/verLocal.php?id=$idLocal");
     exit;

@@ -11,9 +11,9 @@ $error  = ''; $exito  = '';
 // Obtener local del vendedor
 $st = $db->prepare(
     "SELECT l.*, cat.nomCategoria
-     FROM Local l
-     JOIN Vendedor v ON v.idVendedor = l.idVendedor
-     LEFT JOIN (SELECT p.idLocal, MIN(cat.nomCategoria) AS nomCategoria FROM Producto p JOIN Categoria cat ON cat.idcategoria=p.idcategoria GROUP BY p.idLocal) cat ON cat.idLocal = l.idLocal
+     FROM local l
+     JOIN vendedor v ON v.idVendedor = l.idVendedor
+     LEFT JOIN (SELECT p.idLocal, MIN(cat.nomCategoria) AS nomCategoria FROM producto p JOIN categoria cat ON cat.idcategoria=p.idcategoria GROUP BY p.idLocal) cat ON cat.idLocal = l.idLocal
      WHERE v.iduser = ? LIMIT 1"
 );
 $st->execute([$_SESSION['iduser']]);
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $local) {
     if ($error === '') {
         // El WhatsApp se guarda como 57 + 10 dígitos, listo para wa.me
         $urlWA = formatoWhatsapp($urlWA);
-        $db->prepare("UPDATE Local SET nomLocal=?,describLocal=?,ubiLocal=?,urlWhatsapp=? WHERE idLocal=?")
+        $db->prepare("UPDATE local SET nomLocal=?,describLocal=?,ubiLocal=?,urlWhatsapp=? WHERE idLocal=?")
            ->execute([$nomLocal,$describLocal,$ubiLocal,$urlWA,$local['idLocal']]);
         $exito = 'Información actualizada.';
     }
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $local) {
 }
 
 // Categorías para select
-$categorias = $db->query("SELECT * FROM Categoria ORDER BY nomCategoria")->fetchAll();
+$categorias = $db->query("SELECT * FROM categoria ORDER BY nomCategoria")->fetchAll();
 
 $paginaActiva = 'configuracion'; $tituloPagina = 'Información del local'; $seccionActiva = 'info-local';
 require_once __DIR__ . '/../includes/header.php';

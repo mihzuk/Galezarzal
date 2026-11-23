@@ -14,4 +14,4 @@ Vienen del documento funcional de Desarrollo de Software I, sección 2.2. Los RN
 | RNF-08 | Seguridad | Las credenciales de la base de datos y cualquier otro secreto deben obtenerse de la configuración del servidor, nunca del código ni del repositorio. | Pendiente (#21): `includes/config.php` trae el usuario `root` sin contraseña |
 | RNF-09 | Disponibilidad | Debe haber copias de seguridad periódicas de la base de datos y un procedimiento probado para restaurarlas. | Pendiente (#26) |
 | RNF-10 | Seguridad | El sitio debe servirse solo por HTTPS, con cookies de sesión seguras. | Pendiente (#22): la cookie de sesión no lleva la marca `secure` |
-| RNF-11 | Compatibilidad | El sistema debe funcionar igual en servidores Linux y Windows. | Pendiente (#23): las carpetas y las tablas con mayúscula inicial fallan en Linux |
+| RNF-11 | Compatibilidad | El sistema debe funcionar igual en servidores Linux y Windows. | Sí (#16): el módulo de locales está en `local/` y las consultas usan los nombres de tabla en minúscula, igual que `database/galezarzalBD.sql`. Probado en Linux con MariaDB sin `lower_case_table_names`. Falta el prefijo `/galezarzal/` escrito a mano (#10) |

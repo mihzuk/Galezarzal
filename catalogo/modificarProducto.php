@@ -17,17 +17,17 @@ $db = getDB();
 // Verificar que el producto pertenece al local del vendedor
 $st = $db->prepare(
     "SELECT p.*, c.nomCategoria
-     FROM Producto p
-     JOIN Categoria c ON c.idcategoria = p.idcategoria
-     JOIN Local l ON l.idLocal = p.idLocal
-     JOIN Vendedor v ON v.idVendedor = l.idVendedor
+     FROM producto p
+     JOIN categoria c ON c.idcategoria = p.idcategoria
+     JOIN local l ON l.idLocal = p.idLocal
+     JOIN vendedor v ON v.idVendedor = l.idVendedor
      WHERE p.idProducto = ? AND (v.iduser = ? OR ? = 'Administrador')"
 );
 $st->execute([$idProducto, $_SESSION['iduser'], $_SESSION['nomRol'] ?? '']);
 $producto = $st->fetch();
 if (!$producto) mostrarError('Sin permiso', 'No puedes editar este producto.');
 
-$categorias = $db->query("SELECT * FROM Categoria ORDER BY nomCategoria")->fetchAll();
+$categorias = $db->query("SELECT * FROM categoria ORDER BY nomCategoria")->fetchAll();
 $secciones  = SECCIONES_PRODUCTO;
 $estados    = ['disponible' => 'Disponible', 'agotado' => 'Agotado', 'inactivo' => 'Inactivo (oculto)'];
 $error = '';
@@ -36,7 +36,7 @@ $fotosTexto = null; // si hay error, aquí queda lo que escribió en el campo de
 
 // Eliminar
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar'])) {
-    $db->prepare("UPDATE Producto SET estado='inactivo' WHERE idProducto=?")->execute([$idProducto]);
+    $db->prepare("UPDATE producto SET estado='inactivo' WHERE idProducto=?")->execute([$idProducto]);
     flash('exito', 'Producto eliminado.');
     header('Location: /galezarzal/local/miLocal.php');
     exit;
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['eliminar'])) {
         $fotosJson = !empty($fotos) ? json_encode($fotos) : null;
 
         $db->prepare(
-            "UPDATE Producto SET nomProducto=?, describProducto=?, precio=?, talla=?,
+            "UPDATE producto SET nomProducto=?, describProducto=?, precio=?, talla=?,
                                  seccion=?, fotosUrl=?, idcategoria=?, estado=?
              WHERE idProducto=?"
         )->execute([$nomProducto, $describProd, $precio, $talla,

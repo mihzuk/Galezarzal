@@ -12,9 +12,9 @@ $db = getDB();
 // Marcar como leída
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['marcarTodas'])) {
-        $db->prepare("UPDATE Notificacion SET estado='leida' WHERE iduser=?")->execute([$_SESSION['iduser']]);
+        $db->prepare("UPDATE notificacion SET estado='leida' WHERE iduser=?")->execute([$_SESSION['iduser']]);
     } elseif (isset($_POST['idNotif'])) {
-        $db->prepare("UPDATE Notificacion SET estado='leida' WHERE idNotificacion=? AND iduser=?")
+        $db->prepare("UPDATE notificacion SET estado='leida' WHERE idNotificacion=? AND iduser=?")
            ->execute([(int)$_POST['idNotif'], $_SESSION['iduser']]);
     }
     header('Location: /galezarzal/notificaciones/notificaciones.php');
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $notifs = [];
 try {
     $st = $db->prepare(
-        "SELECT * FROM Notificacion WHERE iduser=? ORDER BY fecha DESC LIMIT 50"
+        "SELECT * FROM notificacion WHERE iduser=? ORDER BY fecha DESC LIMIT 50"
     );
     $st->execute([$_SESSION['iduser']]);
     $notifs = $st->fetchAll();

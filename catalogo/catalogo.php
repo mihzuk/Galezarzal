@@ -12,9 +12,9 @@ if (!$idProducto) mostrarError('Error', 'Producto no especificado.');
 $db = getDB();
 $st = $db->prepare(
     "SELECT p.*, c.nomCategoria, l.nomLocal, l.idLocal, l.urlWhatsapp, l.ubiLocal
-     FROM Producto p
-     JOIN Categoria c ON c.idcategoria = p.idcategoria
-     JOIN Local l ON l.idLocal = p.idLocal
+     FROM producto p
+     JOIN categoria c ON c.idcategoria = p.idcategoria
+     JOIN local l ON l.idLocal = p.idLocal
      WHERE p.idProducto = ? AND p.estado != 'inactivo'"
 );
 $st->execute([$idProducto]);
@@ -24,7 +24,7 @@ if (!$producto) mostrarError('Producto no encontrado', 'Este producto no está d
 // Otros productos del mismo local
 $stOtros = $db->prepare(
     "SELECT idProducto, nomProducto, precio, fotosUrl, talla, estado
-     FROM Producto
+     FROM producto
      WHERE idLocal = ? AND idProducto != ? AND estado = 'disponible'
      ORDER BY RAND() LIMIT 4"
 );
@@ -33,7 +33,7 @@ $otros = $stOtros->fetchAll();
 // ¿Es favorito del usuario actual?
 $esFavorito = false;
 if (sesionActiva()) {
-    $stFav = $db->prepare("SELECT 1 FROM Favorito WHERE iduser=? AND idProducto=? LIMIT 1");
+    $stFav = $db->prepare("SELECT 1 FROM favorito WHERE iduser=? AND idProducto=? LIMIT 1");
     $stFav->execute([$_SESSION['iduser'], $idProducto]);
     $esFavorito = (bool)$stFav->fetchColumn();
 }
@@ -46,10 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorito'])) {
         exit;
     }
     if ($esFavorito) {
-        $db->prepare("DELETE FROM Favorito WHERE iduser=? AND idProducto=?")
+        $db->prepare("DELETE FROM favorito WHERE iduser=? AND idProducto=?")
            ->execute([$_SESSION['iduser'], $idProducto]);
     } else {
-        $db->prepare("INSERT INTO Favorito (iduser, idProducto) VALUES (?, ?)")
+        $db->prepare("INSERT INTO favorito (iduser, idProducto) VALUES (?, ?)")
            ->execute([$_SESSION['iduser'], $idProducto]);
     }
     header('Location: /galezarzal/catalogo/catalogo.php?id=' . $idProducto);

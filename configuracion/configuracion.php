@@ -15,9 +15,9 @@ $exito  = '';
 
 // Cargar datos actuales
 $st = $db->prepare(
-    "SELECT u.*, c.nomCiudad FROM Usuario u
-     LEFT JOIN OrigenUsuario ou ON ou.idOrigenUser = u.idOrigenUser
-     LEFT JOIN Ciudad c ON c.idciud = ou.idciud
+    "SELECT u.*, c.nomCiudad FROM usuario u
+     LEFT JOIN origenusuario ou ON ou.idOrigenUser = u.idOrigenUser
+     LEFT JOIN ciudad c ON c.idciud = ou.idciud
      WHERE u.iduser = ?"
 );
 $st->execute([$_SESSION['iduser']]);
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($error === '') {
         $db->prepare(
-            "UPDATE Usuario SET primerNombre=?, primerApellido=?, celular=?, direccion=?
+            "UPDATE usuario SET primerNombre=?, primerApellido=?, celular=?, direccion=?
              WHERE iduser=?"
         )->execute([$primerNombre, $primerApellido, normalizarCelular($celular) ?: null,
                     $direccion, $_SESSION['iduser']]);

@@ -112,7 +112,7 @@ Es una vitrina y un canal de contacto, no una tienda con pagos en línea. La com
 
 La recuperación de contraseña funciona con enlaces de un solo uso que vencen a los 60 minutos, pero el envío del correo todavía depende de que el servidor tenga correo configurado: el código usa `mail()`, que en XAMPP no viene listo. Por seguridad, el enlace nunca se muestra en pantalla a menos que actives el modo desarrollo en tu propio equipo (ver "Recuperar la contraseña en local" más arriba).
 
-La guía de instalación está pensada para XAMPP en Windows. En Linux y macOS, que sí distinguen mayúsculas de minúsculas, hay dos pendientes en el código. Por un lado, la carpeta se llama `Local/` pero los enlaces apuntan a `/galezarzal/local/...`, lo que da errores 404. Por otro, las consultas usan nombres de tabla con mayúscula inicial (`Usuario`, `Rol`, `Local`) que no coinciden con las tablas en minúscula del script, a menos que configures `lower_case_table_names=1` en `my.cnf`. En Windows ese valor ya viene activado.
+La guía de instalación está pensada para XAMPP en Windows, pero el código también funciona en servidores Linux, que sí distinguen mayúsculas de minúsculas. El módulo de locales vive en la carpeta `local/` y todas las consultas usan los nombres de tabla en minúscula, tal como están en `database/galezarzalBD.sql`, así que no hace falta configurar `lower_case_table_names` en MySQL. Al desplegar en Linux, la carpeta del proyecto debe llamarse `galezarzal` en minúscula, porque los enlaces internos siguen apuntando a `/galezarzal/` (Issue #10). Si agregas código nuevo, escribe siempre en minúscula los nombres de carpeta y de tabla.
 
 ## Equipo
 

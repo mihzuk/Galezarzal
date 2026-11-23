@@ -19,7 +19,7 @@ if ($q !== '') {
     $params[] = "%$q%";
 }
 
-$categorias = $db->query("SELECT * FROM Categoria ORDER BY nomCategoria")->fetchAll();
+$categorias = $db->query("SELECT * FROM categoria ORDER BY nomCategoria")->fetchAll();
 
 // Filtro por categoría
 $catNom = '';
@@ -27,28 +27,28 @@ foreach ($categorias as $c) {
     if ((string)$c['idcategoria'] === $cat) { $catNom = $c['nomCategoria']; break; }
 }
 if ($catNom) {
-    $where[]  = "EXISTS (SELECT 1 FROM Producto p JOIN Categoria cat ON cat.idcategoria=p.idcategoria WHERE p.idLocal=l.idLocal AND cat.nomCategoria LIKE ?)";
+    $where[]  = "EXISTS (SELECT 1 FROM producto p JOIN categoria cat ON cat.idcategoria=p.idcategoria WHERE p.idLocal=l.idLocal AND cat.nomCategoria LIKE ?)";
     $params[] = "%$catNom%";
 }
 
 // Filtro favoritos (solo usuarios logueados)
 if ($verFav && sesionActiva()) {
-    $where[]  = "EXISTS (SELECT 1 FROM Favorito f WHERE f.idLocal=l.idLocal AND f.iduser=?)";
+    $where[]  = "EXISTS (SELECT 1 FROM favorito f WHERE f.idLocal=l.idLocal AND f.iduser=?)";
     $params[] = $_SESSION['iduser'];
 }
 
 $whereStr = 'WHERE ' . implode(' AND ', $where);
 
-$stCount = $db->prepare("SELECT COUNT(*) FROM Local l $whereStr");
+$stCount = $db->prepare("SELECT COUNT(*) FROM local l $whereStr");
 $stCount->execute($params);
 $total    = (int)$stCount->fetchColumn();
 $totalPag = (int)ceil($total / $porPag);
 
 $stLocales = $db->prepare(
     "SELECT l.*, v.nomVendedor,
-            (SELECT cat.nomCategoria FROM Producto p JOIN Categoria cat ON cat.idcategoria=p.idcategoria WHERE p.idLocal=l.idLocal LIMIT 1) AS catPrincipal
-     FROM Local l
-     JOIN Vendedor v ON v.idVendedor = l.idVendedor
+            (SELECT cat.nomCategoria FROM producto p JOIN categoria cat ON cat.idcategoria=p.idcategoria WHERE p.idLocal=l.idLocal LIMIT 1) AS catPrincipal
+     FROM local l
+     JOIN vendedor v ON v.idVendedor = l.idVendedor
      $whereStr
      ORDER BY l.fechaRegistro DESC
      LIMIT $porPag OFFSET $offset"
