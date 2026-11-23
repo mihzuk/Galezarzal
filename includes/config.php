@@ -78,3 +78,7 @@ function getDB(): PDO {
     }
     return $pdo;
 }
+
+// Modo mantenimiento (RF-22): al final, cuando getDB() y las funciones ya existen.
+require_once __DIR__ . '/mantenimiento.php';
+aplicarModoMantenimiento();

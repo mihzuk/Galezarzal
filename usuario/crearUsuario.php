@@ -61,7 +61,7 @@ require_once __DIR__ . '/../includes/header.php';
 
 <section style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:2rem;">
   <div class="form-wrap" style="max-width:540px;">
-    <h2 class="form-titulo">Crear cuenta en Galezarzal</h2>
+    <h2 class="form-titulo">Crear cuenta en <?= htmlspecialchars(nombreSitio()) ?></h2>
     <p style="font-size:.88rem;color:var(--gris);margin-bottom:1.25rem;">
       Regístrate como comprador para guardar favoritos y contactar vendedores.
     </p>

@@ -41,7 +41,9 @@ require_once __DIR__ . '/../includes/header.php';
 </div>
 
 <section class="seccion">
-  <?php if ($exito): ?><div class="alerta alerta-exito">¡Local registrado! Está en revisión por el administrador.</div><?php endif; ?>
+  <?php if ($exito): ?><div class="alerta alerta-exito"><?= $local['estado'] === 'pendiente'
+      ? '¡Local registrado! Está en revisión por el administrador.'
+      : '¡Local registrado! Ya está publicado.' ?></div><?php endif; ?>
 
   <!-- Stats -->
   <div class="stats-grid">

@@ -5,8 +5,10 @@
 //              $tituloPagina
 // ============================================================
 if (session_status() === PHP_SESSION_NONE) session_start();
+require_once __DIR__ . '/configuracion.php'; // nombre del sitio (RF-22)
+$_nombreSitio    = nombreSitio();
 $_paginaActiva   = $paginaActiva   ?? '';
-$_tituloPagina   = $tituloPagina   ?? 'Galezarzal';
+$_tituloPagina   = $tituloPagina   ?? $_nombreSitio;
 $_logueado       = isset($_SESSION['iduser']);
 $_nomUsuario     = $_SESSION['username'] ?? '';
 $_notifNoLeidas  = 0;
@@ -24,13 +26,13 @@ if ($_logueado) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= htmlspecialchars($_tituloPagina) ?> — Galezarzal</title>
+  <title><?= htmlspecialchars($_tituloPagina) ?> — <?= htmlspecialchars($_nombreSitio) ?></title>
   <link rel="stylesheet" href="/galezarzal/assets/css/style.css">
 </head>
 <body>
 
 <header class="navbar">
-  <a href="/galezarzal/index.php" class="logo">Gale <span>Zarzal</span></a>
+  <a href="/galezarzal/index.php" class="logo"><?= nombreSitioLogoHtml() ?></a>
 
   <nav>
     <a href="/galezarzal/index.php"

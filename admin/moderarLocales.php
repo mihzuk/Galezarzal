@@ -8,7 +8,8 @@ require_once __DIR__ . '/../includes/aut_verifica.php';
 requiereRol(['Administrador']);
 
 $db  = getDB();
-$tab = $_GET['tab'] ?? 'revision'; // revision | activo | inactivo
+$tab = $_GET['tab'] ?? 'pendiente'; // pendiente | activo | inactivo
+if ($tab === 'revision') $tab = 'pendiente'; // enlaces viejos
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idLocal'], $_POST['accion'])) {
     $idLocal = (int)$_POST['idLocal'];
@@ -24,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idLocal'], $_POST['ac
     exit;
 }
 
-$estados = ['revision'=>'En revisión','activo'=>'Activos','inactivo'=>'Inactivos'];
+$estados = ['pendiente'=>'En revisión','activo'=>'Activos','inactivo'=>'Inactivos'];
+if (!isset($estados[$tab])) $tab = 'pendiente';
 $st = $db->prepare(
     "SELECT l.*, v.nomVendedor FROM Local l
      JOIN Vendedor v ON v.idVendedor = l.idVendedor
@@ -69,7 +71,7 @@ require_once __DIR__ . '/../includes/header.php';
             <td>
               <form method="POST" style="display:flex;gap:.4rem;flex-wrap:wrap;">
                 <input type="hidden" name="idLocal" value="<?= $l['idLocal'] ?>">
-                <?php if ($l['estado'] === 'revision'): ?>
+                <?php if ($l['estado'] === 'pendiente'): ?>
                   <button name="accion" value="aprobar"  class="btn-primary btn-sm">✓ Aprobar</button>
                   <button name="accion" value="rechazar" class="btn-peligro btn-sm">✗ Rechazar</button>
                 <?php elseif ($l['estado'] === 'activo'): ?>

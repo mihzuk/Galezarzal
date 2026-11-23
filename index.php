@@ -49,9 +49,9 @@ require_once __DIR__ . '/includes/header.php';
 
 <!-- SECCIÓN ¿QUÉ ES? -->
 <section class="seccion" style="background:var(--blanco);">
-  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:1rem;">¿Qué es Galezarzal?</h2>
+  <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:1rem;">¿Qué es <?= htmlspecialchars(nombreSitio()) ?>?</h2>
   <p style="max-width:720px;color:#555;line-height:1.7;margin-bottom:1.5rem;">
-    Galezarzal es un marketplace especializado en moda local. Explora el catálogo de todos los
+    <?= htmlspecialchars(nombreSitio()) ?> es un marketplace especializado en moda local. Explora el catálogo de todos los
     locales de la Galería desde tu celular, compara estilos, tallas y precios sin salir de casa.
   </p>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;">

@@ -6,6 +6,7 @@ require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/aut_verifica.php';
 require_once __DIR__ . '/../includes/aut_visualizar_error.php';
 require_once __DIR__ . '/../includes/validaciones.php';
+require_once __DIR__ . '/../includes/configuracion.php';
 requiereLogin();
 
 if (session_status() === PHP_SESSION_NONE) session_start();
@@ -164,9 +165,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $paso === 4) {
             $idHorario = $db->lastInsertId();
         }
 
+        // Aprobación manual (RF-22): activada → el local espera la revisión del
+        // administrador ('pendiente'); desactivada → queda publicado ('activo').
+        $estadoLocal = configActiva('aprobacion_manual') ? 'pendiente' : 'activo';
+
         // Local (el WhatsApp se guarda como 57 + 10 dígitos, listo para wa.me)
-        $db->prepare("INSERT INTO Local (nomLocal,describLocal,ubiLocal,urlWhatsapp,idHorario,idVendedor,estado) VALUES (?,?,?,?,?,?,'pendiente')")
-           ->execute([$wiz['nomLocal'],$wiz['describLocal'],$wiz['ubiLocal'],formatoWhatsapp($wiz['urlWA']),$idHorario,$idVend]);
+        $db->prepare("INSERT INTO Local (nomLocal,describLocal,ubiLocal,urlWhatsapp,idHorario,idVendedor,estado) VALUES (?,?,?,?,?,?,?)")
+           ->execute([$wiz['nomLocal'],$wiz['describLocal'],$wiz['ubiLocal'],formatoWhatsapp($wiz['urlWA']),$idHorario,$idVend,$estadoLocal]);
         $idLocal = $db->lastInsertId();
 
         // Productos (el precio se convierte a número)
@@ -199,7 +204,7 @@ $completados = [$paso > 1, $paso > 2, $paso > 3, false];
   <div style="background:var(--oscuro);color:var(--blanco);border-radius:var(--radio);padding:1.5rem 2rem;margin-bottom:2rem;">
     <div class="flex-between">
       <div>
-        <h1 style="font-size:1.4rem;">Registrar mi local en Galezarzal</h1>
+        <h1 style="font-size:1.4rem;">Registrar mi local en <?= htmlspecialchars(nombreSitio()) ?></h1>
         <p style="color:#aaa;font-size:.85rem;margin-top:.3rem;">En minutos tu local estará visible para los compradores.</p>
       </div>
       <a href="/galezarzal/index.php" class="btn-outline btn-sm">Volver al inicio</a>

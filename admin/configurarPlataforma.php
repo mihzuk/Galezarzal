@@ -92,7 +92,7 @@ require_once __DIR__ . '/../includes/header.php';
           <div class="toggle-row" style="margin-bottom:1rem;">
             <div class="toggle-info">
               <h4>Modo mantenimiento</h4>
-              <p>Muestra un mensaje a los visitantes</p>
+              <p>Los visitantes y usuarios que no son administradores solo ven un aviso</p>
             </div>
             <label class="toggle"><input type="checkbox" name="mantenimiento" <?= $cfg['modo_mantenimiento'] === '1' ? 'checked' : '' ?>><span class="slider"></span></label>
           </div>
@@ -106,7 +106,7 @@ require_once __DIR__ . '/../includes/header.php';
           <div class="toggle-row" style="margin-bottom:1.25rem;">
             <div class="toggle-info">
               <h4>Aprobación manual</h4>
-              <p>Los locales y productos nuevos esperan la aprobación de un administrador</p>
+              <p>Los locales nuevos esperan la aprobación de un administrador</p>
             </div>
             <label class="toggle"><input type="checkbox" name="aprobacionManual" <?= $cfg['aprobacion_manual'] === '1' ? 'checked' : '' ?>><span class="slider"></span></label>
           </div>
