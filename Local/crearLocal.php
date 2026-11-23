@@ -339,7 +339,6 @@ $completados = [$paso > 1, $paso > 2, $paso > 3, false];
     <p style="margin-top:.4rem;"><strong>Horarios:</strong> <?= htmlspecialchars($hor['dias']??'—') ?> <?= htmlspecialchars($hor['apertura']??'') ?> - <?= htmlspecialchars($hor['cierre']??'') ?></p>
     <p style="margin-top:.4rem;"><strong>Productos ingresados:</strong> <?= count($prods) ?> productos</p>
     <p style="margin-top:.75rem;background:#fef9e7;border-left:3px solid var(--alerta);padding:.6rem .9rem;border-radius:4px;font-size:.88rem;">
-    <p style="margin-top:.75rem;background:#fef9e7;border-left:3px solid var(--alerta);padding:.6rem .9rem;border-radius:4px;font-size:.88rem;">
       <?php if (configActiva('aprobacion_manual')): ?>
       Estado inicial: <strong>En revisión por el admin</strong>.<br>
       Tu local quedará en revisión hasta que el administrador lo apruebe.
