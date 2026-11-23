@@ -34,15 +34,15 @@ function mostrarAvisoMantenimiento(bool $haySesion): void {
     }
     $nombre = htmlspecialchars(nombreSitio(), ENT_QUOTES, 'UTF-8');
     $enlace = $haySesion
-        ? '<a href="/galezarzal/includes/aut_logout.php" class="btn-outline">Cerrar sesión</a>'
-        : '<a href="/galezarzal/usuario/ingresarCuenta.php" class="btn-outline">Soy administrador</a>';
+        ? '<a href="' . htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') . '/includes/aut_logout.php" class="btn-outline">Cerrar sesión</a>'
+        : '<a href="' . htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') . '/usuario/ingresarCuenta.php" class="btn-outline">Soy administrador</a>';
     echo '<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>En mantenimiento — ' . $nombre . '</title>
-<link rel="stylesheet" href="/galezarzal/assets/css/style.css">
+<link rel="stylesheet" href="' . htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') . '/assets/css/style.css">
 </head>
 <body>
 <div style="min-height:80vh;display:flex;align-items:center;justify-content:center;">

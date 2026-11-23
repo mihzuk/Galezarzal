@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idMensaje'], $_POST['
     if ($accion === 'leido') $db->prepare("UPDATE mensajecontacto SET estado='leido' WHERE idMensaje=?")->execute([$id]);
     if ($accion === 'nuevo') $db->prepare("UPDATE mensajecontacto SET estado='nuevo' WHERE idMensaje=?")->execute([$id]);
     if ($accion === 'eliminar') $db->prepare("DELETE FROM mensajecontacto WHERE idMensaje=?")->execute([$id]);
-    header('Location: /galezarzal/admin/mensajesContacto.php?tab=' . $tab);
+    header('Location: ' . BASE_PATH . '/admin/mensajesContacto.php?tab=' . $tab);
     exit;
 }
 

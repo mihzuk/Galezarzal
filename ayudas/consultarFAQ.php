@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mensaje,
             ]);
             // Post/Redirect/Get: evita que al recargar se envíe el mensaje otra vez
-            header('Location: /galezarzal/ayudas/consultarFAQ.php?enviado=1#contacto');
+            header('Location: ' . BASE_PATH . '/ayudas/consultarFAQ.php?enviado=1#contacto');
             exit;
         } catch (PDOException $e) {
             error_log('Galezarzal contacto: ' . $e->getMessage());

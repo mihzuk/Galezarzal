@@ -70,7 +70,7 @@ require_once __DIR__ . '/../includes/header.php';
     <?php endif; ?>
 
   <?php if ($exito): ?>
-      <div class="alerta alerta-exito">¡Cuenta creada con éxito! <a href="/galezarzal/usuario/ingresarCuenta.php" style="color:var(--rojo);font-weight:600;">Iniciar sesión</a></div>
+      <div class="alerta alerta-exito">¡Cuenta creada con éxito! <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/usuario/ingresarCuenta.php" style="color:var(--rojo);font-weight:600;">Iniciar sesión</a></div>
     <?php endif; ?>
     <?php if ($error): ?>
       <div class="alerta alerta-error"><?= htmlspecialchars($error) ?></div>
@@ -117,7 +117,7 @@ require_once __DIR__ . '/../includes/header.php';
       </div>
       <div class="form-acciones">
         <button type="submit" class="btn-primary">Crear mi cuenta</button>
-        <a href="/galezarzal/usuario/ingresarCuenta.php" class="btn-outline">¿Ya tienes cuenta? Inicia sesión</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/usuario/ingresarCuenta.php" class="btn-outline">¿Ya tienes cuenta? Inicia sesión</a>
       </div>
     </form>
     <?php endif; ?>

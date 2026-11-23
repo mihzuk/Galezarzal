@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $db->prepare("UPDATE Notificacion SET estado='leida' WHERE idNotificacion=? AND iduser=?")
            ->execute([(int)$_POST['idNotif'], $_SESSION['iduser']]);
     }
-    header('Location: /galezarzal/notificaciones/notificaciones.php');
+    header('Location: ' . BASE_PATH . '/notificaciones/notificaciones.php');
     exit;
 }
 

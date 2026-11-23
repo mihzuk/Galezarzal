@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idProducto'], $_POST[
         default     => null,
     };
     if ($estado) $db->prepare("UPDATE Producto SET estado=? WHERE idProducto=?")->execute([$estado, $id]);
-    header('Location: /galezarzal/admin/moderarProductos.php');
+    header('Location: ' . BASE_PATH . '/admin/moderarProductos.php');
     exit;
 }
 

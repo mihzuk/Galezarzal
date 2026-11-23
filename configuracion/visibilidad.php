@@ -45,7 +45,7 @@ require_once __DIR__ . '/../includes/header.php';
         <?php endforeach; ?>
         <div class="form-acciones" style="margin-top:1.25rem;">
           <button type="submit" class="btn-primary">Guardar</button>
-          <a href="/galezarzal/local/verLocal.php?id=<?= $local['idLocal'] ?>" class="btn-outline">Cancelar</a>
+          <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/verLocal.php?id=<?= $local['idLocal'] ?>" class="btn-outline">Cancelar</a>
         </div>
       </form>
       <?php endif; ?>

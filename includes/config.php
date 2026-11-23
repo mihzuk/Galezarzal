@@ -9,23 +9,23 @@ define('DB_NAME', 'galezarzal');
 define('DB_CHARSET', 'utf8mb4');
 define('APP_NAME', 'Galezarzal');
 
-// Dirección base configurable desde el entorno
-define('APP_URL', rtrim(
-    getenv('APP_URL') ?: 'http://localhost/galezarzal',
-    '/'
-));
-
-// Ruta base obtenida automáticamente desde APP_URL
-define('BASE_PATH', rtrim(
-    parse_url(APP_URL, PHP_URL_PATH) ?: '',
-    '/'
-));
-
-// Ajustes de tu equipo (no se suben a Git). Si existe includes/config.local.php
-// se carga aquí; para activar el modo desarrollo copia config.local.example.php.
+// Ajustes locales opcionales: se cargan antes de calcular APP_URL.
+// No se sube config.local.php a Git.
 if (is_file(__DIR__ . '/config.local.php')) {
     require __DIR__ . '/config.local.php';
 }
+
+// Configura la URL en una sola ubicación: variable de entorno APP_URL
+// o constante APP_URL_OVERRIDE definida en config.local.php.
+// El valor predeterminado conserva la instalación original de XAMPP.
+$_appUrl = getenv('APP_URL') ?: (
+    defined('APP_URL_OVERRIDE') ? APP_URL_OVERRIDE : 'http://localhost/galezarzal'
+);
+define('APP_URL', rtrim($_appUrl, '/'));
+unset($_appUrl);
+
+// Prefijo de rutas para enlaces, redirecciones y recursos estáticos.
+define('BASE_PATH', rtrim(parse_url(APP_URL, PHP_URL_PATH) ?: '', '/'));
 
 // Recuperación de contraseña. Por defecto (false) el enlace se envía por correo
 // y NUNCA se muestra en pantalla. Solo en tu equipo, creando config.local.php,

@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $db->prepare("UPDATE Usuario SET estado='inactivo' WHERE iduser=?")
            ->execute([$_SESSION['iduser']]);
         session_destroy();
-        header('Location: /galezarzal/index.php?msg=cuenta_eliminada');
+        header('Location: ' . BASE_PATH . '/index.php?msg=cuenta_eliminada');
         exit;
     } else {
         $error = 'Contraseña incorrecta. No se pudo eliminar la cuenta.';
@@ -48,7 +48,7 @@ require_once __DIR__ . '/../includes/header.php';
       </div>
       <div class="form-acciones">
         <button type="submit" class="btn-peligro">Eliminar mi cuenta</button>
-        <a href="/galezarzal/configuracion/configuracion.php" class="btn-outline">Cancelar</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/configuracion/configuracion.php" class="btn-outline">Cancelar</a>
       </div>
     </form>
   </div>

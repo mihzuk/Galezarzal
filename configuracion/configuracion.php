@@ -108,14 +108,14 @@ require_once __DIR__ . '/../includes/header.php';
         </div>
         <div class="form-acciones">
           <button type="submit" class="btn-primary">Guardar cambios</button>
-          <a href="/galezarzal/index.php" class="btn-outline">Cancelar</a>
+          <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/index.php" class="btn-outline">Cancelar</a>
         </div>
       </form>
 
       <div style="margin-top:2rem;padding-top:1rem;border-top:1px solid #eee;">
-        <a href="/galezarzal/usuario/eliminarCuenta.php" style="color:#c0392b;font-size:.85rem;">Eliminar mi cuenta</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/usuario/eliminarCuenta.php" style="color:#c0392b;font-size:.85rem;">Eliminar mi cuenta</a>
         &nbsp;·&nbsp;
-        <a href="/galezarzal/includes/aut_logout.php" style="color:var(--gris);font-size:.85rem;">Cerrar sesión</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/includes/aut_logout.php" style="color:var(--gris);font-size:.85rem;">Cerrar sesión</a>
       </div>
     </div>
   </main>

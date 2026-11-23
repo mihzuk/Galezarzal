@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'El nombre de la plataforma no puede pasar de 60 caracteres.';
     } elseif (guardarConfig($nuevo)) {
         // Post/Redirect/Get: al recargar no se reenvía el formulario
-        header('Location: /galezarzal/admin/configurarPlataforma.php?guardado=1');
+        header('Location: ' . BASE_PATH . '/admin/configurarPlataforma.php?guardado=1');
         exit;
     } else {
         $error = 'No se pudo guardar la configuración. Inténtalo de nuevo.';
@@ -71,13 +71,13 @@ require_once __DIR__ . '/../includes/header.php';
       <!-- Acciones rápidas -->
       <h3 style="font-size:.95rem;font-weight:700;margin-bottom:.75rem;">Acciones rápidas</h3>
       <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2rem;">
-        <a href="/galezarzal/admin/moderarLocales.php?tab=pendiente" class="btn-primary">
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/admin/moderarLocales.php?tab=pendiente" class="btn-primary">
           📋 Revisar locales pendientes <?php if (($stats['revision']??0) > 0): ?>
             <sup style="font-size:.65rem;background:#fff;color:var(--rojo);border-radius:8px;padding:1px 5px;"><?= $stats['revision'] ?></sup>
           <?php endif; ?>
         </a>
-        <a href="/galezarzal/admin/gestionarUsuarios.php" class="btn-outline">👤 Ver usuarios</a>
-        <a href="/galezarzal/admin/moderarProductos.php" class="btn-outline">🛍 Moderar productos</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/admin/gestionarUsuarios.php" class="btn-outline">👤 Ver usuarios</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/admin/moderarProductos.php" class="btn-outline">🛍 Moderar productos</a>
       </div>
 
       <!-- Configuración general -->

@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idLocal'], $_POST['ac
         default     => null,
     };
     if ($estado) $db->prepare("UPDATE Local SET estado=? WHERE idLocal=?")->execute([$estado, $idLocal]);
-    header('Location: /galezarzal/admin/moderarLocales.php?tab='.$tab);
+    header('Location: ' . BASE_PATH . '/admin/moderarLocales.php?tab='.$tab);
     exit;
 }
 
@@ -75,7 +75,7 @@ require_once __DIR__ . '/../includes/header.php';
                   <button name="accion" value="aprobar"  class="btn-primary btn-sm">✓ Aprobar</button>
                   <button name="accion" value="rechazar" class="btn-peligro btn-sm">✗ Rechazar</button>
                 <?php elseif ($l['estado'] === 'activo'): ?>
-                  <a href="/galezarzal/local/verLocal.php?id=<?= $l['idLocal'] ?>" class="btn-outline btn-sm">Ver</a>
+                  <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/verLocal.php?id=<?= $l['idLocal'] ?>" class="btn-outline btn-sm">Ver</a>
                   <button name="accion" value="inactivar" class="btn-gris btn-sm">Pausar</button>
                 <?php else: ?>
                   <button name="accion" value="activar" class="btn-outline btn-sm">Reactivar</button>

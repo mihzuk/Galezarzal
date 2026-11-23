@@ -58,7 +58,7 @@ require_once __DIR__ . '/../includes/header.php';
       <?php if ($error): ?><div class="alerta alerta-error"><?= htmlspecialchars($error) ?></div><?php endif; ?>
       <?php if ($exito): ?><div class="alerta alerta-exito"><?= htmlspecialchars($exito) ?></div><?php endif; ?>
       <?php if (!$local): ?>
-        <div class="alerta alerta-info">No tienes un local registrado aún. <a href="/galezarzal/local/crearLocal.php" style="color:var(--rojo);">Registrar local</a></div>
+        <div class="alerta alerta-info">No tienes un local registrado aún. <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/crearLocal.php" style="color:var(--rojo);">Registrar local</a></div>
       <?php else: ?>
       <form method="POST">
         <div class="form-group"><label>Nombre del local</label><input type="text" name="nomLocal" value="<?= htmlspecialchars($local['nomLocal']) ?>" required minlength="3" maxlength="100"></div>
@@ -76,7 +76,7 @@ require_once __DIR__ . '/../includes/header.php';
              title="Celular colombiano de 10 dígitos que empiece por 3. Ej: 300 123 4567"></div>
         <div class="form-acciones">
           <button type="submit" class="btn-primary">Guardar cambios</button>
-          <a href="/galezarzal/local/verLocal.php?id=<?= $local['idLocal'] ?>" class="btn-outline">Ver mi local público</a>
+          <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/verLocal.php?id=<?= $local['idLocal'] ?>" class="btn-outline">Ver mi local público</a>
         </div>
       </form>
       <?php endif; ?>
