@@ -7,9 +7,19 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'galezarzal');
 define('DB_CHARSET', 'utf8mb4');
-
 define('APP_NAME', 'Galezarzal');
-define('APP_URL', 'http://localhost/galezarzal');
+
+// Dirección base configurable desde el entorno
+define('APP_URL', rtrim(
+    getenv('APP_URL') ?: 'http://localhost/galezarzal',
+    '/'
+));
+
+// Ruta base obtenida automáticamente desde APP_URL
+define('BASE_PATH', rtrim(
+    parse_url(APP_URL, PHP_URL_PATH) ?: '',
+    '/'
+));
 
 // Ajustes de tu equipo (no se suben a Git). Si existe includes/config.local.php
 // se carga aquí; para activar el modo desarrollo copia config.local.example.php.

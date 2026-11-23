@@ -25,7 +25,7 @@ if ($vendedor) {
     $stL = $db->prepare("SELECT idLocal FROM Local WHERE idVendedor=? LIMIT 1");
     $stL->execute([$vendedor['idVendedor']]);
     if ($stL->fetch()) {
-        header('Location: /galezarzal/local/miLocal.php');
+        header('Location: ' . BASE_PATH . '/local/miLocal.php');
         exit;
     }
 }
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $paso === 1) {
     ]) ?: validarCategoria($idcategoria, $categorias);
 
     if ($error === '') {
-        header('Location: /galezarzal/local/crearLocal.php?paso=2');
+        header('Location: ' . BASE_PATH . '/local/crearLocal.php?paso=2');
         exit;
     }
     $paso = 1;
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $paso === 2) {
     }
 
     if ($error === '') {
-        header('Location: /galezarzal/local/crearLocal.php?paso=3');
+        header('Location: ' . BASE_PATH . '/local/crearLocal.php?paso=3');
         exit;
     }
 }
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $paso === 3) {
 
     $error = validarHorario($apertura, $cierre, $descanso);
     if ($error === '') {
-        header('Location: /galezarzal/local/crearLocal.php?paso=4');
+        header('Location: ' . BASE_PATH . '/local/crearLocal.php?paso=4');
         exit;
     }
 }
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $paso === 4) {
     $prods= $_SESSION['local_wiz_prod'] ?? [];
     $hor  = $_SESSION['local_wiz_hor']  ?? [];
 
-    if (empty($wiz)) { header('Location: /galezarzal/local/crearLocal.php?paso=1'); exit; }
+    if (empty($wiz)) { header('Location: ' . BASE_PATH . '/local/crearLocal.php?paso=1'); exit; }
 
     // Los datos de la sesión no son de confianza: se validan otra vez antes de guardar
     $error = validarDatosLocal([
@@ -181,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $paso === 4) {
         }
 
         unset($_SESSION['local_wiz'], $_SESSION['local_wiz_prod'], $_SESSION['local_wiz_hor']);
-        header('Location: /galezarzal/local/miLocal.php?exito=1');
+        header('Location: ' . BASE_PATH . '/local/miLocal.php?exito=1');
         exit;
     }
     // Si hubo error, se queda en el paso 4 mostrándolo
@@ -207,7 +207,7 @@ $completados = [$paso > 1, $paso > 2, $paso > 3, false];
         <h1 style="font-size:1.4rem;">Registrar mi local en <?= htmlspecialchars(nombreSitio()) ?></h1>
         <p style="color:#aaa;font-size:.85rem;margin-top:.3rem;">En minutos tu local estará visible para los compradores.</p>
       </div>
-      <a href="/galezarzal/index.php" class="btn-outline btn-sm">Volver al inicio</a>
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/index.php" class="btn-outline btn-sm">Volver al inicio</a>
     </div>
   </div>
 
@@ -249,7 +249,7 @@ $completados = [$paso > 1, $paso > 2, $paso > 3, false];
          title="Celular colombiano de 10 dígitos que empiece por 3. Ej: 300 123 4567"
          value="<?= htmlspecialchars($wiz['urlWA']??'') ?>" required></div>
     <div class="form-acciones">
-      <a href="/galezarzal/index.php" class="btn-outline">Cancelar</a>
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/index.php" class="btn-outline">Cancelar</a>
       <button type="submit" class="btn-primary">Siguiente →</button>
     </div>
   </form>
@@ -286,7 +286,7 @@ $completados = [$paso > 1, $paso > 2, $paso > 3, false];
     </div>
     <button type="button" onclick="agregarProducto()" class="btn-outline btn-sm mb-2">+ Agregar otro producto</button>
     <div class="form-acciones">
-      <a href="/galezarzal/local/crearLocal.php?paso=1" class="btn-outline">← Atrás</a>
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/crearLocal.php?paso=1" class="btn-outline">← Atrás</a>
       <button type="submit" class="btn-primary">Siguiente →</button>
     </div>
   </form>
@@ -325,7 +325,7 @@ $completados = [$paso > 1, $paso > 2, $paso > 3, false];
     </div>
     <div class="form-group"><label>Descanso (opcional)</label><input type="text" name="descanso" placeholder="Ej: 12:30 pm - 2:00 pm" maxlength="50" value="<?= htmlspecialchars($hor['descanso']??'') ?>"></div>
     <div class="form-acciones">
-      <a href="/galezarzal/local/crearLocal.php?paso=2" class="btn-outline">← Atrás</a>
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/crearLocal.php?paso=2" class="btn-outline">← Atrás</a>
       <button type="submit" class="btn-primary">Siguiente →</button>
     </div>
   </form>
@@ -351,7 +351,7 @@ $completados = [$paso > 1, $paso > 2, $paso > 3, false];
   <form method="POST">
     <input type="hidden" name="paso" value="4">
     <div class="form-acciones">
-      <a href="/galezarzal/local/crearLocal.php?paso=3" class="btn-outline">← Atrás</a>
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/crearLocal.php?paso=3" class="btn-outline">← Atrás</a>
       <button type="submit" class="btn-primary">PUBLICAR MI LOCAL</button>
     </div>
   </form>
