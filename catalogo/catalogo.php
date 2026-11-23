@@ -57,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorito'])) {
 }
 
 $fotos = json_decode($producto['fotosUrl'] ?? '[]', true) ?: [];
-$msgWA = urlencode("Hola, vi el producto «{$producto['nomProducto']}» en Galezarzal y me interesa. ¿Está disponible?");
+$nombreSitio = nombreSitio();
+$msgWA = urlencode("Hola, vi el producto «{$producto['nomProducto']}» en {$nombreSitio} y me interesa. ¿Está disponible?");
 
 $paginaActiva = 'locales';
 $tituloPagina = $producto['nomProducto'];

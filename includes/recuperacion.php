@@ -8,6 +8,7 @@
 //  no dependen de la zona horaria de PHP.
 // ============================================================
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/configuracion.php'; // nombre del sitio en el correo
 
 const TOKEN_MINUTOS = 60; // cuánto dura un enlace
 
@@ -109,7 +110,7 @@ function entregarEnlaceRecuperacion(string $email, string $enlace): void {
         return;
     }
 
-    $asunto = '=?UTF-8?B?' . base64_encode('Restablece tu contraseña de ' . APP_NAME) . '?=';
+    $asunto = '=?UTF-8?B?' . base64_encode('Restablece tu contraseña de ' . nombreSitio()) . '?=';
     $cuerpo = "Recibimos una solicitud para restablecer tu contraseña.\r\n\r\n"
             . "Abre este enlace (dura " . TOKEN_MINUTOS . " minutos y solo sirve una vez):\r\n"
             . $enlace . "\r\n\r\n"

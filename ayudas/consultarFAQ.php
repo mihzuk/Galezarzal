@@ -53,17 +53,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $faqs = [
     ['¿Cómo publico mi local?',
-     'Crea una cuenta, inicia sesión y haz clic en "Tengo un local". Completa el formulario con el nombre de tu local, ubicación y WhatsApp. Tu local quedará en revisión y se publicará en 24–48 horas.'],
+     'Crea una cuenta, inicia sesión y haz clic en "Tengo un local". Completa el formulario con el nombre de tu local, ubicación y WhatsApp. ' . (configActiva('aprobacion_manual')
+       ? 'Tu local quedará en revisión y se publicará en cuanto un administrador lo apruebe.'
+       : 'Tu local se publica de inmediato.')],
     ['¿Cómo contacto a un vendedor?',
      'Cada local tiene un botón de WhatsApp. Al hacer clic serás redirigido directamente al chat del vendedor con un mensaje predeterminado sobre el producto de tu interés.'],
-    ['¿Es gratis usar Galezarzal?',
+    ['¿Es gratis usar ' . nombreSitio() . '?',
      'Sí. Tanto para compradores como para vendedores de la Galería de Zarzal el uso es completamente gratuito durante el período de lanzamiento.'],
     ['¿Cómo agrego productos a mi catálogo?',
      'Desde "Mi Local" haz clic en "+ Agregar producto". Puedes subir fotos mediante URL (usa servicios como Imgur o Google Photos), definir precio, tallas, colores y categoría.'],
     ['¿Qué hago si olvidé mi contraseña?',
      'En la pantalla de inicio de sesión haz clic en "¿Olvidaste tu contraseña?" e ingresa tu correo. Recibirás instrucciones para restablecerla.'],
     ['¿Puedo vender cosas que no sean de la Galería de Zarzal?',
-     'No. Galezarzal es una plataforma exclusiva para los emprendedores y locales ubicados físicamente en la Galería Comercial de Zarzal, Valle del Cauca.'],
+     'No. ' . nombreSitio() . ' es una plataforma exclusiva para los emprendedores y locales ubicados físicamente en la Galería Comercial de Zarzal, Valle del Cauca.'],
     ['¿Cómo elimino un producto?',
      'Desde "Mi Local" haz clic en "Editar" al lado del producto y en la parte inferior encontrarás la opción "Eliminar producto".'],
     ['¿Cuántos locales puedo registrar?',

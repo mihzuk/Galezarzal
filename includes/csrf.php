@@ -6,6 +6,8 @@
 //  3) Rechaza (403) cualquier POST sin un token válido.
 // ============================================================
 
+require_once __DIR__ . '/configuracion.php'; // nombre del sitio (RF-22)
+
 // La sesión guarda el token; se marca la cookie como más segura
 if (session_status() === PHP_SESSION_NONE) {
     session_set_cookie_params([
@@ -44,7 +46,7 @@ function csrfRechazar(): void {
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Solicitud no válida — Galezarzal</title>
+<title>Solicitud no válida — ' . htmlspecialchars(nombreSitio()) . '</title>
 <link rel="stylesheet" href="/galezarzal/assets/css/style.css">
 </head>
 <body>

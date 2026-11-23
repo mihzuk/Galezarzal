@@ -16,7 +16,8 @@ if (sesionActiva()) {
 $error   = '';
 $exito   = '';
 $tab     = $_GET['tab'] ?? 'login'; // 'login' | 'registro'
-$registroCerrado = !configActiva('registro_abierto');
+$enMantenimiento = configActiva('modo_mantenimiento');
+$registroCerrado = $enMantenimiento || !configActiva('registro_abierto'); // en mantenimiento tampoco se crean cuentas
 
 // ── POST: Iniciar sesión ──
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['accion'] === 'login') {
@@ -37,7 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['
         $st->execute([$email]);
         $usuario = $st->fetch();
 
-        if ($usuario && password_verify($password, $usuario['passwordHash'])) {
+        if ($usuario && password_verify($password, $usuario['passwordHash'])
+            && $enMantenimiento && $usuario['nomRol'] !== 'Administrador') {
+            // Modo mantenimiento (RF-22): solo los administradores pueden entrar
+            $error = 'El sitio está en mantenimiento. Por ahora solo pueden iniciar sesión los administradores.';
+        } elseif ($usuario && password_verify($password, $usuario['passwordHash'])) {
             if (session_status() === PHP_SESSION_NONE) session_start();
             $_SESSION['iduser']   = $usuario['iduser'];
             $_SESSION['username'] = $usuario['username'];
@@ -107,7 +112,7 @@ require_once __DIR__ . '/../includes/header.php';
 
     <!-- Hero auth -->
     <div style="background:var(--oscuro);color:var(--blanco);border-radius:var(--radio) var(--radio) 0 0;padding:1.75rem 2rem;text-align:center;">
-      <h1 style="font-size:1.5rem;">Bienvenido a <span style="color:var(--rojo);">Galezarzal</span></h1>
+      <h1 style="font-size:1.5rem;">Bienvenido a <span style="color:var(--rojo);"><?= htmlspecialchars(nombreSitio()) ?></span></h1>
       <p style="color:#aaa;font-size:.88rem;margin-top:.3rem;">La vitrina digital de la moda local de Zarzal</p>
     </div>
 
