@@ -1,6 +1,6 @@
 # Requerimientos no funcionales (línea base)
 
-Vienen del documento funcional de Desarrollo de Software I, sección 2.2. Los RNF-08 a RNF-11 salieron del trabajo de despliegue (épica #5); los nuevos siguen desde el RNF-12.
+Vienen del documento funcional de Desarrollo de Software I, sección 2.2. Los RNF-08 a RNF-11 salieron del trabajo de despliegue (épica #5) y el RNF-12, de la revisión de la interfaz (épica #49); los nuevos siguen desde el RNF-13.
 
 | ID | Categoría | Descripción | Cómo está hoy en el código |
 |---|---|---|---|
@@ -15,3 +15,4 @@ Vienen del documento funcional de Desarrollo de Software I, sección 2.2. Los RN
 | RNF-09 | Disponibilidad | Debe haber copias de seguridad periódicas de la base de datos y un procedimiento probado para restaurarlas. | Pendiente (#26) |
 | RNF-10 | Seguridad | El sitio debe servirse solo por HTTPS, con cookies de sesión seguras. | Pendiente (#22): la cookie de sesión no lleva la marca `secure` |
 | RNF-11 | Compatibilidad | El sistema debe funcionar igual en servidores Linux y Windows. | Pendiente (#23): las carpetas y las tablas con mayúscula inicial fallan en Linux |
+| RNF-12 | Accesibilidad | El sitio debe cumplir el nivel AA de WCAG 2.2 en contraste (4,5:1 para texto normal y 3:1 para texto grande y bordes de controles), tamaño de letra (16 px el texto normal y nunca menos de 13 px), foco visible con teclado y tamaño de los elementos que se tocan (al menos 44 px de alto en el celular). Se verifica con Lighthouse: 90 o más en Accesibilidad en inicio, locales, local, producto y login. | Pendiente (#50): el rojo `#E94560` sobre blanco da 3,8:1 y el gris `#888780`, 3,6:1; hay textos de 11,5 a 13,6 px y los campos no muestran el foco. Lo cumplen el #65 y el #69 |
