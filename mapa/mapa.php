@@ -99,31 +99,58 @@ require_once __DIR__ . '/../includes/header.php';
     <svg class="mapa-svg" id="mapaSvg" viewBox="0 0 <?= $plano['ancho'] ?> <?= $plano['alto'] ?>" role="group" aria-labelledby="mapaTitulo">
       <title id="mapaTitulo">Plano de la Galería de Zarzal con <?= count($localPorPuesto) ?> locales en Galezarzal</title>
       <defs>
+        <!-- Rayas del toldo: verticales para los toldos de arriba y abajo, horizontales para los laterales. -->
         <pattern id="toldo" width="16" height="16" patternUnits="userSpaceOnUse">
           <rect width="8" height="16" fill="#E94560"/>
           <rect x="8" width="8" height="16" fill="#F1FAEE"/>
         </pattern>
+        <pattern id="toldoLateral" width="16" height="16" patternUnits="userSpaceOnUse">
+          <rect width="16" height="8" fill="#E94560"/>
+          <rect y="8" width="16" height="8" fill="#F1FAEE"/>
+        </pattern>
       </defs>
 
-      <rect class="mapa-edificio" x="20" y="20" width="<?= $plano['ancho'] - 40 ?>" height="<?= $plano['alto'] - 40 ?>" rx="18"/>
+      <?php $ed = $plano['edificio']; ?>
+      <!-- Calles alrededor de la manzana (OpenStreetMap) -->
+      <rect class="mapa-calle" x="<?= $ed['x'] - 70 ?>" y="<?= $ed['y'] - 70 ?>" width="<?= $ed['ancho'] + 140 ?>" height="<?= $ed['alto'] + 140 ?>" rx="10"/>
+      <?php foreach ($plano['calles'] as $c): ?>
+      <text class="mapa-calle-texto" transform="translate(<?= $c['x'] ?> <?= $c['y'] ?>) rotate(<?= (int)$c['rotar'] ?>)"><?= $h($c['texto']) ?></text>
+      <?php endforeach; ?>
+
+      <rect class="mapa-edificio" x="<?= $ed['x'] ?>" y="<?= $ed['y'] ?>" width="<?= $ed['ancho'] ?>" height="<?= $ed['alto'] ?>" rx="10"/>
       <?php foreach ($plano['pasillos'] as $p): ?>
-      <rect class="mapa-pasillo" x="<?= $p['x'] ?>" y="<?= $p['y'] ?>" width="<?= $p['ancho'] ?>" height="<?= $p['alto'] ?>"/>
-      <text class="mapa-pasillo-texto" x="<?= $p['x'] + $p['ancho'] / 2 ?>" y="<?= $p['y'] + $p['alto'] / 2 ?>"><?= $h($p['texto']) ?></text>
+      <text class="mapa-pasillo-texto" x="<?= $p['x'] ?>" y="<?= $p['y'] ?>"><?= $h($p['texto']) ?></text>
       <?php endforeach; ?>
       <?php foreach ($plano['entradas'] as $e): ?>
-      <g class="mapa-entrada" transform="translate(<?= $e['x'] ?> <?= $e['y'] ?>)">
-        <rect x="-14" y="-40" width="28" height="80" rx="6"/>
-        <text transform="rotate(-90)" y="5"><?= $h($e['texto']) ?></text>
+      <g class="mapa-entrada">
+        <rect x="<?= $e['x'] ?>" y="<?= $e['y'] ?>" width="<?= $e['ancho'] ?>" height="<?= $e['alto'] ?>" rx="4"/>
+        <text x="<?= $e['x'] + $e['ancho'] / 2 ?>" y="<?= $e['y'] + $e['alto'] / 2 ?>"><?= $h($e['texto']) ?></text>
       </g>
       <?php endforeach; ?>
+
+      <?php $no = $plano['norte']; ?>
+      <g class="mapa-norte" transform="translate(<?= $no['x'] ?> <?= $no['y'] ?>)" aria-hidden="true">
+        <circle r="26"/>
+        <g transform="rotate(<?= (int)$no['grados'] ?>)">
+          <path d="M0 -19 L8 7 L0 2 L-8 7 Z"/>
+          <text y="-34">N</text>
+        </g>
+      </g>
 
       <?php foreach ($plano['puestos'] as $p):
           $n = $p['numero'];
           $l = $localPorPuesto[$n] ?? null;
-          $altoToldo = 14;
-          $yToldo = $p['toldo'] === 'abajo' ? $p['y'] + $p['alto'] - $altoToldo : $p['y'];
+          // Toldo de 14 unidades en el lado del puesto que da al pasillo.
+          $t = 14;
+          [$tx, $ty, $tw, $th, $tPatron] = match ($p['toldo']) {
+              'abajo'     => [$p['x'], $p['y'] + $p['alto'] - $t, $p['ancho'], $t, 'toldo'],
+              'izquierda' => [$p['x'], $p['y'], $t, $p['alto'], 'toldoLateral'],
+              'derecha'   => [$p['x'] + $p['ancho'] - $t, $p['y'], $t, $p['alto'], 'toldoLateral'],
+              default     => [$p['x'], $p['y'], $p['ancho'], $t, 'toldo'],   // arriba
+          };
           $cx = $p['x'] + $p['ancho'] / 2;
-          $cy = $p['y'] + $p['alto'] / 2;
+          $cy = $p['y'] + $p['alto'] / 2 - 8;
+          $cyEstado = $cy + 36;
       ?>
       <?php if ($l): ?>
       <a class="puesto con-local<?= $l['abierto'] ? ' abierto' : '' ?>"
@@ -139,9 +166,9 @@ require_once __DIR__ . '/../includes/header.php';
          aria-label="Puesto <?= $n ?>: <?= $h($l['nomLocal']) ?>, <?= $h($l['categoria']) ?>, <?= $l['abierto'] ? 'abierto ahora' : 'cerrado ahora' ?>">
         <title>Puesto <?= $n ?> · <?= $h($l['nomLocal']) ?></title>
         <rect class="puesto-caja" x="<?= $p['x'] ?>" y="<?= $p['y'] ?>" width="<?= $p['ancho'] ?>" height="<?= $p['alto'] ?>" rx="8"/>
-        <rect class="puesto-toldo" x="<?= $p['x'] ?>" y="<?= $yToldo ?>" width="<?= $p['ancho'] ?>" height="<?= $altoToldo ?>"/>
+        <rect class="puesto-toldo" x="<?= $tx ?>" y="<?= $ty ?>" width="<?= $tw ?>" height="<?= $th ?>" fill="url(#<?= $tPatron ?>)"/>
         <text class="puesto-numero" x="<?= $cx ?>" y="<?= $cy ?>"><?= $n ?></text>
-        <circle class="puesto-estado" cx="<?= $cx ?>" cy="<?= $cy + 34 ?>" r="9"/>
+        <circle class="puesto-estado" cx="<?= $cx ?>" cy="<?= $cyEstado ?>" r="9"/>
       </a>
       <?php else: ?>
       <g class="puesto vacio" aria-hidden="true">
@@ -164,7 +191,8 @@ require_once __DIR__ . '/../includes/header.php';
   </div>
 
   <p class="mapa-nota text-gris">
-    Plano ilustrativo: la ubicación de los puestos es aproximada.
+    La forma de la Galería y sus calles son reales; la ubicación de los puestos adentro es aproximada.
+    Contorno y calles: © <a href="https://www.openstreetmap.org/copyright" class="text-rojo" target="_blank" rel="noopener">colaboradores de OpenStreetMap</a>.
     <?php if ($sinUbicar > 0): ?>
       <?= $sinUbicar ?> <?= $sinUbicar === 1 ? 'local no aparece' : 'locales no aparecen' ?> en el plano porque su ubicación no coincide con un puesto;
       <a href="<?= $h($base) ?>/local/buscarLocal.php" class="text-rojo">míralos en Locales</a>.

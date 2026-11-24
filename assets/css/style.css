@@ -439,13 +439,17 @@ footer a { color: var(--rojo); }
   padding: .5rem;
   -webkit-overflow-scrolling: touch;
 }
-.mapa-svg { display: block; width: calc(100% * var(--zoom)); min-width: calc(640px * var(--zoom)); height: auto; }
+.mapa-svg { display: block; margin: 0 auto; width: calc(min(100%, 760px) * var(--zoom)); min-width: calc(560px * var(--zoom)); height: auto; }
 
-.mapa-edificio { fill: #fbfbf7; stroke: var(--oscuro); stroke-width: 3; }
-.mapa-pasillo { fill: #f4efe6; }
+.mapa-calle { fill: #dcdad3; }
+.mapa-calle-texto { fill: #5f5c55; font-size: 24px; font-weight: 700; letter-spacing: 2px; text-anchor: middle; dominant-baseline: middle; }
+.mapa-edificio { fill: #f4efe6; stroke: var(--oscuro); stroke-width: 6; }
 .mapa-pasillo-texto { fill: #9a958c; font-size: 22px; font-weight: 600; letter-spacing: 6px; text-anchor: middle; dominant-baseline: middle; text-transform: uppercase; }
 .mapa-entrada rect { fill: var(--rojo); }
-.mapa-entrada text { fill: var(--blanco); font-size: 13px; font-weight: 700; text-anchor: middle; }
+.mapa-entrada text { fill: var(--blanco); font-size: 18px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; }
+.mapa-norte circle { fill: var(--blanco); stroke: var(--oscuro); stroke-width: 2; }
+.mapa-norte path { fill: var(--rojo); }
+.mapa-norte text { fill: var(--oscuro); font-size: 16px; font-weight: 700; text-anchor: middle; }
 
 .puesto .puesto-caja { stroke-width: 2; transition: fill .2s, stroke .2s, opacity .2s; }
 .puesto .puesto-numero { font-size: 26px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
@@ -455,7 +459,6 @@ footer a { color: var(--rojo); }
 .puesto.con-local { cursor: pointer; }
 .puesto.con-local .puesto-caja { fill: var(--blanco); stroke: var(--oscuro); }
 .puesto.con-local .puesto-numero { fill: var(--oscuro); }
-.puesto.con-local .puesto-toldo { fill: url(#toldo); }
 .puesto.con-local .puesto-estado { fill: #c0392b; }
 .puesto.con-local.abierto .puesto-caja { fill: #eafaf1; stroke: #1e8449; }
 .puesto.con-local.abierto .puesto-estado { fill: #1e8449; }
