@@ -25,6 +25,18 @@ if (!defined('MOSTRAR_ENLACE_RECUPERACION')) {
     define('MOSTRAR_ENLACE_RECUPERACION', false);
 }
 
+// Correo de los mensajes de contacto (RF-24). CORREO_EQUIPO: quién los recibe
+// (uno o varios correos separados por coma). CORREO_REMITENTE (opcional): desde
+// qué dirección sale, útil en hostings que exigen una del dominio. Se definen en
+// includes/config.local.php o con variables de entorno del servidor; si
+// CORREO_EQUIPO queda vacío, el mensaje se guarda igual y el aviso va a logs/errores.log.
+if (!defined('CORREO_EQUIPO')) {
+    define('CORREO_EQUIPO', getenv('CORREO_EQUIPO') ?: '');
+}
+if (!defined('CORREO_REMITENTE')) {
+    define('CORREO_REMITENTE', getenv('CORREO_REMITENTE') ?: '');
+}
+
 // Carpeta y archivo del log (ignorados por Git)
 define('LOG_DIR', __DIR__ . '/../logs');
 define('LOG_ARCHIVO', LOG_DIR . '/errores.log');

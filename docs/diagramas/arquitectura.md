@@ -26,7 +26,7 @@ flowchart TB
             AUT[aut_verifica.php<br/>sesión y roles]
             HF[header.php · footer.php]
             ERR[aut_visualizar_error.php]
-            SEG[csrf.php · validaciones.php<br/>recuperacion.php]
+            SEG[csrf.php · validaciones.php<br/>recuperacion.php · correo.php]
             PLAT[configuracion.php · mantenimiento.php<br/>parámetros de la plataforma]
         end
         ASSETS[assets/css/style.css]

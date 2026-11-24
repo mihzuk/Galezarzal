@@ -91,6 +91,8 @@ Si quieres publicar un local, inicia sesión y usa el botón "tengo un local" en
 
 Sin ese archivo, el sitio se comporta como en producción: nunca muestra el enlace en pantalla. Eso es a propósito, porque si se mostrara en un sitio publicado cualquiera podría cambiarle la contraseña a otra persona. No copies `config.local.php` al servidor donde publiques el sitio.
 
+**Correo de los mensajes de contacto.** Cada mensaje del formulario de Ayuda y Contacto se guarda en la base y, además, se manda por correo al equipo. Para activarlo define `CORREO_EQUIPO` (uno o varios correos separados por coma) y, si tu hosting lo exige, `CORREO_REMITENTE` (una dirección de tu dominio desde la que sale el correo). Se pueden poner como variables de entorno del servidor o en `includes/config.local.php` (hay un ejemplo comentado en `includes/config.local.example.php`). Si no están definidas, o si el servidor no puede enviar el correo, el mensaje se guarda igual y aparece en el panel de administración, y el aviso queda en `logs/errores.log`; quien escribió no ve ningún error. En el servidor publicado, si usas `config.local.php`, que tenga solo esas líneas y nunca `MOSTRAR_ENLACE_RECUPERACION`.
+
 Y como el proyecto no trae ningún administrador utilizable, ese rol hay que asignarlo a mano. En phpMyAdmin, con la base `galezarzal` seleccionada, ve a la pestaña SQL y ejecuta esto cambiando el correo por el de tu cuenta:
 
 ```sql
