@@ -18,7 +18,7 @@ En la columna Estado anotamos si el requerimiento ya está hecho en `main`: "Sí
 | RF-10 | Catálogo | El sistema debe permitir al vendedor agregar productos a su catálogo con nombre, categoría, precio, tallas disponibles, descripción, foto y sección. | Sí |
 | RF-11 | Catálogo | El sistema debe permitir al vendedor modificar los datos de un producto existente. | Sí |
 | RF-12 | Catálogo | El sistema debe permitir al vendedor eliminar (desactivar) un producto de su catálogo. | Sí |
-| RF-13 | Catálogo | El sistema debe permitir al vendedor cambiar el estado de un producto entre "disponible" y "agotado". Cuando un producto está agotado, debe ocultarse automáticamente de los resultados de búsqueda activos. | Parcial: cambia el estado y oculta agotados en el local; no hay búsqueda de productos |
+| RF-13 | Catálogo | El sistema debe permitir al vendedor cambiar el estado de un producto entre "disponible" y "agotado". Cuando un producto está agotado, debe ocultarse automáticamente de los resultados de búsqueda activos. | Sí: permite cambiar el estado del producto y la búsqueda por nombre muestra únicamente productos disponibles; los agotados no aparecen en los resultados |
 | RF-14 | Favoritos | El sistema debe permitir al usuario registrado agregar locales o productos a su lista de favoritos. | Sí: se pueden marcar locales y productos; sin sesión pide iniciar sesión |
 | RF-15 | Favoritos | El sistema debe permitir al usuario registrado eliminar elementos de su lista de favoritos. | Sí |
 | RF-16 | Favoritos | El sistema debe permitir al usuario registrado consultar su lista de favoritos. | Sí |

@@ -38,6 +38,9 @@ require_once __DIR__ . '/includes/header.php';
        textiles de la Galería de Zarzal.</p>
     <div class="hero-btns">
       <a href="/galezarzal/local/buscarLocal.php" class="btn-primary">buscar locales</a>
+
+      <a href="/galezarzal/local/buscarProducto.php" class="btn-outline">Buscar productos</a>
+
       <?php if (sesionActiva()): ?>
         <a href="/galezarzal/local/crearLocal.php" class="btn-outline">tengo un local</a>
       <?php else: ?>
@@ -46,6 +49,7 @@ require_once __DIR__ . '/includes/header.php';
     </div>
   </div>
 </section>
+
 
 <!-- SECCIÓN ¿QUÉ ES? -->
 <section class="seccion" style="background:var(--blanco);">
