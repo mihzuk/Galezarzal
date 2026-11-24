@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idProducto'], $_POST[
         'eliminar'  => 'inactivo',
         default     => null,
     };
-    if ($estado) $db->prepare("UPDATE Producto SET estado=? WHERE idProducto=?")->execute([$estado, $id]);
+    if ($estado) $db->prepare("UPDATE producto SET estado=? WHERE idProducto=?")->execute([$estado, $id]);
     header('Location: /galezarzal/admin/moderarProductos.php');
     exit;
 }
@@ -30,9 +30,9 @@ if ($q) { $where[] = "(p.nomProducto LIKE ? OR l.nomLocal LIKE ?)"; $params[] = 
 if (in_array($est, ['disponible','agotado','inactivo'])) { $where[] = "p.estado = ?"; $params[] = $est; }
 
 $st = $db->prepare(
-    "SELECT p.*, c.nomCategoria, l.nomLocal FROM Producto p
-     JOIN Categoria c ON c.idcategoria = p.idcategoria
-     JOIN Local l ON l.idLocal = p.idLocal
+    "SELECT p.*, c.nomCategoria, l.nomLocal FROM producto p
+     JOIN categoria c ON c.idcategoria = p.idcategoria
+     JOIN local l ON l.idLocal = p.idLocal
      WHERE " . implode(' AND ', $where) . "
      ORDER BY p.idProducto DESC LIMIT 100"
 );

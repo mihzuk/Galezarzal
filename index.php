@@ -14,9 +14,9 @@ try {
     $st = getDB()->query(
         "SELECT l.idLocal, l.nomLocal, l.describLocal, l.ubiLocal,
                 c.nomCategoria
-         FROM Local l
-         JOIN Categoria c ON c.idcategoria = (
-             SELECT p.idcategoria FROM Producto p
+         FROM local l
+         JOIN categoria c ON c.idcategoria = (
+             SELECT p.idcategoria FROM producto p
              WHERE p.idLocal = l.idLocal LIMIT 1
          )
          WHERE l.estado = 'activo'

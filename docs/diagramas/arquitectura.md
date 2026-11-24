@@ -12,7 +12,7 @@ flowchart TB
         subgraph MOD[Módulos]
             direction LR
             USR[usuario/<br/>registro, login,<br/>cuenta]
-            LOC[Local/<br/>crear, ver,<br/>buscar, mi local]
+            LOC[local/<br/>crear, ver,<br/>buscar, mi local]
             CAT[catalogo/<br/>producto: ver,<br/>agregar, modificar]
             FAV[favoritos/]
             NOT[notificaciones/]

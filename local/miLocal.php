@@ -7,9 +7,9 @@ requiereRol(['Vendedor','Administrador']);
 $db = getDB();
 $st = $db->prepare(
     "SELECT l.*, h.horarioApertura, h.horarioCierre, h.diasDisponibles
-     FROM Local l
-     JOIN Vendedor v ON v.idVendedor=l.idVendedor
-     LEFT JOIN Horario h ON h.idHorario=l.idHorario
+     FROM local l
+     JOIN vendedor v ON v.idVendedor=l.idVendedor
+     LEFT JOIN horario h ON h.idHorario=l.idHorario
      WHERE v.iduser=? LIMIT 1"
 );
 $st->execute([$_SESSION['iduser']]);
@@ -20,7 +20,7 @@ if (!$local) {
     exit;
 }
 
-$stProds = $db->prepare("SELECT p.*,c.nomCategoria FROM Producto p JOIN Categoria c ON c.idcategoria=p.idcategoria WHERE p.idLocal=? ORDER BY p.nomProducto");
+$stProds = $db->prepare("SELECT p.*,c.nomCategoria FROM producto p JOIN categoria c ON c.idcategoria=p.idcategoria WHERE p.idLocal=? ORDER BY p.nomProducto");
 $stProds->execute([$local['idLocal']]);
 $productos = $stProds->fetchAll();
 

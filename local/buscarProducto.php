@@ -8,8 +8,8 @@ $q = trim($_GET['q'] ?? '');
 
 $sql = "SELECT p.idProducto, p.nomProducto, p.precio,
                p.fotosUrl, l.nomLocal
-        FROM Producto p
-        JOIN Local l ON l.idLocal = p.idLocal
+        FROM producto p
+        JOIN local l ON l.idLocal = p.idLocal
         WHERE p.estado = 'disponible'
           AND l.estado = 'activo'";
 

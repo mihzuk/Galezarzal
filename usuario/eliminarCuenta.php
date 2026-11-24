@@ -14,11 +14,11 @@ $exito  = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     $db = getDB();
-    $st = $db->prepare("SELECT passwordHash FROM Usuario WHERE iduser=?");
+    $st = $db->prepare("SELECT passwordHash FROM usuario WHERE iduser=?");
     $st->execute([$_SESSION['iduser']]);
     $row = $st->fetch();
     if ($row && password_verify($password, $row['passwordHash'])) {
-        $db->prepare("UPDATE Usuario SET estado='inactivo' WHERE iduser=?")
+        $db->prepare("UPDATE usuario SET estado='inactivo' WHERE iduser=?")
            ->execute([$_SESSION['iduser']]);
         session_destroy();
         header('Location: /galezarzal/index.php?msg=cuenta_eliminada');
