@@ -417,3 +417,92 @@ footer a { color: var(--rojo); }
   .stats-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 1.8rem; }
 }
+
+/* ── MAPA DE LA GALERÍA (#71) ── */
+.mapa-hero { padding: 2rem; }
+.mapa-hero h1 { font-size: 1.8rem; }
+.mapa-seccion { padding-top: 1.5rem; }
+.mapa-controles { margin-bottom: 1rem; }
+.mapa-controles .filtros { margin-bottom: .75rem; }
+.mapa-controles-fila { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.mapa-switch { display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; font-size: .95rem; }
+.mapa-switch input { width: 20px; height: 20px; accent-color: #1e8449; }
+.mapa-zoom { display: inline-flex; gap: .4rem; }
+.mapa-zoom .btn-gris { min-width: 44px; min-height: 40px; font-size: 1rem; }
+
+.mapa-contenedor {
+  --zoom: 1;
+  overflow: auto;
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: .5rem;
+  -webkit-overflow-scrolling: touch;
+}
+.mapa-svg { display: block; width: calc(100% * var(--zoom)); min-width: calc(640px * var(--zoom)); height: auto; }
+
+.mapa-edificio { fill: #fbfbf7; stroke: var(--oscuro); stroke-width: 3; }
+.mapa-pasillo { fill: #f4efe6; }
+.mapa-pasillo-texto { fill: #9a958c; font-size: 22px; font-weight: 600; letter-spacing: 6px; text-anchor: middle; dominant-baseline: middle; text-transform: uppercase; }
+.mapa-entrada rect { fill: var(--rojo); }
+.mapa-entrada text { fill: var(--blanco); font-size: 13px; font-weight: 700; text-anchor: middle; }
+
+.puesto .puesto-caja { stroke-width: 2; transition: fill .2s, stroke .2s, opacity .2s; }
+.puesto .puesto-numero { font-size: 26px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.puesto.vacio .puesto-caja { fill: #ecebe7; stroke: #d6d4ce; }
+.puesto.vacio .puesto-numero { fill: #aaa79f; }
+
+.puesto.con-local { cursor: pointer; }
+.puesto.con-local .puesto-caja { fill: var(--blanco); stroke: var(--oscuro); }
+.puesto.con-local .puesto-numero { fill: var(--oscuro); }
+.puesto.con-local .puesto-toldo { fill: url(#toldo); }
+.puesto.con-local .puesto-estado { fill: #c0392b; }
+.puesto.con-local.abierto .puesto-caja { fill: #eafaf1; stroke: #1e8449; }
+.puesto.con-local.abierto .puesto-estado { fill: #1e8449; }
+.puesto.con-local:hover .puesto-caja,
+.puesto.con-local:focus-visible .puesto-caja,
+.puesto.con-local.seleccionado .puesto-caja { stroke: var(--rojo); stroke-width: 5; }
+.puesto.con-local:focus { outline: none; }
+.puesto.atenuado { opacity: .25; }
+.resaltar-abiertos .puesto.con-local.abierto .puesto-caja { fill: #c9efd9; }
+
+.mapa-leyenda { list-style: none; display: flex; gap: 1.25rem; flex-wrap: wrap; margin: 1rem 0; font-size: .9rem; color: #444; }
+.mapa-leyenda li { display: inline-flex; align-items: center; gap: .45rem; }
+.ley { display: inline-block; width: 18px; height: 18px; border-radius: 4px; border: 2px solid; }
+.ley-abierto { background: #eafaf1; border-color: #1e8449; }
+.ley-cerrado { background: var(--blanco); border-color: var(--oscuro); }
+.ley-vacio   { background: #ecebe7; border-color: #d6d4ce; }
+
+.mapa-tarjeta {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  border-top: 6px solid var(--rojo);
+  padding: 1.25rem;
+  max-width: 480px;
+}
+.mapa-tarjeta-cab { display: flex; gap: .4rem; flex-wrap: wrap; }
+.mapa-tarjeta-nombre { font-size: 1.3rem; margin: .25rem 0 .35rem; }
+.mapa-tarjeta p { margin-bottom: .35rem; font-size: .95rem; }
+.mapa-tarjeta .btn-primary { margin-top: .5rem; }
+.mapa-nota { margin-top: 1rem; font-size: .85rem; }
+
+/* Sección del inicio que lleva al mapa */
+.inicio-mapa {
+  background: var(--oscuro);
+  color: var(--blanco);
+  border-radius: var(--radio);
+  padding: 2rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  background-image: repeating-linear-gradient(90deg, var(--rojo) 0 16px, var(--crema) 16px 32px);
+  background-size: 100% 10px;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.inicio-mapa h2 { font-size: 1.4rem; margin-bottom: .35rem; }
+.inicio-mapa h2 span { color: var(--rojo); }
+.inicio-mapa p { color: #ccc; max-width: 560px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .puesto .puesto-caja { transition: none; }
+}

@@ -95,4 +95,15 @@ require_once __DIR__ . '/includes/header.php';
   <?php endif; ?>
 </section>
 
+<!-- MAPA DE LA GALERÍA (#71) -->
+<section class="seccion">
+  <div class="inicio-mapa">
+    <div>
+      <h2>Recorre la Galería <span>puesto por puesto</span></h2>
+      <p>Mira en el plano dónde queda cada local y cuáles están abiertos ahora, como si caminaras por el pasillo.</p>
+    </div>
+    <a href="/galezarzal/mapa/mapa.php" class="btn-primary">Ver el mapa</a>
+  </div>
+</section>
+
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

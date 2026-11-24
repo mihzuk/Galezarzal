@@ -22,6 +22,7 @@ flowchart LR
         direction TB
         CU24[Buscar local]
         CU25[Ver local]
+        CU26[Recorrer el mapa de la Galería]
         CU21[Crear local]
         CU22[Modificar local]
         CU23[Eliminar local]
@@ -68,7 +69,7 @@ flowchart LR
         CU83[Enviar formulario PQR]
     end
 
-    V --> CU11 & CU12 & CU13 & CU24 & CU25 & CU31 & CU32 & CU81 & CU82 & CU83
+    V --> CU11 & CU12 & CU13 & CU24 & CU25 & CU26 & CU31 & CU32 & CU81 & CU82 & CU83
     C --> CU14 & CU41 & CU42 & CU43 & CU51 & CU52 & CU53 & CU61 & CU62 & CU63 & CU64
     S --> CU21 & CU22 & CU33 & CU34 & CU35 & CU36
     A --> CU23 & CU71 & CU72 & CU73 & CU74

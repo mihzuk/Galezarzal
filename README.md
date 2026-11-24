@@ -6,7 +6,7 @@ Galezarzal es un marketplace web para los comerciantes de la Galería de Zarzal,
 
 Hay tres tipos de usuario y cada uno tiene su propio recorrido.
 
-**Compradores.** Pueden explorar los locales y filtrarlos por categoría, entrar al perfil de cada uno para ver su catálogo, guardar sus favoritos y escribirle al vendedor por WhatsApp con un clic. También reciben notificaciones, pueden leer las preguntas frecuentes y mandar un mensaje desde la sección de ayuda.
+**Compradores.** Pueden explorar los locales y filtrarlos por categoría, recorrer el mapa de la Galería para ver dónde queda cada local y cuáles están abiertos, entrar al perfil de cada uno para ver su catálogo, guardar sus favoritos y escribirle al vendedor por WhatsApp con un clic. También reciben notificaciones, pueden leer las preguntas frecuentes y mandar un mensaje desde la sección de ayuda.
 
 **Vendedores.** Registran su local con un asistente de cuatro pasos (datos del local, productos, horarios y confirmación) y después lo manejan desde su panel: información, catálogo con precio y talla, horarios de atención y visibilidad. Un local nuevo queda pendiente y solo se hace público cuando un administrador lo aprueba.
 
