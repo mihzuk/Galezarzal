@@ -15,10 +15,10 @@ $error = '';
 // Stats de la plataforma
 $stats = [];
 try {
-    $stats['usuarios']  = $db->query("SELECT COUNT(*) FROM Usuario WHERE estado='activo'")->fetchColumn();
-    $stats['locales']   = $db->query("SELECT COUNT(*) FROM Local WHERE estado='activo'")->fetchColumn();
-    $stats['revision']  = $db->query("SELECT COUNT(*) FROM Local WHERE estado='pendiente'")->fetchColumn();
-    $stats['productos'] = $db->query("SELECT COUNT(*) FROM Producto WHERE estado='disponible'")->fetchColumn();
+    $stats['usuarios']  = $db->query("SELECT COUNT(*) FROM usuario WHERE estado='activo'")->fetchColumn();
+    $stats['locales']   = $db->query("SELECT COUNT(*) FROM local WHERE estado='activo'")->fetchColumn();
+    $stats['revision']  = $db->query("SELECT COUNT(*) FROM local WHERE estado='pendiente'")->fetchColumn();
+    $stats['productos'] = $db->query("SELECT COUNT(*) FROM producto WHERE estado='disponible'")->fetchColumn();
 } catch(Exception $e) {}
 
 $cfg = obtenerTodaConfig();

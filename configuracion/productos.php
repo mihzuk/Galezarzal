@@ -7,13 +7,13 @@ requiereRol(['Vendedor','Administrador']);
 $db = getDB();
 
 // Obtener local del vendedor
-$stLocal = $db->prepare("SELECT l.idLocal FROM Local l JOIN Vendedor v ON v.idVendedor=l.idVendedor WHERE v.iduser=? LIMIT 1");
+$stLocal = $db->prepare("SELECT l.idLocal FROM local l JOIN vendedor v ON v.idVendedor=l.idVendedor WHERE v.iduser=? LIMIT 1");
 $stLocal->execute([$_SESSION['iduser']]);
 $local = $stLocal->fetch();
 
 $productos = [];
 if ($local) {
-    $stProd = $db->prepare("SELECT p.*,c.nomCategoria FROM Producto p JOIN Categoria c ON c.idcategoria=p.idcategoria WHERE p.idLocal=? ORDER BY p.nomProducto");
+    $stProd = $db->prepare("SELECT p.*,c.nomCategoria FROM producto p JOIN categoria c ON c.idcategoria=p.idcategoria WHERE p.idLocal=? ORDER BY p.nomProducto");
     $stProd->execute([$local['idLocal']]);
     $productos = $stProd->fetchAll();
 }
@@ -22,7 +22,7 @@ if ($local) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cambiarEstado'])) {
     $idProd = (int)$_POST['idProducto'];
     $estado = in_array($_POST['estado'],['disponible','agotado','inactivo']) ? $_POST['estado'] : 'disponible';
-    $db->prepare("UPDATE Producto SET estado=? WHERE idProducto=? AND idLocal=?")
+    $db->prepare("UPDATE producto SET estado=? WHERE idProducto=? AND idLocal=?")
        ->execute([$estado, $idProd, $local['idLocal']]);
     header('Location: ' . BASE_PATH . '/configuracion/productos.php');
     exit;

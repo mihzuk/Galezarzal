@@ -9,7 +9,7 @@ $db = getDB();
 $exito = ''; $error = '';
 
 // Obtener local + horario
-$st = $db->prepare("SELECT l.idLocal, l.idHorario, h.* FROM Local l JOIN Vendedor v ON v.idVendedor=l.idVendedor LEFT JOIN Horario h ON h.idHorario=l.idHorario WHERE v.iduser=? LIMIT 1");
+$st = $db->prepare("SELECT l.idLocal, l.idHorario, h.* FROM local l JOIN vendedor v ON v.idVendedor=l.idVendedor LEFT JOIN horario h ON h.idHorario=l.idHorario WHERE v.iduser=? LIMIT 1");
 $st->execute([$_SESSION['iduser']]);
 $row = $st->fetch();
 
@@ -24,13 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $row) {
 
     if ($error === '') {
         if ($row['idHorario']) {
-            $db->prepare("UPDATE Horario SET diasDisponibles=?,horarioApertura=?,horarioCierre=?,descansoOpc=? WHERE idHorario=?")
+            $db->prepare("UPDATE horario SET diasDisponibles=?,horarioApertura=?,horarioCierre=?,descansoOpc=? WHERE idHorario=?")
                ->execute([$dias,$apertura,$cierre,$descanso,$row['idHorario']]);
         } else {
-            $ins = $db->prepare("INSERT INTO Horario (diasDisponibles,horarioApertura,horarioCierre,descansoOpc) VALUES (?,?,?,?)");
+            $ins = $db->prepare("INSERT INTO horario (diasDisponibles,horarioApertura,horarioCierre,descansoOpc) VALUES (?,?,?,?)");
             $ins->execute([$dias,$apertura,$cierre,$descanso]);
             $newId = $db->lastInsertId();
-            $db->prepare("UPDATE Local SET idHorario=? WHERE idLocal=?")->execute([$newId, $row['idLocal']]);
+            $db->prepare("UPDATE local SET idHorario=? WHERE idLocal=?")->execute([$newId, $row['idLocal']]);
         }
         $exito = 'Horarios guardados.';
         $st->execute([$_SESSION['iduser']]);

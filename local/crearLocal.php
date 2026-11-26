@@ -17,12 +17,12 @@ $error  = '';
 $db     = getDB();
 
 // ── Verificar que no tenga ya un local ──
-$stVend = $db->prepare("SELECT v.idVendedor FROM Vendedor v WHERE v.iduser=?");
+$stVend = $db->prepare("SELECT v.idVendedor FROM vendedor v WHERE v.iduser=?");
 $stVend->execute([$_SESSION['iduser']]);
 $vendedor = $stVend->fetch();
 
 if ($vendedor) {
-    $stL = $db->prepare("SELECT idLocal FROM Local WHERE idVendedor=? LIMIT 1");
+    $stL = $db->prepare("SELECT idLocal FROM local WHERE idVendedor=? LIMIT 1");
     $stL->execute([$vendedor['idVendedor']]);
     if ($stL->fetch()) {
         header('Location: ' . BASE_PATH . '/local/miLocal.php');
@@ -30,7 +30,7 @@ if ($vendedor) {
     }
 }
 
-$categorias = $db->query("SELECT * FROM Categoria ORDER BY nomCategoria")->fetchAll();
+$categorias = $db->query("SELECT * FROM categoria ORDER BY nomCategoria")->fetchAll();
 
 // ── Paso 1 → validar y guardar en sesión ──
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $paso === 1) {
@@ -144,14 +144,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $paso === 4) {
     if ($error === '') {
         // Crear/obtener vendedor
         if (!$vendedor) {
-            $db->prepare("INSERT INTO Vendedor (iduser,nomVendedor) VALUES (?,?)")
+            $db->prepare("INSERT INTO vendedor (iduser,nomVendedor) VALUES (?,?)")
                ->execute([$_SESSION['iduser'], $_SESSION['nombre']??'Vendedor']);
             $idVend = $db->lastInsertId();
             // Actualizar rol a Vendedor
-            $stRol = $db->prepare("SELECT idRol FROM Rol WHERE nomRol='Vendedor'");
+            $stRol = $db->prepare("SELECT idRol FROM rol WHERE nomRol='Vendedor'");
             $stRol->execute();
             $idRol = $stRol->fetchColumn();
-            $db->prepare("UPDATE Usuario SET idRol=? WHERE iduser=?")->execute([$idRol,$_SESSION['iduser']]);
+            $db->prepare("UPDATE usuario SET idRol=? WHERE iduser=?")->execute([$idRol,$_SESSION['iduser']]);
             $_SESSION['nomRol'] = 'Vendedor';
         } else {
             $idVend = $vendedor['idVendedor'];
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $paso === 4) {
         // Horario
         $idHorario = null;
         if (!empty($hor['dias'])) {
-            $db->prepare("INSERT INTO Horario (diasDisponibles,horarioApertura,horarioCierre,descansoOpc) VALUES (?,?,?,?)")
+            $db->prepare("INSERT INTO horario (diasDisponibles,horarioApertura,horarioCierre,descansoOpc) VALUES (?,?,?,?)")
                ->execute([$hor['dias'],$hor['apertura'],$hor['cierre'],$hor['descanso']]);
             $idHorario = $db->lastInsertId();
         }
@@ -170,13 +170,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $paso === 4) {
         $estadoLocal = configActiva('aprobacion_manual') ? 'pendiente' : 'activo';
 
         // Local (el WhatsApp se guarda como 57 + 10 dígitos, listo para wa.me)
-        $db->prepare("INSERT INTO Local (nomLocal,describLocal,ubiLocal,urlWhatsapp,idHorario,idVendedor,estado) VALUES (?,?,?,?,?,?,?)")
+        $db->prepare("INSERT INTO local (nomLocal,describLocal,ubiLocal,urlWhatsapp,idHorario,idVendedor,estado) VALUES (?,?,?,?,?,?,?)")
            ->execute([$wiz['nomLocal'],$wiz['describLocal'],$wiz['ubiLocal'],formatoWhatsapp($wiz['urlWA']),$idHorario,$idVend,$estadoLocal]);
         $idLocal = $db->lastInsertId();
 
         // Productos (el precio se convierte a número)
         foreach ($prods as $p) {
-            $db->prepare("INSERT INTO Producto (nomProducto,precio,talla,seccion,idcategoria,idLocal) VALUES (?,?,?,?,?,?)")
+            $db->prepare("INSERT INTO producto (nomProducto,precio,talla,seccion,idcategoria,idLocal) VALUES (?,?,?,?,?,?)")
                ->execute([$p['nom'],parsearPrecio($p['precio']),$p['talla'],$p['seccion'],$wiz['idcategoria'],$idLocal]);
         }
 

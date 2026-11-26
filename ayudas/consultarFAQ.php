@@ -4,6 +4,7 @@
 // ============================================================
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/aut_verifica.php';
+require_once __DIR__ . '/../includes/correo.php'; // correo al equipo (RF-24)
 
 // Arranca la sesión aquí: el header la inicia más abajo, pero necesitamos
 // saber antes si hay un usuario logueado para guardar quién escribió.
@@ -31,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errMsg = 'El mensaje no puede pasar de 2000 caracteres.';
     } else {
         try {
-            getDB()->prepare(
+            $db = getDB();
+            $db->prepare(
                 "INSERT INTO mensajecontacto (iduser, nombre, email, asunto, mensaje)
                  VALUES (?, ?, ?, ?, ?)"
             )->execute([
@@ -40,6 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $email,
                 $asunto !== '' ? $asunto : null,
                 $mensaje,
+            ]);
+            // Ya está guardado. El correo al equipo es un extra: si falla, el error
+            // queda en logs/errores.log y la persona igual ve que su mensaje se envió.
+            enviarCorreoContacto([
+                'idMensaje' => (int)$db->lastInsertId(),
+                'iduser'    => $_SESSION['iduser'] ?? null,
+                'nombre'    => $nombre,
+                'email'     => $email,
+                'asunto'    => $asunto,
+                'mensaje'   => $mensaje,
             ]);
             // Post/Redirect/Get: evita que al recargar se envíe el mensaje otra vez
             header('Location: ' . BASE_PATH . '/ayudas/consultarFAQ.php?enviado=1#contacto');

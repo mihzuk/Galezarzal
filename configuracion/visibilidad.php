@@ -7,13 +7,13 @@ requiereRol(['Vendedor','Administrador']);
 $db = getDB();
 $exito = '';
 
-$st = $db->prepare("SELECT l.* FROM Local l JOIN Vendedor v ON v.idVendedor=l.idVendedor WHERE v.iduser=? LIMIT 1");
+$st = $db->prepare("SELECT l.* FROM local l JOIN vendedor v ON v.idVendedor=l.idVendedor WHERE v.iduser=? LIMIT 1");
 $st->execute([$_SESSION['iduser']]);
 $local = $st->fetch();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $local) {
     $estado = isset($_POST['visible']) ? 'activo' : 'inactivo';
-    $db->prepare("UPDATE Local SET estado=? WHERE idLocal=?")->execute([$estado, $local['idLocal']]);
+    $db->prepare("UPDATE local SET estado=? WHERE idLocal=?")->execute([$estado, $local['idLocal']]);
     $exito = 'Visibilidad actualizada.';
     $local['estado'] = $estado;
 }

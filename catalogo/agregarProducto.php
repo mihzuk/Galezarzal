@@ -13,8 +13,8 @@ $db = getDB();
 
 // Verificar que el vendedor tiene local
 $stLocal = $db->prepare(
-    "SELECT l.idLocal FROM Local l
-     JOIN Vendedor v ON v.idVendedor = l.idVendedor
+    "SELECT l.idLocal FROM local l
+     JOIN vendedor v ON v.idVendedor = l.idVendedor
      WHERE v.iduser = ? LIMIT 1"
 );
 $stLocal->execute([$_SESSION['iduser']]);
@@ -25,7 +25,7 @@ if (!$idLocal) {
 }
 
 $error      = '';
-$categorias = $db->query("SELECT * FROM Categoria ORDER BY nomCategoria")->fetchAll();
+$categorias = $db->query("SELECT * FROM categoria ORDER BY nomCategoria")->fetchAll();
 $secciones  = SECCIONES_PRODUCTO;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fotosJson = !empty($fotos) ? json_encode($fotos) : null;
 
         $ins = $db->prepare(
-            "INSERT INTO Producto (nomProducto, describProducto, precio, talla, seccion,
+            "INSERT INTO producto (nomProducto, describProducto, precio, talla, seccion,
                                    fotosUrl, idcategoria, idLocal, estado)
              VALUES (?,?,?,?,?,?,?,?,'disponible')"
         );

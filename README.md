@@ -1,4 +1,4 @@
-# Galezarzal
+A# Galezarzal
 
 Galezarzal es un marketplace web para los comerciantes de la Galería de Zarzal, Valle del Cauca. Cada local puede publicar su catálogo en línea, y cualquier persona puede entrar al sitio desde el navegador, ver los productos, comparar estilos, tallas y precios, y escribirle al vendedor por WhatsApp sin pasar por intermediarios.
 
@@ -99,6 +99,8 @@ Si quieres publicar un local, inicia sesión y usa el botón "tengo un local" en
 
 Sin ese archivo, el sitio se comporta como en producción: nunca muestra el enlace en pantalla. Eso es a propósito, porque si se mostrara en un sitio publicado cualquiera podría cambiarle la contraseña a otra persona. No copies `config.local.php` al servidor donde publiques el sitio.
 
+**Correo de los mensajes de contacto.** Cada mensaje del formulario de Ayuda y Contacto se guarda en la base y, además, se manda por correo al equipo. Para activarlo define `CORREO_EQUIPO` (uno o varios correos separados por coma) y, si tu hosting lo exige, `CORREO_REMITENTE` (una dirección de tu dominio desde la que sale el correo). Se pueden poner como variables de entorno del servidor o en `includes/config.local.php` (hay un ejemplo comentado en `includes/config.local.example.php`). Si no están definidas, o si el servidor no puede enviar el correo, el mensaje se guarda igual y aparece en el panel de administración, y el aviso queda en `logs/errores.log`; quien escribió no ve ningún error. En el servidor publicado, si usas `config.local.php`, que tenga solo esas líneas y nunca `MOSTRAR_ENLACE_RECUPERACION`.
+
 Y como el proyecto no trae ningún administrador utilizable, ese rol hay que asignarlo a mano. En phpMyAdmin, con la base `galezarzal` seleccionada, ve a la pestaña SQL y ejecuta esto cambiando el correo por el de tu cuenta:
 
 ```sql
@@ -120,8 +122,11 @@ Es una vitrina y un canal de contacto, no una tienda con pagos en línea. La com
 
 La recuperación de contraseña funciona con enlaces de un solo uso que vencen a los 60 minutos, pero el envío del correo todavía depende de que el servidor tenga correo configurado: el código usa `mail()`, que en XAMPP no viene listo. Por seguridad, el enlace nunca se muestra en pantalla a menos que actives el modo desarrollo en tu propio equipo (ver "Recuperar la contraseña en local" más arriba).
 
-La guía de instalación está pensada para XAMPP en Windows. En Linux y macOS, que distinguen mayúsculas y minúsculas, el directorio web ahora se llama `local/`, igual que sus enlaces. Sigue pendiente revisar la diferencia entre mayúsculas y minúsculas en los nombres de tablas SQL (`Usuario`, `Rol`, `Local`) y la configuración de MySQL/MariaDB antes de desplegar en Linux.
+La guía de instalación está pensada para XAMPP en Windows. En servidores Linux, el módulo de locales utiliza la carpeta `local/` y los nombres de las tablas SQL en minúscula, tal como están en `database/galezarzalBD.sql`.
 
+Gracias a la configuración centralizada mediante `APP_URL` y `BASE_PATH` en `includes/config.php` (Issue #10), el proyecto puede instalarse en diferentes carpetas o dominios sin modificar los enlaces internos.
+
+Si agregas código nuevo, escribe siempre en minúscula los nombres de carpeta y de tabla.
 ## Equipo
 
 Mantenemos el repositorio [@josdaver3000](https://github.com/josdaver3000), [@Johan-v-p](https://github.com/Johan-v-p), [@mihzuk](https://github.com/mihzuk) y [@lizarazo2005](https://github.com/lizarazo2005). Lo desarrolla el grupo de Agora: Cristian, que es el Scrum Master fijo, Divis y Juan Cardona. Los roles y los cambios en el equipo están en [`docs/scrum.md`](docs/scrum.md#roles).

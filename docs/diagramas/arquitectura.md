@@ -15,7 +15,7 @@ flowchart TB
         subgraph MOD[Módulos]
             direction LR
             USR[usuario/<br/>registro, login,<br/>cuenta]
-            LOC[Local/<br/>crear, ver,<br/>buscar, mi local]
+            LOC[local/<br/>crear, ver,<br/>buscar, mi local]
             CAT[catalogo/<br/>producto: ver,<br/>agregar, modificar]
             FAV[favoritos/]
             NOT[notificaciones/]
@@ -30,7 +30,7 @@ flowchart TB
             AUT[aut_verifica.php<br/>sesión y roles]
             HF[header.php · footer.php]
             ERR[aut_visualizar_error.php]
-            SEG[csrf.php · validaciones.php<br/>recuperacion.php]
+            SEG[csrf.php · validaciones.php<br/>recuperacion.php · correo.php]
             PLAT[configuracion.php · mantenimiento.php<br/>parámetros de la plataforma]
         end
 

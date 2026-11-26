@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nueva   = $_POST['nueva']   ?? '';
     $confirmar = $_POST['confirmar'] ?? '';
     $db = getDB();
-    $row = $db->prepare("SELECT passwordHash FROM Usuario WHERE iduser=?");
+    $row = $db->prepare("SELECT passwordHash FROM usuario WHERE iduser=?");
     $row->execute([$_SESSION['iduser']]);
     $hash = $row->fetchColumn();
 
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($nueva !== $confirmar) {
         $error = 'Las contraseñas nuevas no coinciden.';
     } else {
-        $db->prepare("UPDATE Usuario SET passwordHash=? WHERE iduser=?")
+        $db->prepare("UPDATE usuario SET passwordHash=? WHERE iduser=?")
            ->execute([password_hash($nueva, PASSWORD_DEFAULT), $_SESSION['iduser']]);
         $exito = 'Contraseña actualizada correctamente.';
     }

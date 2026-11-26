@@ -14,9 +14,9 @@ try {
     $st = getDB()->query(
         "SELECT l.idLocal, l.nomLocal, l.describLocal, l.ubiLocal,
                 c.nomCategoria
-         FROM Local l
-         JOIN Categoria c ON c.idcategoria = (
-             SELECT p.idcategoria FROM Producto p
+         FROM local l
+         JOIN categoria c ON c.idcategoria = (
+             SELECT p.idcategoria FROM producto p
              WHERE p.idLocal = l.idLocal LIMIT 1
          )
          WHERE l.estado = 'activo'
@@ -38,6 +38,8 @@ require_once __DIR__ . '/includes/header.php';
        textiles de la Galería de Zarzal.</p>
     <div class="hero-btns">
       <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/buscarLocal.php" class="btn-primary">buscar locales</a>
+
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/buscarProducto.php" class="btn-outline">Buscar productos</a>
       <?php if (sesionActiva()): ?>
         <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/crearLocal.php" class="btn-outline">tengo un local</a>
       <?php else: ?>
@@ -46,6 +48,7 @@ require_once __DIR__ . '/includes/header.php';
     </div>
   </div>
 </section>
+
 
 <!-- SECCIÓN ¿QUÉ ES? -->
 <section class="seccion" style="background:var(--blanco);">

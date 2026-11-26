@@ -13,7 +13,7 @@ $db = getDB();
 // Quitar un local de favoritos
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quitar'])) {
     $idLocal = (int)$_POST['idLocal'];
-    $db->prepare("DELETE FROM Favorito WHERE iduser=? AND idLocal=?")->execute([$_SESSION['iduser'], $idLocal]);
+    $db->prepare("DELETE FROM favorito WHERE iduser=? AND idLocal=?")->execute([$_SESSION['iduser'], $idLocal]);
     header('Location: ' . BASE_PATH . '/favoritos/consultarFavoritos.php');
     exit;
 }
@@ -21,19 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quitar'])) {
 // Quitar un producto de favoritos
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quitarProducto'])) {
     $idProd = (int)$_POST['idProducto'];
-    $db->prepare("DELETE FROM Favorito WHERE iduser=? AND idProducto=?")->execute([$_SESSION['iduser'], $idProd]);
+    $db->prepare("DELETE FROM favorito WHERE iduser=? AND idProducto=?")->execute([$_SESSION['iduser'], $idProd]);
     header('Location: ' . BASE_PATH . '/favoritos/consultarFavoritos.php');
     exit;
 }
-
 // Locales favoritos
 $st = $db->prepare(
     "SELECT l.idLocal, l.nomLocal, l.describLocal, l.ubiLocal, l.urlWhatsapp,
-            (SELECT cat.nomCategoria FROM Producto p
-             JOIN Categoria cat ON cat.idcategoria=p.idcategoria
+            (SELECT cat.nomCategoria FROM producto p
+             JOIN categoria cat ON cat.idcategoria=p.idcategoria
              WHERE p.idLocal=l.idLocal LIMIT 1) AS catPrincipal
-     FROM Favorito f
-     JOIN Local l ON l.idLocal = f.idLocal
+     FROM favorito f
+     JOIN local l ON l.idLocal = f.idLocal
      WHERE f.iduser = ? AND l.estado = 'activo'
      ORDER BY f.idFavorito DESC"
 );
@@ -43,9 +42,9 @@ $favoritos = $st->fetchAll();
 // Productos favoritos
 $stProd = $db->prepare(
     "SELECT p.idProducto, p.nomProducto, p.precio, p.fotosUrl, p.estado, l.nomLocal
-     FROM Favorito f
-     JOIN Producto p ON p.idProducto = f.idProducto
-     JOIN Local l ON l.idLocal = p.idLocal
+     FROM favorito f
+     JOIN producto p ON p.idProducto = f.idProducto
+     JOIN local l ON l.idLocal = p.idLocal
      WHERE f.iduser = ? AND p.estado != 'inactivo' AND l.estado = 'activo'
      ORDER BY f.idFavorito DESC"
 );

@@ -15,11 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['iduser'], $_POST['acc
     $iduser = (int)$_POST['iduser'];
     $accion = $_POST['accion'];
     if ($iduser !== (int)$_SESSION['iduser']) { // No auto-bloquear
-        if ($accion === 'activar')   $db->prepare("UPDATE Usuario SET estado='activo'   WHERE iduser=?")->execute([$iduser]);
-        if ($accion === 'inactivar') $db->prepare("UPDATE Usuario SET estado='inactivo' WHERE iduser=?")->execute([$iduser]);
+        if ($accion === 'activar')   $db->prepare("UPDATE usuario SET estado='activo'   WHERE iduser=?")->execute([$iduser]);
+        if ($accion === 'inactivar') $db->prepare("UPDATE usuario SET estado='inactivo' WHERE iduser=?")->execute([$iduser]);
         if ($accion === 'vendedor') {
-            $idRolV = $db->query("SELECT idRol FROM Rol WHERE nomRol='Vendedor' LIMIT 1")->fetchColumn();
-            if ($idRolV) $db->prepare("UPDATE Usuario SET idRol=? WHERE iduser=?")->execute([$idRolV, $iduser]);
+            $idRolV = $db->query("SELECT idRol FROM rol WHERE nomRol='Vendedor' LIMIT 1")->fetchColumn();
+            if ($idRolV) $db->prepare("UPDATE usuario SET idRol=? WHERE iduser=?")->execute([$idRolV, $iduser]);
         }
     }
     header('Location: ' . BASE_PATH . '/admin/gestionarUsuarios.php' . ($q ? '?q='.urlencode($q) : ''));
@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['iduser'], $_POST['acc
 $where = $q ? "WHERE u.primerNombre LIKE ? OR u.email LIKE ? OR u.username LIKE ?" : "";
 $params = $q ? ["%$q%", "%$q%", "%$q%"] : [];
 $st = $db->prepare(
-    "SELECT u.*, r.nomRol FROM Usuario u
-     JOIN Rol r ON r.idRol = u.idRol
+    "SELECT u.*, r.nomRol FROM usuario u
+     JOIN rol r ON r.idRol = u.idRol
      $where
      ORDER BY u.fechaRegistro DESC LIMIT 100"
 );

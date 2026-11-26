@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idLocal'], $_POST['ac
         'inactivar' => 'inactivo',
         default     => null,
     };
-    if ($estado) $db->prepare("UPDATE Local SET estado=? WHERE idLocal=?")->execute([$estado, $idLocal]);
+    if ($estado) $db->prepare("UPDATE local SET estado=? WHERE idLocal=?")->execute([$estado, $idLocal]);
     header('Location: ' . BASE_PATH . '/admin/moderarLocales.php?tab='.$tab);
     exit;
 }
@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idLocal'], $_POST['ac
 $estados = ['pendiente'=>'En revisión','activo'=>'Activos','inactivo'=>'Inactivos'];
 if (!isset($estados[$tab])) $tab = 'pendiente';
 $st = $db->prepare(
-    "SELECT l.*, v.nomVendedor FROM Local l
-     JOIN Vendedor v ON v.idVendedor = l.idVendedor
+    "SELECT l.*, v.nomVendedor FROM local l
+     JOIN vendedor v ON v.idVendedor = l.idVendedor
      WHERE l.estado = ?
      ORDER BY l.fechaRegistro DESC"
 );

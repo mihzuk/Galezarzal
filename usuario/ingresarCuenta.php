@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['
         $db = getDB();
         $st = $db->prepare(
             "SELECT u.*, r.nomRol
-             FROM Usuario u
-             JOIN Rol r ON r.idRol = u.idRol
+             FROM usuario u
+             JOIN rol r ON r.idRol = u.idRol
              WHERE u.email = ? AND u.estado = 'activo'
              LIMIT 1"
         );
@@ -82,14 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['
         ]);
     if ($error === '') {
         $db = getDB();
-        $st = $db->prepare("SELECT COUNT(*) FROM Usuario WHERE email=? OR username=?");
+        $st = $db->prepare("SELECT COUNT(*) FROM usuario WHERE email=? OR username=?");
         $st->execute([$emailReg, $username]);
         if ($st->fetchColumn() > 0) {
             $error = 'El correo o nombre de usuario ya está registrado.';
         } else {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $ins  = $db->prepare(
-                "INSERT INTO Usuario (username, email, passwordHash, primerNombre, primerApellido, celular, idTipDocu, idRol)
+                "INSERT INTO usuario (username, email, passwordHash, primerNombre, primerApellido, celular, idTipDocu, idRol)
                  VALUES (?,?,?,?,?,?,1,1)"
             );
             // El celular se guarda normalizado (10 dígitos) o NULL si lo dejó vacío
