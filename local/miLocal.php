@@ -16,7 +16,7 @@ $st->execute([$_SESSION['iduser']]);
 $local = $st->fetch();
 
 if (!$local) {
-    header('Location: /galezarzal/local/crearLocal.php');
+    header('Location: ' . BASE_PATH . '/local/crearLocal.php');
     exit;
 }
 
@@ -31,7 +31,9 @@ $badgeMap = ['disponible'=>'activo','agotado'=>'agotado','inactivo'=>'pausado'];
 $labelMap  = ['disponible'=>'ACTIVO','agotado'=>'AGOTADO','inactivo'=>'PAUSADO'];
 
 $exito = $_GET['exito'] ?? '';
-$paginaActiva = 'milocal'; $tituloPagina = 'Mi Local';
+$paginaActiva = 'milocal';
+$tituloPagina = 'Mi Local';
+
 require_once __DIR__ . '/../includes/header.php';
 ?>
 
@@ -41,49 +43,87 @@ require_once __DIR__ . '/../includes/header.php';
 </div>
 
 <section class="seccion">
-  <?php if ($exito): ?><div class="alerta alerta-exito"><?= $local['estado'] === 'pendiente'
-      ? '¡Local registrado! Está en revisión por el administrador.'
-      : '¡Local registrado! Ya está publicado.' ?></div><?php endif; ?>
+  <?php if ($exito): ?>
+    <div class="alerta alerta-exito">
+      <?= $local['estado'] === 'pendiente'
+          ? '¡Local registrado! Está en revisión por el administrador.'
+          : '¡Local registrado! Ya está publicado.' ?>
+    </div>
+  <?php endif; ?>
 
   <!-- Stats -->
   <div class="stats-grid">
-    <div class="stat-card"><div class="num"><?= $activos ?></div><div class="lbl">Productos activos</div></div>
-    <div class="stat-card"><div class="num">—</div><div class="lbl">Visitas hoy</div></div>
-    <div class="stat-card"><div class="num"><?= $consultas ?></div><div class="lbl">Consultas sin resp.</div></div>
+    <div class="stat-card">
+      <div class="num"><?= $activos ?></div>
+      <div class="lbl">Productos activos</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">—</div>
+      <div class="lbl">Visitas hoy</div>
+    </div>
+    <div class="stat-card">
+      <div class="num"><?= $consultas ?></div>
+      <div class="lbl">Consultas sin resp.</div>
+    </div>
   </div>
 
   <!-- Acciones rápidas -->
   <div style="margin-bottom:1.5rem;">
     <strong style="font-size:.95rem;">Acciones rápidas</strong>
     <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.6rem;">
-      <a href="/galezarzal/catalogo/agregarProducto.php" class="btn-primary">+ Agregar producto</a>
-      <a href="/galezarzal/configuracion/infoLocal.php"  class="btn-outline">Editar información</a>
-      <a href="/galezarzal/local/verLocal.php?id=<?= $local['idLocal'] ?>" class="btn-outline">Ver mi local público</a>
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/catalogo/agregarProducto.php" class="btn-primary">+ Agregar producto</a>
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/configuracion/infoLocal.php" class="btn-outline">Editar información</a>
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/verLocal.php?id=<?= urlencode((string)$local['idLocal']) ?>" class="btn-outline">Ver mi local público</a>
     </div>
   </div>
 
   <!-- Catálogo -->
   <h2 style="font-size:1rem;font-weight:700;margin-bottom:.75rem;">Tu catálogo</h2>
+
   <?php if (empty($productos)): ?>
-  <p class="text-gris">Aún no tienes productos. <a href="/galezarzal/catalogo/agregarProducto.php" style="color:var(--rojo);">Agrega el primero</a></p>
+    <p class="text-gris">
+      Aún no tienes productos.
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/catalogo/agregarProducto.php" style="color:var(--rojo);">Agrega el primero</a>
+    </p>
   <?php else: ?>
-  <div class="tabla-wrap">
-    <table>
-      <thead><tr><th>Producto</th><th>Precio</th><th>Tallas</th><th>Sección</th><th>Acciones</th><th>Estado</th></tr></thead>
-      <tbody>
-      <?php foreach ($productos as $p): ?>
-      <tr>
-        <td><?= htmlspecialchars($p['nomProducto']) ?></td>
-        <td>$<?= number_format($p['precio'],0,',','.') ?></td>
-        <td style="font-size:.82rem;color:var(--gris);"><?= htmlspecialchars($p['talla']??'—') ?></td>
-        <td><span class="card-badge badge-mixto" style="font-size:.7rem;"><?= htmlspecialchars($p['seccion']??'—') ?></span></td>
-        <td><a href="/galezarzal/catalogo/modificarProducto.php?id=<?= $p['idProducto'] ?>" class="btn-outline btn-sm" style="color:var(--rojo);border-color:var(--rojo);">Editar</a></td>
-        <td><span class="card-badge badge-<?= $badgeMap[$p['estado']]??'mixto' ?>"><?= $labelMap[$p['estado']]??strtoupper($p['estado']) ?></span></td>
-      </tr>
-      <?php endforeach; ?>
-      </tbody>
-    </table>
-  </div>
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Tallas</th>
+            <th>Sección</th>
+            <th>Acciones</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($productos as $p): ?>
+            <tr>
+              <td><?= htmlspecialchars($p['nomProducto']) ?></td>
+              <td>$<?= number_format($p['precio'], 0, ',', '.') ?></td>
+              <td style="font-size:.82rem;color:var(--gris);"><?= htmlspecialchars($p['talla'] ?? '—') ?></td>
+              <td>
+                <span class="card-badge badge-mixto" style="font-size:.7rem;">
+                  <?= htmlspecialchars($p['seccion'] ?? '—') ?>
+                </span>
+              </td>
+              <td>
+                <a href="<?= htmlspecialchars(BASE_PATH) ?>/catalogo/modificarProducto.php?id=<?= urlencode((string)$p['idProducto']) ?>"
+                   class="btn-outline btn-sm"
+                   style="color:var(--rojo);border-color:var(--rojo);">Editar</a>
+              </td>
+              <td>
+                <span class="card-badge badge-<?= $badgeMap[$p['estado']] ?? 'mixto' ?>">
+                  <?= $labelMap[$p['estado']] ?? strtoupper($p['estado']) ?>
+                </span>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
   <?php endif; ?>
 </section>
 

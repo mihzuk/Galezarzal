@@ -9,7 +9,7 @@ require_once __DIR__ . '/../includes/validaciones.php';
 require_once __DIR__ . '/../includes/configuracion.php';
 
 if (sesionActiva()) {
-    header('Location: /galezarzal/index.php');
+    header('Location: ' . BASE_PATH . '/index.php');
     exit;
 }
 
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['
             $_SESSION['email']    = $usuario['email'];
             $_SESSION['nomRol']   = $usuario['nomRol'];
             $_SESSION['nombre']   = $usuario['primerNombre'];
-            header('Location: /galezarzal/index.php');
+            header('Location: ' . BASE_PATH . '/index.php');
             exit;
         } else {
             $error = 'Correo o contraseña incorrectos.';
@@ -156,7 +156,7 @@ require_once __DIR__ . '/../includes/header.php';
         </div>
         <button type="submit" class="btn-primary w-full" style="margin-top:.5rem;">Iniciar sesión</button>
         <p style="text-align:center;margin-top:.75rem;font-size:.85rem;">
-          <a href="/galezarzal/usuario/olvidoContrasena.php" style="color:var(--rojo);">¿Olvidaste tu contraseña? Restablecer</a>
+          <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/usuario/olvidoContrasena.php" style="color:var(--rojo);">¿Olvidaste tu contraseña? Restablecer</a>
         </p>
       </form>
 

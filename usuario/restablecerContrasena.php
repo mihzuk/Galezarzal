@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $info['estado'] === 'valido') {
                 $db->commit();
 
                 flash('exito', 'Tu contraseña se cambió. Ya puedes iniciar sesión con la nueva.');
-                header('Location: /galezarzal/usuario/ingresarCuenta.php');
+                header('Location: ' . BASE_PATH . '/usuario/ingresarCuenta.php');
                 exit;
             }
         } catch (PDOException $e) {
@@ -72,8 +72,8 @@ require_once __DIR__ . '/../includes/header.php';
     <?php if ($info['estado'] !== 'valido'): ?>
       <div class="alerta alerta-error"><?= htmlspecialchars(mensajeToken($info['estado'])) ?></div>
       <div class="form-acciones">
-        <a href="/galezarzal/usuario/olvidoContrasena.php" class="btn-primary">Pedir un enlace nuevo</a>
-        <a href="/galezarzal/usuario/ingresarCuenta.php" class="btn-outline">Iniciar sesión</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/usuario/olvidoContrasena.php" class="btn-primary">Pedir un enlace nuevo</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/usuario/ingresarCuenta.php" class="btn-outline">Iniciar sesión</a>
       </div>
     <?php else: ?>
       <p style="font-size:.88rem;color:var(--gris);margin-bottom:1.25rem;">

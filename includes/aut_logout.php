@@ -1,9 +1,10 @@
 <?php
+require_once __DIR__ . '/config.php';
 // ============================================================
 //  GALEZARZAL — Cerrar sesión
 // ============================================================
 if (session_status() === PHP_SESSION_NONE) session_start();
 $_SESSION = [];
 session_destroy();
-header('Location: /galezarzal/index.php');
+header('Location: ' . BASE_PATH . '/index.php');
 exit;

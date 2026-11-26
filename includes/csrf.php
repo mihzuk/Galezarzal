@@ -47,7 +47,7 @@ function csrfRechazar(): void {
 <head>
 <meta charset="UTF-8">
 <title>Solicitud no válida — ' . htmlspecialchars(nombreSitio()) . '</title>
-<link rel="stylesheet" href="/galezarzal/assets/css/style.css">
+<link rel="stylesheet" href="' . htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') . '/assets/css/style.css">
 </head>
 <body>
 <div style="min-height:60vh;display:flex;align-items:center;justify-content:center;">

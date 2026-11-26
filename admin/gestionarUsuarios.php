@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['iduser'], $_POST['acc
             if ($idRolV) $db->prepare("UPDATE usuario SET idRol=? WHERE iduser=?")->execute([$idRolV, $iduser]);
         }
     }
-    header('Location: /galezarzal/admin/gestionarUsuarios.php' . ($q ? '?q='.urlencode($q) : ''));
+    header('Location: ' . BASE_PATH . '/admin/gestionarUsuarios.php' . ($q ? '?q='.urlencode($q) : ''));
     exit;
 }
 

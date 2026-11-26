@@ -20,7 +20,7 @@ $stLocal = $db->prepare(
 $stLocal->execute([$_SESSION['iduser']]);
 $idLocal = (int)$stLocal->fetchColumn();
 if (!$idLocal) {
-    header('Location: /galezarzal/local/crearLocal.php');
+    header('Location: ' . BASE_PATH . '/local/crearLocal.php');
     exit;
 }
 
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        $fotosJson, $idCategoria, $idLocal]);
 
         flash('exito', "Producto «{$nomProducto}» agregado correctamente.");
-        header('Location: /galezarzal/local/miLocal.php');
+        header('Location: ' . BASE_PATH . '/local/miLocal.php');
         exit;
     }
 }
@@ -142,7 +142,7 @@ require_once __DIR__ . '/../includes/header.php';
 
       <div class="form-acciones">
         <button type="submit" class="btn-primary">Guardar producto</button>
-        <a href="/galezarzal/local/miLocal.php" class="btn-outline">Cancelar</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/miLocal.php" class="btn-outline">Cancelar</a>
       </div>
     </form>
   </div>

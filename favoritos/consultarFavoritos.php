@@ -14,7 +14,7 @@ $db = getDB();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quitar'])) {
     $idLocal = (int)$_POST['idLocal'];
     $db->prepare("DELETE FROM favorito WHERE iduser=? AND idLocal=?")->execute([$_SESSION['iduser'], $idLocal]);
-    header('Location: /galezarzal/favoritos/consultarFavoritos.php');
+    header('Location: ' . BASE_PATH . '/favoritos/consultarFavoritos.php');
     exit;
 }
 
@@ -22,10 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quitar'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quitarProducto'])) {
     $idProd = (int)$_POST['idProducto'];
     $db->prepare("DELETE FROM favorito WHERE iduser=? AND idProducto=?")->execute([$_SESSION['iduser'], $idProd]);
-    header('Location: /galezarzal/favoritos/consultarFavoritos.php');
+    header('Location: ' . BASE_PATH . '/favoritos/consultarFavoritos.php');
     exit;
 }
-
 // Locales favoritos
 $st = $db->prepare(
     "SELECT l.idLocal, l.nomLocal, l.describLocal, l.ubiLocal, l.urlWhatsapp,
@@ -67,7 +66,7 @@ require_once __DIR__ . '/../includes/header.php';
       <?php if (empty($favoritos) && empty($favProductos)): ?>
         <div class="alerta alerta-info">
           Aún no tienes favoritos guardados.
-          <a href="/galezarzal/local/buscarLocal.php" style="color:var(--rojo);">Explorar locales</a>
+          <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/buscarLocal.php" style="color:var(--rojo);">Explorar locales</a>
         </div>
       <?php else: ?>
 
@@ -77,7 +76,7 @@ require_once __DIR__ . '/../includes/header.php';
         <?php foreach ($favoritos as $loc): ?>
         <div class="card" style="position:relative;">
           <span class="card-badge badge-mixto"><?= htmlspecialchars($loc['catPrincipal'] ?? 'Mixto') ?></span>
-          <a href="/galezarzal/local/verLocal.php?id=<?= $loc['idLocal'] ?>" style="display:block;text-decoration:none;color:inherit;">
+          <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/verLocal.php?id=<?= $loc['idLocal'] ?>" style="display:block;text-decoration:none;color:inherit;">
             <h3><?= htmlspecialchars($loc['nomLocal']) ?></h3>
             <p style="margin:.3rem 0;font-size:.82rem;color:var(--gris);">
               <?= htmlspecialchars(substr($loc['describLocal'] ?? '', 0, 60)) ?>…
@@ -105,7 +104,7 @@ require_once __DIR__ . '/../includes/header.php';
         <?php foreach ($favProductos as $p): ?>
         <?php $pf = json_decode($p['fotosUrl'] ?? '[]', true) ?: []; ?>
         <div class="card">
-          <a href="/galezarzal/catalogo/catalogo.php?id=<?= (int)$p['idProducto'] ?>" style="display:block;color:inherit;">
+          <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/catalogo/catalogo.php?id=<?= (int)$p['idProducto'] ?>" style="display:block;color:inherit;">
             <?php if (!empty($pf[0])): ?>
               <img src="<?= htmlspecialchars($pf[0]) ?>" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:.5rem;">
             <?php endif; ?>

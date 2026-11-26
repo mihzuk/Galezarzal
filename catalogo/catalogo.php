@@ -42,7 +42,7 @@ if (sesionActiva()) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorito'])) {
     if (!sesionActiva()) {
         flash('info', 'Inicia sesión para guardar productos en tus favoritos.');
-        header('Location: /galezarzal/usuario/ingresarCuenta.php');
+        header('Location: ' . BASE_PATH . '/usuario/ingresarCuenta.php');
         exit;
     }
     if ($esFavorito) {
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorito'])) {
         $db->prepare("INSERT INTO favorito (iduser, idProducto) VALUES (?, ?)")
            ->execute([$_SESSION['iduser'], $idProducto]);
     }
-    header('Location: /galezarzal/catalogo/catalogo.php?id=' . $idProducto);
+    header('Location: ' . BASE_PATH . '/catalogo/catalogo.php?id=' . $idProducto);
     exit;
 }
 
@@ -67,8 +67,8 @@ require_once __DIR__ . '/../includes/header.php';
 
 <section class="seccion" style="max-width:900px;">
   <p style="font-size:.85rem;color:var(--gris);margin-bottom:1rem;">
-    <a href="/galezarzal/local/buscarLocal.php">Locales</a> ›
-    <a href="/galezarzal/local/verLocal.php?id=<?= $producto['idLocal'] ?>"><?= htmlspecialchars($producto['nomLocal']) ?></a> ›
+    <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/buscarLocal.php">Locales</a> ›
+    <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/verLocal.php?id=<?= $producto['idLocal'] ?>"><?= htmlspecialchars($producto['nomLocal']) ?></a> ›
     <?= htmlspecialchars($producto['nomProducto']) ?>
   </p>
 
@@ -133,7 +133,7 @@ require_once __DIR__ . '/../includes/header.php';
             <?= $esFavorito ? '❤ Quitar de favoritos' : '♡ Agregar a favoritos' ?>
           </button>
         </form>
-        <a href="/galezarzal/local/verLocal.php?id=<?= $producto['idLocal'] ?>" class="btn-outline">Ver todo el local</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/verLocal.php?id=<?= $producto['idLocal'] ?>" class="btn-outline">Ver todo el local</a>
       </div>
 
       <div style="margin-top:1.25rem;padding:.75rem;background:var(--crema);border-radius:var(--radio);font-size:.85rem;">
@@ -149,7 +149,7 @@ require_once __DIR__ . '/../includes/header.php';
     <div class="cards-grid">
       <?php foreach ($otros as $o): ?>
       <?php $oFotos = json_decode($o['fotosUrl'] ?? '[]', true) ?: []; ?>
-      <a href="/galezarzal/catalogo/catalogo.php?id=<?= $o['idProducto'] ?>" class="card">
+      <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/catalogo/catalogo.php?id=<?= $o['idProducto'] ?>" class="card">
         <?php if (!empty($oFotos[0])): ?>
           <img src="<?= htmlspecialchars($oFotos[0]) ?>" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:.5rem;">
         <?php endif; ?>

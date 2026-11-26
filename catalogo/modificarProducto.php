@@ -38,7 +38,7 @@ $fotosTexto = null; // si hay error, aquí queda lo que escribió en el campo de
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar'])) {
     $db->prepare("UPDATE producto SET estado='inactivo' WHERE idProducto=?")->execute([$idProducto]);
     flash('exito', 'Producto eliminado.');
-    header('Location: /galezarzal/local/miLocal.php');
+    header('Location: ' . BASE_PATH . '/local/miLocal.php');
     exit;
 }
 
@@ -165,7 +165,7 @@ require_once __DIR__ . '/../includes/header.php';
       </div>
       <div class="form-acciones">
         <button type="submit" class="btn-primary">Guardar cambios</button>
-        <a href="/galezarzal/local/miLocal.php" class="btn-outline">Cancelar</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/local/miLocal.php" class="btn-outline">Cancelar</a>
       </div>
     </form>
 

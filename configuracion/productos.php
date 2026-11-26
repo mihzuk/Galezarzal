@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cambiarEstado'])) {
     $estado = in_array($_POST['estado'],['disponible','agotado','inactivo']) ? $_POST['estado'] : 'disponible';
     $db->prepare("UPDATE producto SET estado=? WHERE idProducto=? AND idLocal=?")
        ->execute([$estado, $idProd, $local['idLocal']]);
-    header('Location: /galezarzal/configuracion/productos.php');
+    header('Location: ' . BASE_PATH . '/configuracion/productos.php');
     exit;
 }
 
@@ -40,11 +40,11 @@ require_once __DIR__ . '/../includes/header.php';
     <div class="config-panel">
       <div class="flex-between mb-2">
         <h2>Catálogo de productos</h2>
-        <a href="/galezarzal/catalogo/agregarProducto.php" class="btn-primary btn-sm">+ Agregar producto</a>
+        <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/catalogo/agregarProducto.php" class="btn-primary btn-sm">+ Agregar producto</a>
       </div>
 
       <?php if (empty($productos)): ?>
-        <div class="alerta alerta-info">No tienes productos aún. <a href="/galezarzal/catalogo/agregarProducto.php" style="color:var(--rojo);">Agregar primero</a></div>
+        <div class="alerta alerta-info">No tienes productos aún. <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/catalogo/agregarProducto.php" style="color:var(--rojo);">Agregar primero</a></div>
       <?php else: ?>
       <div class="tabla-wrap">
         <table>
@@ -58,7 +58,7 @@ require_once __DIR__ . '/../includes/header.php';
             <td><span class="card-badge badge-mixto" style="font-size:.72rem;"><?= htmlspecialchars($p['seccion']??'—') ?></span></td>
             <td><span class="card-badge badge-<?= $badgeMap[$p['estado']] ?? 'mixto' ?>"><?= $labelMap[$p['estado']] ?? strtoupper($p['estado']) ?></span></td>
             <td>
-              <a href="/galezarzal/catalogo/modificarProducto.php?id=<?= $p['idProducto'] ?>" class="btn-outline btn-sm">Editar</a>
+              <a href="<?= htmlspecialchars(BASE_PATH, ENT_QUOTES, 'UTF-8') ?>/catalogo/modificarProducto.php?id=<?= $p['idProducto'] ?>" class="btn-outline btn-sm">Editar</a>
             </td>
           </tr>
           <?php endforeach; ?>

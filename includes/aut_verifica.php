@@ -10,7 +10,7 @@ function sesionActiva(): bool {
     return isset($_SESSION['iduser']);
 }
 
-function requiereLogin(string $redirigir = '/galezarzal/usuario/ingresarCuenta.php'): void {
+function requiereLogin(string $redirigir = BASE_PATH . '/usuario/ingresarCuenta.php'): void {
     if (!sesionActiva()) {
         header('Location: ' . $redirigir);
         exit;
@@ -20,7 +20,7 @@ function requiereLogin(string $redirigir = '/galezarzal/usuario/ingresarCuenta.p
 function requiereRol(array $roles): void {
     requiereLogin();
     if (!in_array($_SESSION['nomRol'] ?? '', $roles, true)) {
-        header('Location: /galezarzal/index.php?error=acceso_denegado');
+        header('Location: ' . BASE_PATH . '/index.php?error=acceso_denegado');
         exit;
     }
 }

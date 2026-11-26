@@ -1,4 +1,4 @@
-# Galezarzal
+A# Galezarzal
 
 Galezarzal es un marketplace web para los comerciantes de la Galería de Zarzal, Valle del Cauca. Cada local puede publicar su catálogo en línea, y cualquier persona puede entrar al sitio desde el navegador, ver los productos, comparar estilos, tallas y precios, y escribirle al vendedor por WhatsApp sin pasar por intermediarios.
 
@@ -54,13 +54,13 @@ Si algo sale mal, borra la carpeta `mysql` nueva, devuelve `mysql-old` a su nomb
 
 Necesitas XAMPP para Windows (con PHP 8.0 o superior, pero ya viste que conviene la última) y Git, este último solo si quieres clonar el repositorio.
 
-**1. Copia el proyecto.** Tiene que quedar en `C:\xampp\htdocs\galezarzal`, con ese nombre exacto y en minúsculas, porque los enlaces internos apuntan a `/galezarzal/`.
+**1. Copia el proyecto.** Puedes instalarlo en `C:\xampp\htdocs\galezarzal` o en otra carpeta, por ejemplo `C:\xampp\htdocs\mitienda`. Los enlaces usan `BASE_PATH`, calculado a partir de `APP_URL`.
 
 ```
 git clone https://github.com/mihzuk/Galezarzal.git C:\xampp\htdocs\galezarzal
 ```
 
-Si prefieres bajar el ZIP desde GitHub, descomprímelo y cambia el nombre de la carpeta `Galezarzal-main` por `galezarzal`. Revisa que `index.php` quede directamente dentro de esa carpeta y no en una subcarpeta.
+Si prefieres bajar el ZIP desde GitHub, descomprímelo y elige el nombre de carpeta que quieras. Revisa que `index.php` quede directamente dentro de esa carpeta y no en una subcarpeta.
 
 **2. Enciende los servicios.** Abre el Panel de Control de XAMPP e inicia Apache y MySQL.
 
@@ -75,7 +75,15 @@ Si ya tenías la base importada antes de que existieran las tablas de mensajes d
 
 Si necesitas repetir la importación, borra primero la base desde Operaciones y vuélvela a crear. El script no usa `IF NOT EXISTS`, entonces sobre tablas que ya existen falla con "Table already exists".
 
-**4. Abre el sitio.** Entra a http://localhost/galezarzal/ y deberías ver la página de inicio con el local de ejemplo "el niche store".
+**4. Configura la URL base y abre el sitio.** Por defecto `APP_URL` es `http://localhost/galezarzal`. Para usar otra carpeta o dominio sin editar el código, copia `includes/config.local.example.php` a `includes/config.local.php` y añade/descomenta, por ejemplo:
+
+```php
+define('APP_URL_OVERRIDE', 'http://localhost/mitienda');
+```
+
+También puedes configurar la variable de entorno `APP_URL` del servidor (tiene prioridad sobre `APP_URL_OVERRIDE`). Para un dominio propio, usa `https://midominio.com` o `https://midominio.com/subcarpeta`. Reinicia Apache si cambias variables de entorno. `BASE_PATH` se calcula automáticamente y sirve para enlaces y redirecciones. No subas `config.local.php` a Git.
+
+Abre la URL configurada y comprueba inicio, catálogo, login, locales y favoritos.
 
 La conexión a la base de datos se configura en `includes/config.php`: usuario `root`, sin contraseña y base `galezarzal`.
 
@@ -103,7 +111,7 @@ Cierra sesión y vuelve a entrar, porque el rol se guarda en la sesión al ingre
 
 ## Si algo falla
 
-- **Error 404, página sin estilos o enlaces rotos.** Casi seguro la carpeta no se llama `galezarzal` o quedó metida dentro de otra. Repasa el primer paso de la instalación.
+- **Error 404, página sin estilos o enlaces rotos.** Comprueba que `APP_URL` corresponda al dominio y carpeta reales y que el directorio `local/` conserve las minúsculas.
 - **"Error de conexión a la base de datos".** Revisa que MySQL esté encendido, que la base se llame `galezarzal` y que `root` no tenga contraseña. Si la tiene, cambia `DB_PASS` en `includes/config.php`.
 - **Errores de sintaxis o `Call to undefined function str_contains()`.** Tu PHP es anterior a la 8.0. Actualiza XAMPP.
 - **Apache no arranca porque el puerto 80 está ocupado.** Cambia el puerto en la configuración de XAMPP y entra con `http://localhost:PUERTO/galezarzal/`.
@@ -114,8 +122,11 @@ Es una vitrina y un canal de contacto, no una tienda con pagos en línea. La com
 
 La recuperación de contraseña funciona con enlaces de un solo uso que vencen a los 60 minutos, pero el envío del correo todavía depende de que el servidor tenga correo configurado: el código usa `mail()`, que en XAMPP no viene listo. Por seguridad, el enlace nunca se muestra en pantalla a menos que actives el modo desarrollo en tu propio equipo (ver "Recuperar la contraseña en local" más arriba).
 
-La guía de instalación está pensada para XAMPP en Windows, pero el código también funciona en servidores Linux, que sí distinguen mayúsculas de minúsculas. El módulo de locales vive en la carpeta `local/` y todas las consultas usan los nombres de tabla en minúscula, tal como están en `database/galezarzalBD.sql`, así que no hace falta configurar `lower_case_table_names` en MySQL. Al desplegar en Linux, la carpeta del proyecto debe llamarse `galezarzal` en minúscula, porque los enlaces internos siguen apuntando a `/galezarzal/` (Issue #10). Si agregas código nuevo, escribe siempre en minúscula los nombres de carpeta y de tabla.
+La guía de instalación está pensada para XAMPP en Windows. En servidores Linux, el módulo de locales utiliza la carpeta `local/` y los nombres de las tablas SQL en minúscula, tal como están en `database/galezarzalBD.sql`.
 
+Gracias a la configuración centralizada mediante `APP_URL` y `BASE_PATH` en `includes/config.php` (Issue #10), el proyecto puede instalarse en diferentes carpetas o dominios sin modificar los enlaces internos.
+
+Si agregas código nuevo, escribe siempre en minúscula los nombres de carpeta y de tabla.
 ## Equipo
 
 Mantenemos el repositorio [@josdaver3000](https://github.com/josdaver3000), [@Johan-v-p](https://github.com/Johan-v-p), [@mihzuk](https://github.com/mihzuk) y [@lizarazo2005](https://github.com/lizarazo2005). Lo desarrolla el grupo de Agora: Cristian, que es el Scrum Master fijo, Divis y Juan Cardona. Los roles y los cambios en el equipo están en [`docs/scrum.md`](docs/scrum.md#roles).
@@ -160,3 +171,9 @@ La rama `main` está protegida: nadie sube cambios directo, todo entra con un pu
 4. Abre un pull request hacia `main` y escribe en la descripción `Closes #número-del-issue`.
 5. Espera la revisión. Si piden cambios, corrígelos en la misma rama y haz push; el pull request se actualiza solo.
 6. Cuando lo aprueben y se una a `main`, borra la rama. Para la siguiente tarea crea una rama nueva (no reutilices la anterior) y siempre después de hacer `git pull` en `main`.
+
+## Rutas configurables — Issue #10
+
+`includes/config.php` es el punto central de `APP_URL` y `BASE_PATH`. Los enlaces internos y redirecciones usan `BASE_PATH`, mientras que los enlaces absolutos (por ejemplo, recuperación de contraseña) usan `APP_URL`. La instalación puede usar un nombre de carpeta distinto o un dominio propio ajustando únicamente `APP_URL` mediante el entorno o `APP_URL_OVERRIDE` en `includes/config.local.php`.
+
+**Pruebas sugeridas:** abrir inicio, login, buscador, ficha de local, catálogo, favoritos y panel de configuración; comprobar las redirecciones de formularios y páginas de error; repetir en una carpeta distinta y en la raíz del dominio. La prueba en un navegador con base de datos real debe realizarse en el entorno de despliegue.

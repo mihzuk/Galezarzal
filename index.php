@@ -37,14 +37,13 @@ require_once __DIR__ . '/includes/header.php';
     <p>La vitrina digital que conecta compradores con los emprendedores
        textiles de la Galería de Zarzal.</p>
     <div class="hero-btns">
-      <a href="/galezarzal/local/buscarLocal.php" class="btn-primary">buscar locales</a>
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/buscarLocal.php" class="btn-primary">buscar locales</a>
 
-      <a href="/galezarzal/local/buscarProducto.php" class="btn-outline">Buscar productos</a>
-
+      <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/buscarProducto.php" class="btn-outline">Buscar productos</a>
       <?php if (sesionActiva()): ?>
-        <a href="/galezarzal/local/crearLocal.php" class="btn-outline">tengo un local</a>
+        <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/crearLocal.php" class="btn-outline">tengo un local</a>
       <?php else: ?>
-        <a href="/galezarzal/usuario/ingresarCuenta.php" class="btn-outline">tengo un local</a>
+        <a href="<?= htmlspecialchars(BASE_PATH) ?>/usuario/ingresarCuenta.php" class="btn-outline">tengo un local</a>
       <?php endif; ?>
     </div>
   </div>
@@ -77,7 +76,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="seccion">
   <div class="flex-between mb-2">
     <h2 class="seccion-titulo">Locales <span>recomendados</span></h2>
-    <a href="/galezarzal/local/buscarLocal.php" class="btn-outline btn-sm">Ver más locales</a>
+    <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/buscarLocal.php" class="btn-outline btn-sm">Ver más locales</a>
   </div>
 
   <?php if (empty($locales)): ?>
@@ -85,7 +84,7 @@ require_once __DIR__ . '/includes/header.php';
   <?php else: ?>
   <div class="cards-grid">
     <?php foreach ($locales as $loc): ?>
-    <a href="/galezarzal/local/verLocal.php?id=<?= $loc['idLocal'] ?>" class="card">
+    <a href="<?= htmlspecialchars(BASE_PATH) ?>/local/verLocal.php?id=<?= urlencode((string)$loc['idLocal']) ?>" class="card">
       <span class="card-badge badge-mixto"><?= htmlspecialchars($loc['nomCategoria'] ?? 'Mixto') ?></span>
       <h3><?= htmlspecialchars($loc['nomLocal']) ?></h3>
       <p><?= htmlspecialchars($loc['describLocal'] ?? '') ?></p>
