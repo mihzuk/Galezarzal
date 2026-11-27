@@ -2,20 +2,26 @@
 // ============================================================
 //  GALEZARZAL — Configuración de Base de Datos
 // ============================================================
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'galezarzal');
-define('DB_CHARSET', 'utf8mb4');
-
-define('APP_NAME', 'Galezarzal');
-define('APP_URL', 'http://localhost/galezarzal');
 
 // Ajustes de tu equipo (no se suben a Git). Si existe includes/config.local.php
-// se carga aquí; para activar el modo desarrollo copia config.local.example.php.
+// se carga PRIMERO: lo que defina allí (DB_HOST, DB_USER, DB_PASS, DB_NAME,
+// modo desarrollo, correo...) gana sobre los valores por defecto de abajo.
+// Para activar el modo desarrollo copia config.local.example.php.
 if (is_file(__DIR__ . '/config.local.php')) {
     require __DIR__ . '/config.local.php';
 }
+
+// Valores por defecto (solo para desarrollo local con XAMPP).
+// En un servidor publicado no uses root sin contraseña: defínelos en config.local.php.
+if (!defined('DB_HOST'))    define('DB_HOST', 'localhost');
+if (!defined('DB_USER'))    define('DB_USER', 'root');
+if (!defined('DB_PASS'))    define('DB_PASS', '');
+if (!defined('DB_NAME'))    define('DB_NAME', 'galezarzal');
+if (!defined('DB_CHARSET')) define('DB_CHARSET', 'utf8mb4');
+
+if (!defined('APP_NAME'))   define('APP_NAME', 'Galezarzal');
+if (!defined('APP_URL'))    define('APP_URL', 'http://localhost/galezarzal');
+
 
 // Recuperación de contraseña. Por defecto (false) el enlace se envía por correo
 // y NUNCA se muestra en pantalla. Solo en tu equipo, creando config.local.php,

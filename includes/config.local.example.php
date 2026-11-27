@@ -15,3 +15,11 @@ define('MOSTRAR_ENLACE_RECUPERACION', true);
 // aparece en el panel de administración, y el aviso queda en logs/errores.log.
 // define('CORREO_EQUIPO', 'equipo@tudominio.com');      // uno o varios, separados por coma
 // define('CORREO_REMITENTE', 'no-responder@tudominio.com'); // opcional
+
+
+// Credenciales de la base de datos. En un servidor publicado usa un usuario
+// propio con contraseña; no uses root sin contraseña.
+// define('DB_HOST', 'localhost');
+// define('DB_USER', 'galezarzal_app');
+// define('DB_PASS', 'cambia-esta-clave');
+// define('DB_NAME', 'galezarzal');
