@@ -12,6 +12,8 @@ require_once __DIR__ . '/configuracion.php'; // nombre del sitio en el correo
 
 const TOKEN_MINUTOS = 60; // cuánto dura un enlace
 
+require_once __DIR__ . '/smtp.php'; // envío de correo por SMTP o mail() (HT #11)
+
 function hashToken(string $token): string {
     return hash('sha256', $token);
 }
@@ -34,6 +36,17 @@ function crearTokenRecuperacion(PDO $db, int $iduser): string {
     )->execute([$iduser, hashToken($token)]);
 
     return $token;
+}
+
+/**
+ * Deja vencidos los enlaces pendientes de un usuario. Se usa cuando el correo no
+ * se pudo enviar: así no queda un enlace válido que nadie recibió.
+ */
+function anularTokensPendientes(PDO $db, int $iduser): void {
+    $db->prepare(
+        "UPDATE tokenrecuperacion SET fechaExpira = NOW()
+         WHERE iduser = ? AND fechaUso IS NULL AND fechaExpira > NOW()"
+    )->execute([$iduser]);
 }
 
 /**
@@ -98,16 +111,17 @@ function enlaceRecuperacion(string $token): string {
 
 /**
  * Entrega el enlace. En desarrollo lo guarda en logs/recuperacion.log
- * (la pantalla lo muestra la página). En producción intenta enviarlo por correo.
+ * (la pantalla lo muestra la página). En producción lo envía por correo.
+ * Devuelve true si el enlace quedó entregado y false si el correo no se pudo enviar.
  */
-function entregarEnlaceRecuperacion(string $email, string $enlace): void {
+function entregarEnlaceRecuperacion(string $email, string $enlace): bool {
     if (modoDesarrollo()) {
         if (!is_dir(LOG_DIR)) @mkdir(LOG_DIR, 0775, true);
         $ht = LOG_DIR . '/.htaccess';
         if (is_dir(LOG_DIR) && !file_exists($ht)) @file_put_contents($ht, "Require all denied\n");
         $linea = '[' . date('Y-m-d H:i:s') . '] ' . $email . ' ' . $enlace . PHP_EOL;
         @file_put_contents(LOG_DIR . '/recuperacion.log', $linea, FILE_APPEND | LOCK_EX);
-        return;
+        return true;
     }
 
     $asunto = '=?UTF-8?B?' . base64_encode('Restablece tu contraseña de ' . nombreSitio()) . '?=';
@@ -115,8 +129,9 @@ function entregarEnlaceRecuperacion(string $email, string $enlace): void {
             . "Abre este enlace (dura " . TOKEN_MINUTOS . " minutos y solo sirve una vez):\r\n"
             . $enlace . "\r\n\r\n"
             . "Si no fuiste tú, ignora este mensaje: tu contraseña no cambia.\r\n";
-    $cabeceras = "MIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8";
-    if (!@mail($email, $asunto, $cuerpo, $cabeceras)) {
-        registrarError('No se pudo enviar el correo de recuperación (mail() falló).');
+    if (!enviarCorreo($email, $asunto, $cuerpo)) {
+        registrarError('No se pudo enviar el correo de recuperación.');
+        return false;
     }
+    return true;
 }

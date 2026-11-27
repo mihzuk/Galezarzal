@@ -27,6 +27,7 @@ flowchart TB
             HF[header.php · footer.php]
             ERR[aut_visualizar_error.php]
             SEG[csrf.php · validaciones.php<br/>recuperacion.php · correo.php]
+            SMTP[smtp.php<br/>envío por SMTP o mail]
             PLAT[configuracion.php · mantenimiento.php<br/>parámetros de la plataforma]
         end
         ASSETS[assets/css/style.css]
