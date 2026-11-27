@@ -77,7 +77,7 @@ Si necesitas repetir la importación, borra primero la base desde Operaciones y 
 
 **4. Abre el sitio.** Entra a http://localhost/galezarzal/ y deberías ver la página de inicio con el local de ejemplo "el niche store".
 
-La conexión a la base de datos se configura en `includes/config.php`: usuario `root`, sin contraseña y base `galezarzal`.
+La conexión a la base de datos usa por defecto `root`, sin contraseña y la base `galezarzal`. Para usar otras credenciales, define `DB_HOST`, `DB_USER`, `DB_PASS` y `DB_NAME` en `includes/config.local.php` (Git lo ignora; hay un ejemplo en `includes/config.local.example.php`). En un servidor publicado no uses `root` sin contraseña.
 
 ## Primeros pasos en la aplicación
 
