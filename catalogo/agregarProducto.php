@@ -105,7 +105,7 @@ require_once __DIR__ . '/../includes/header.php';
         </div>
         <div class="form-group">
           <label>Precio (COP) *</label>
-          <input type="number" name="precio" min="1" max="99999999" step="100" placeholder="Ej: 45000"
+          <input type="number" name="precio" min="1" max="99999999" step="any" placeholder="Ej: 45000"
                  required value="<?= htmlspecialchars($_POST['precio'] ?? '') ?>">
         </div>
       </div>
