@@ -428,7 +428,7 @@ Todos pueden crear y editar su cuenta, cambiar la contraseña o borrar la cuenta
 
 ## Con qué está hecho
 
-PHP 8 con PDO para hablar con la base de datos, MySQL o MariaDB para guardar los datos, y HTML y CSS escritos a mano. Los colores del sitio están en `assets/css/style.css`: rojo `#E94560`, azul oscuro `#1A1A2E` y crema `#F1FAEE`. Para desarrollar usamos XAMPP.
+PHP 8 con PDO para hablar con la base de datos, MySQL o MariaDB para guardar los datos, y HTML y CSS escritos a mano. Los colores del sitio están en `assets/css/style.css`: rojo `#E94560`, azul oscuro `#1A1A2E` y crema `#F1FAEE`. Para desarrollar usamos XAMPP o Docker Compose.
 
 ## Antes de instalar: una advertencia sobre PHP
 
@@ -481,7 +481,7 @@ Si prefieres bajar el ZIP desde GitHub, descomprímelo y cambia el nombre de la 
 1. Haz clic en Nueva, ponle de nombre `galezarzal`, elige el cotejamiento `utf8mb4_unicode_ci` y presiona Crear.
 2. Selecciona la base `galezarzal` en el panel de la izquierda. El script no trae `CREATE DATABASE` ni `USE`, así que si lo importas sin tenerla seleccionada te sale el error "No database selected".
 3. Ve a la pestaña Importar, elige `database/galezarzalBD.sql` y presiona Importar.
-4. Al terminar deberías ver 15 tablas.
+4. Al terminar deberías ver 17 tablas.
 
 Si ya tenías la base importada antes de que existieran las tablas de mensajes de contacto y de recuperación de contraseña, no hace falta rehacerla: ejecuta `database/mensajeContacto.sql` y `database/tokenRecuperacion.sql` en la pestaña SQL, con la base seleccionada.
 
@@ -490,6 +490,90 @@ Si necesitas repetir la importación, borra primero la base desde Operaciones y 
 **4. Abre el sitio.** Entra a http://localhost/galezarzal/ y deberías ver la página de inicio con el local de ejemplo "el niche store".
 
 La conexión a la base de datos se configura en `includes/config.php`: usuario `root`, sin contraseña y base `galezarzal`.
+## Instalación en local con Docker
+
+Como alternativa a XAMPP, Galezarzal cuenta con un entorno de desarrollo basado en Docker Compose (Issue #43). Esto permite trabajar con la misma configuración en Windows, Linux y macOS.
+
+### Requisitos
+
+- Docker Desktop o Docker Engine con Docker Compose.
+- Git.
+- Tener Docker iniciado antes de ejecutar los comandos.
+
+### Instalación
+
+1. Clona el repositorio:
+
+   ```bash
+   git clone https://github.com/mihzuk/Galezarzal.git
+   cd Galezarzal
+   ```
+
+2. Crea el archivo de variables de entorno:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Abre el archivo `.env` y configura las contraseñas de la base de datos. Este archivo está excluido de Git y no debe subirse al repositorio.
+
+4. Construye e inicia los contenedores:
+
+   ```bash
+   docker compose up -d --build
+   ```
+
+5. Comprueba el estado de los servicios:
+
+   ```bash
+   docker compose ps
+   ```
+
+6. Una vez integrada la configuración de credenciales del Issue #18, abre la aplicación en:
+
+   http://localhost:8080/galezarzal/
+
+### Servicios
+
+| Servicio | Tecnología | Puerto |
+|---|---|---|
+| web | PHP 8.3 + Apache + PDO MySQL | 8080 |
+| db | MySQL 8.4 | 3306 interno |
+
+La base de datos se inicializa automáticamente mediante el archivo `database/galezarzalBD.sql` cuando se crea el volumen por primera vez.
+
+Los datos se almacenan en el volumen `mysql_data`, lo que permite conservarlos al detener o recrear los contenedores.
+
+### Comandos útiles
+
+```bash
+# Iniciar los contenedores
+docker compose up -d
+
+# Consultar el estado
+docker compose ps
+
+# Consultar los registros
+docker compose logs
+
+# Reconstruir después de modificar el código
+docker compose up -d --build
+
+# Detener y eliminar los contenedores
+docker compose down
+```
+
+No utilices `docker compose down -v` si quieres conservar la información de la base de datos, ya que este comando elimina el volumen.
+
+### Compatibilidad con XAMPP
+
+Docker es una alternativa de desarrollo y no reemplaza XAMPP. Ambos entornos pueden funcionar de manera independiente y utilizan bases de datos separadas.
+
+### Estado de integración
+
+Se verificó la construcción de las imágenes, la importación de las 17 tablas, los datos de ejemplo, la conexión directa entre PHP y MySQL y la conservación de los datos existentes al recrear los contenedores.
+
+La integración de las credenciales en la aplicación depende del Issue #18. Hasta que se complete, quedan pendientes las pruebas del catálogo y del registro de usuarios desde Docker.
 
 ## Primeros pasos en la aplicación
 
@@ -539,7 +623,7 @@ Es una vitrina y un canal de contacto, no una tienda con pagos en línea. La com
 
 La recuperación de contraseña funciona con enlaces de un solo uso que vencen a los 60 minutos, pero el envío del correo depende de que el servidor tenga correo configurado: por SMTP con los ajustes de `includes/config.local.php` (o variables de entorno), o con `mail()`, que en XAMPP no viene listo (ver "Configurar el correo para que el envío de la recuperación sea real" más arriba). Por seguridad, el enlace nunca se muestra en pantalla a menos que actives el modo desarrollo en tu propio equipo (ver "Recuperar la contraseña en local" más arriba).
 
-La guía de instalación está pensada para XAMPP en Windows, pero el código también funciona en servidores Linux, que sí distinguen mayúsculas de minúsculas. El módulo de locales vive en la carpeta `local/` y todas las consultas usan los nombres de tabla en minúscula, tal como están en `database/galezarzalBD.sql`, así que no hace falta configurar `lower_case_table_names` en MySQL. Al desplegar en Linux, la carpeta del proyecto debe llamarse `galezarzal` en minúscula, porque los enlaces internos siguen apuntando a `/galezarzal/` (Issue #10). Si agregas código nuevo, escribe siempre en minúscula los nombres de carpeta y de tabla.
+La guía de instalación incluye XAMPP en Windows y Docker Compose, pero el código también funciona en servidores Linux, que sí distinguen mayúsculas de minúsculas. El módulo de locales vive en la carpeta `local/` y todas las consultas usan los nombres de tabla en minúscula, tal como están en `database/galezarzalBD.sql`, así que no hace falta configurar `lower_case_table_names` en MySQL. Al desplegar en Linux, la carpeta del proyecto debe llamarse `galezarzal` en minúscula, porque los enlaces internos siguen apuntando a `/galezarzal/` (Issue #10). Si agregas código nuevo, escribe siempre en minúscula los nombres de carpeta y de tabla.
 
 ## Equipo
 
