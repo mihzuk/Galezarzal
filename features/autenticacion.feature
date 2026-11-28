@@ -30,3 +30,17 @@ Característica: Autenticación de usuarios
     Cuando ingreso mi correo con una contraseña incorrecta
     Entonces veo el mensaje "Correo o contraseña incorrectos."
     Y no se inicia sesión
+
+  # Issue #11 (RF-04): envío del correo de recuperación de contraseña
+
+  Escenario: Recuperar la contraseña con un correo registrado
+    Dado que existe un usuario con el correo "usuario@ejemplo.com" y el servidor tiene el correo configurado
+    Cuando solicito recuperar la contraseña con ese correo
+    Entonces recibo un correo con el enlace de recuperación
+    Y el enlace no se muestra en pantalla
+
+  Escenario: El servidor no puede enviar el correo
+    Dado que el servidor no tiene el correo configurado
+    Cuando solicito recuperar la contraseña
+    Entonces veo un mensaje que indica que no se pudo enviar el correo
+    Y el enlace de recuperación no se muestra en pantalla

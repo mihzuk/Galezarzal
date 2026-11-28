@@ -2,8 +2,10 @@
 // ============================================================
 //  GALEZARZAL — Olvidé mi contraseña
 //  Genera un enlace de un solo uso (vence en 60 minutos).
-//  En desarrollo local el enlace se muestra en pantalla y se
-//  guarda en logs/recuperacion.log (ver includes/config.php).
+//  El enlace llega por correo y nunca se muestra en pantalla. Si el
+//  correo no se pudo enviar, se avisa. Solo en desarrollo local el enlace
+//  se muestra en pantalla y se guarda en logs/recuperacion.log (ver
+//  includes/config.php). El envío se configura en includes/smtp.php.
 // ============================================================
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/aut_visualizar_error.php';
@@ -25,15 +27,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $st->execute([$email]);
             $iduser = $st->fetchColumn();
 
-            if ($iduser) {
-                $token = crearTokenRecuperacion($db, (int)$iduser);
-                $url   = enlaceRecuperacion($token);
-                entregarEnlaceRecuperacion($email, $url);
-                if (enlaceEnPantalla()) $enlace = $url;
-            }
             // Mismo mensaje exista o no el correo, para no revelar quién tiene cuenta
             $mensaje = 'Si el correo está registrado, recibirás instrucciones en tu bandeja de entrada.';
             $tipo    = 'exito';
+
+            if ($iduser) {
+                $token = crearTokenRecuperacion($db, (int)$iduser);
+                $url   = enlaceRecuperacion($token);
+                if (entregarEnlaceRecuperacion($email, $url)) {
+                    if (enlaceEnPantalla()) $enlace = $url;
+                } else {
+                    // El correo no salió: se vence el enlace y se avisa. Nunca se muestra el enlace.
+                    anularTokensPendientes($db, (int)$iduser);
+                    $mensaje = 'No se pudo enviar el correo de recuperación. Inténtalo de nuevo en unos minutos o avisa al administrador del sitio.';
+                    $tipo    = 'error';
+                }
+            }
         } catch (PDOException $e) {
             registrarError('Recuperación de contraseña: ' . $e->getMessage());
             $mensaje = 'No pudimos procesar tu solicitud. Inténtalo de nuevo en unos minutos.';
